@@ -1,7 +1,16 @@
 # Build files
-build/
-dist/
+build
+dist
 
 # Dependencies
-vendor/
+vendor
 node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
