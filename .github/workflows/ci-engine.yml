@@ -35,6 +35,7 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan github.com/goofr-group >> ~/.ssh/known_hosts
           ssh-add - <<< "${{ secrets.SSH_JUMP_MASTER }}"
+          printenv SSH_AUTH_SOCK
 
       - name: Install dependencies
         run: make vendor
