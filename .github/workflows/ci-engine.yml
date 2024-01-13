@@ -28,7 +28,7 @@ jobs:
           go-version: "1.21"
 
       - name: Set up git ssh instead of https
-        run: git config --global url."ssh://git@github.com/goofr-group".insteadOf https://github.com/goofr-group
+        run: git config --global url."ssh://git@github.com:goofr-group".insteadOf https://github.com/goofr-group
 
       - name: Set up ssh keys
         run: |
