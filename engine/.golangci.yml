@@ -1,0 +1,16 @@
+linters-settings:
+  goimports:
+    local-prefixes: github.com/goofr-group/jump-master/engine/
+
+linters:
+  enable:
+    - goimports
+    - goconst
+    - gofumpt
+    - govet
+    - stylecheck
+    - unconvert
+    - unparam
+    - misspell
+    - whitespace
+    - bodyclose
