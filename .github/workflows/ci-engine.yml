@@ -33,7 +33,7 @@ jobs:
       - name: Set up ssh keys
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan github.com/goofr-group >> ~/.ssh/known_hosts
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
           eval $(ssh-agent -s) > /dev/null
           ssh-add - <<< "${{ secrets.SSH_JUMP_MASTER }}"
           echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
