@@ -15,21 +15,21 @@ func jsVersion(buildGoVersion, buildTag, buildCommit, buildTime string) js.Func 
 	return js.FuncOf(func(this js.Value, args []js.Value) interface{} {
 		response := map[string]interface{}{
 			goVersion: js.Null(),
-			gitCommit: js.Null(),
 			gitTag:    js.Null(),
+			gitCommit: js.Null(),
 			build:     js.Null(),
 		}
 
-		if buildGoVersion != "" {
+		if len(buildGoVersion) != 0 {
 			response[goVersion] = buildGoVersion
 		}
-		if buildTag != "" {
+		if len(buildTag) != 0 {
 			response[gitTag] = buildTag
 		}
-		if buildCommit != "" {
+		if len(buildCommit) != 0 {
 			response[gitCommit] = buildCommit
 		}
-		if buildTime != "" {
+		if len(buildTime) != 0 {
 			response[build] = buildTime
 		}
 
