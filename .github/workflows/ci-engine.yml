@@ -11,6 +11,9 @@ defaults:
   run:
     working-directory: ./engine
 
+env:
+  GOPRIVATE: "github.com/goofr-group"
+
 jobs:
   lint:
     runs-on: ubuntu-latest
