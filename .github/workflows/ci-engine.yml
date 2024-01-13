@@ -36,7 +36,7 @@ jobs:
           ssh-keyscan github.com/goofr-group >> ~/.ssh/known_hosts
           eval $(ssh-agent -s) > /dev/null
           ssh-add - <<< "${{ secrets.SSH_JUMP_MASTER }}"
-          printenv SSH_AUTH_SOCK
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: make vendor
