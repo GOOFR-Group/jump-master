@@ -1,0 +1,116 @@
+name: CI Engine
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "engine/**"
+
+defaults:
+  run:
+    working-directory: ./engine
+
+env:
+  GOPRIVATE: "github.com/goofr-group"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21"
+
+      - name: Set up git ssh instead of https
+        run: |
+          git config --global url."git@go-math:goofr-group/go-math".insteadOf https://github.com/goofr-group/go-math
+          git config --global url."git@physics-engine:goofr-group/physics-engine".insteadOf https://github.com/goofr-group/physics-engine
+          git config --global url."git@game-engine:goofr-group/game-engine".insteadOf https://github.com/goofr-group/game-engine
+
+      - name: Set up ssh keys
+        run: |
+          mkdir -p ~/.ssh
+
+          echo "${{ secrets.SSH_GO_MATH }}" > ~/.ssh/go-math
+          echo "${{ secrets.SSH_PHYSICS_ENGINE }}" > ~/.ssh/physics-engine
+          echo "${{ secrets.SSH_GAME_ENGINE }}" > ~/.ssh/game-engine
+          chmod 600 ~/.ssh/*
+
+          cat >>~/.ssh/config <<END
+          Host go-math
+            Hostname github.com
+            IdentityFile ~/.ssh/go-math
+
+          Host physics-engine
+            Hostname github.com
+            IdentityFile ~/.ssh/physics-engine
+
+          Host game-engine
+            Hostname github.com
+            IdentityFile ~/.ssh/game-engine
+          END
+
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          eval $(ssh-agent -s) > /dev/null
+
+      - name: Install dependencies
+        run: make vendor
+
+      - name: Run lint
+        run: make lint
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21"
+
+      - name: Set up git ssh instead of https
+        run: |
+          git config --global url."git@go-math:goofr-group/go-math".insteadOf https://github.com/goofr-group/go-math
+          git config --global url."git@physics-engine:goofr-group/physics-engine".insteadOf https://github.com/goofr-group/physics-engine
+          git config --global url."git@game-engine:goofr-group/game-engine".insteadOf https://github.com/goofr-group/game-engine
+
+      - name: Set up ssh keys
+        run: |
+          mkdir -p ~/.ssh
+
+          echo "${{ secrets.SSH_GO_MATH }}" > ~/.ssh/go-math
+          echo "${{ secrets.SSH_PHYSICS_ENGINE }}" > ~/.ssh/physics-engine
+          echo "${{ secrets.SSH_GAME_ENGINE }}" > ~/.ssh/game-engine
+          chmod 600 ~/.ssh/*
+
+          cat >>~/.ssh/config <<END
+          Host go-math
+            Hostname github.com
+            IdentityFile ~/.ssh/go-math
+
+          Host physics-engine
+            Hostname github.com
+            IdentityFile ~/.ssh/physics-engine
+
+          Host game-engine
+            Hostname github.com
+            IdentityFile ~/.ssh/game-engine
+          END
+
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          eval $(ssh-agent -s) > /dev/null
+
+      - name: Install dependencies
+        run: make vendor
+
+      - name: Run build
+        run: make build
