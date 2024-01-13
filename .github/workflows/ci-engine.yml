@@ -38,6 +38,7 @@ jobs:
           ssh-add - <<< "${{ secrets.SSH_GO_MATH }}"
           ssh-add - <<< "${{ secrets.SSH_PHYSICS_ENGINE }}"
           ssh-add - <<< "${{ secrets.SSH_GAME_ENGINE }}"
+          ssh-add -l
           echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
 
       - name: Install dependencies
