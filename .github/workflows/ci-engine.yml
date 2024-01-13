@@ -40,17 +40,17 @@ jobs:
 
           cat >>~/.ssh/config <<END
           Host github.com:GOOFR-Group/go-math.git
-            HostName github.com
+            HostName github.com:GOOFR-Group
             User git
             IdentityFile ~/.ssh/go-math
 
           Host github.com:GOOFR-Group/physics-engine.git
-            HostName github.com
+            HostName github.com:GOOFR-Group
             User git
             IdentityFile ~/.ssh/physics-engine
 
           Host github.com:GOOFR-Group/game-engine.git
-            HostName github.com
+            HostName github.com:GOOFR-Group
             User git
             IdentityFile ~/.ssh/game-engine
           END
