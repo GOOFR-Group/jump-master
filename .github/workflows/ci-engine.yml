@@ -39,13 +39,13 @@ jobs:
           echo "${{ secrets.SSH_GAME_ENGINE }}" > ~/.ssh/game-engine
 
           cat >>~/.ssh/config <<END
-          Host github.com:GOOFR-Group/go-math.git
+          Host github.com:GOOFR-Group/go-math
             IdentityFile ~/.ssh/go-math
 
-          Host github.com:GOOFR-Group/physics-engine.git
+          Host github.com:GOOFR-Group/physics-engine
             IdentityFile ~/.ssh/physics-engine
 
-          Host github.com:GOOFR-Group/game-engine.git
+          Host github.com:GOOFR-Group/game-engine
             IdentityFile ~/.ssh/game-engine
           END
 
