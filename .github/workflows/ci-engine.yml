@@ -29,9 +29,9 @@ jobs:
 
       - name: Set up git ssh instead of https
         run: |
-          git config --global url."git@go-math:goofr-group".insteadOf https://github.com/goofr-group/go-math
-          git config --global url."git@physics-engine:goofr-group".insteadOf https://github.com/goofr-group/physics-engine
-          git config --global url."git@game-engine:goofr-group".insteadOf https://github.com/goofr-group/game-engine
+          git config --global url."git@go-math:goofr-group/go-math".insteadOf https://github.com/goofr-group/go-math
+          git config --global url."git@physics-engine:goofr-group/physics-engine".insteadOf https://github.com/goofr-group/physics-engine
+          git config --global url."git@game-engine:goofr-group/game-engine".insteadOf https://github.com/goofr-group/game-engine
 
       - name: Set up ssh keys
         run: |
