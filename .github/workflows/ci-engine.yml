@@ -39,20 +39,22 @@ jobs:
           echo "${{ secrets.SSH_GAME_ENGINE }}" > ~/.ssh/game-engine
 
           cat >>~/.ssh/config <<END
-          Host github.com:GOOFR-Group/go-math
+          Host github.com:GOOFR-Group
             IdentityFile ~/.ssh/go-math
 
-          Host github.com:GOOFR-Group/physics-engine
+          Host github.com:GOOFR-Group
             IdentityFile ~/.ssh/physics-engine
 
-          Host github.com:GOOFR-Group/game-engine
+          Host github.com:GOOFR-Group
             IdentityFile ~/.ssh/game-engine
           END
 
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           eval $(ssh-agent -s) > /dev/null
 
-          ssh-add -l
+          ssh-add ~/.ssh/go-math
+          ssh-add ~/.ssh/physics-engine
+          ssh-add ~/.ssh/game-engine
 
           echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
 
