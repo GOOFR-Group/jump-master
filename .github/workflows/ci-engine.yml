@@ -41,13 +41,13 @@ jobs:
           chmod 600 ~/.ssh/*
 
           cat >>~/.ssh/config <<END
-          Host git@github.com:GOOFR-Group/go-math.git
+          Host github.com/goofr-group/go-math
             IdentityFile ~/.ssh/go-math
 
-          Host git@github.com:GOOFR-Group/physics-engine.git
+          Host github.com/goofr-group/physics-engine
             IdentityFile ~/.ssh/physics-engine
 
-          Host git@github.com:GOOFR-Group/game-engine.git
+          Host github.com/goofr-group/game-engine
             IdentityFile ~/.ssh/game-engine
           END
 
