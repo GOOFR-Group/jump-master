@@ -35,7 +35,9 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           eval $(ssh-agent -s) > /dev/null
-          ssh-add - <<< "${{ secrets.SSH_JUMP_MASTER }}"
+          ssh-add - <<< "${{ secrets.SSH_GO_MATH }}"
+          ssh-add - <<< "${{ secrets.SSH_PHYSICS_ENGINE }}"
+          ssh-add - <<< "${{ secrets.SSH_GAME_ENGINE }}"
           echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
 
       - name: Install dependencies
