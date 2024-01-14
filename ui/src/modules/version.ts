@@ -1,5 +1,5 @@
 /**
- * Represents the information about the latest engine build.
+ * Represents the information about the engine build.
  */
 export interface Version {
 	/**
