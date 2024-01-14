@@ -11,6 +11,7 @@ build: clean
 	npm run --prefix ui build
 	mv ./ui/dist/ ./dist/
 	make -C engine
+	mkdir -p ./dist/bin/
 	mv ./engine/dist/* ./dist/bin/
 
 ## help: print this help message
