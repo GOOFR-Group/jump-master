@@ -9,9 +9,9 @@ clean:
 build: clean
 	npm --prefix ui ci
 	npm run --prefix ui build
-	mv ./ui/dist ./dist
+	mv ./ui/dist/ ./dist/
 	make -C engine
-	mv ./engine/dist/* ./dist/
+	mv ./engine/dist/* ./dist/bin/
 
 ## help: print this help message
 help:
