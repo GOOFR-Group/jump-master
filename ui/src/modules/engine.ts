@@ -7,9 +7,9 @@ import type { Version } from './version';
  */
 export interface Engine {
 	/**
-	 * Retrieves the information of the latest engine build.
+	 * Retrieves the information of the engine build.
 	 *
-	 * @returns Information of the latest engine build.
+	 * @returns Information of the engine build.
 	 */
 	version(): Version;
 
