@@ -13,5 +13,5 @@ logs
 npm-debug.log*
 
 # Editor directories and files
-.vscode/*
+.vscode
 !.vscode/extensions.json
