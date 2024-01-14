@@ -11,7 +11,7 @@ declare global {
 	}
 }
 
-const WASM_FILE = '../../bin/engine.wasm';
+const WASM_FILE = 'bin/engine.wasm';
 
 /**
  * Loads WebAssembly binary of game engine.
