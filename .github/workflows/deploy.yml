@@ -1,6 +1,9 @@
 name: Deploy
 
 on:
+  pull_request:
+    branches:
+      - 10-set-up-continuous-deployment
   push:
     branches:
       - main
