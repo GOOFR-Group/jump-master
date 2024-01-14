@@ -18,30 +18,25 @@ BUILD_FLAGS = "\
 default: clean tidy vendor lint build
 
 ## clean: clean the vendor and dist directories
-.PHONY: clean
 clean:
 	rm -rf vendor/
 	rm -rf dist/
 
 ## tidy: add missing and remove unused modules
-.PHONY: tidy
 tidy:
 	go mod tidy
 
 ## vendor: make vendored copy of dependencies
-.PHONY: vendor
 vendor:
 	go mod vendor
 
 ## lint: download/install golangci-lint and analyse the source code with the configuration in .golangci.yml
-.PHONY: lint
 lint:
 	go fmt ./...
 	command -v golangci-lint || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GOPATH)/bin $(LINTER_VERSION)
 	golangci-lint run --timeout=5m
 
 ## build: build game engine to the dist directory
-.PHONY: build
 build:
 	GOOS=js GOARCH=wasm go build -ldflags $(BUILD_FLAGS) -o dist/${ENGINE_NAME}.wasm ./cmd/wasm
 
