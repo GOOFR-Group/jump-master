@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - main
-    # paths:
-    #   - "engine/**"
+    paths:
+      - "engine/**"
 
 defaults:
   run:
