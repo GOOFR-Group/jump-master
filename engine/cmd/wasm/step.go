@@ -36,11 +36,8 @@ func jsStep(app *app.App) js.Func {
 
 			return nil
 		}()
-		if err != nil {
-			return marshalErrorResponse(err)
-		}
 
-		return marshalStepResponse(gameState)
+		return marshalStepResponse(gameState, err)
 	})
 }
 
@@ -77,9 +74,16 @@ func unmarshalStepRequest(value js.Value) (stepRequest, error) {
 }
 
 // marshalStepResponse serializes the step response and returns a javascript object with the game state information.
-func marshalStepResponse(gameState domain.GameState) map[string]interface{} {
-	return map[string]interface{}{
+func marshalStepResponse(gameState domain.GameState, err error) map[string]interface{} {
+	response := map[string]interface{}{
+		"error":       nil,
 		"gameObjects": marshalGameObjects(gameState.GameObjects),
 		"camera":      marshalCamera(gameState.Camera),
 	}
+
+	if err != nil {
+		response["error"] = err.Error()
+	}
+
+	return response
 }

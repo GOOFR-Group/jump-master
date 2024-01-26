@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/goofr-group/game-engine/pkg/engine"
 	"github.com/goofr-group/game-engine/pkg/rendering"
 	"github.com/goofr-group/go-math/rotation/matrix"
 	"github.com/goofr-group/go-math/vector2"
@@ -11,7 +12,7 @@ import (
 
 	"github.com/goofr-group/jump-master/engine/internal/domain"
 	"github.com/goofr-group/jump-master/engine/internal/game"
-	"github.com/goofr-group/jump-master/engine/internal/game/action"
+	"github.com/goofr-group/jump-master/engine/internal/game/behaviour"
 )
 
 // App defines the main application structure.
@@ -30,6 +31,52 @@ func New() *App {
 	}
 }
 
+// StartGameWorld sets up the initial game world.
+func (a *App) StartGameWorld() error {
+	gameEngine := a.gameEngine.Engine()
+	actionManager := a.gameEngine.ActionManager()
+
+	collider := core.NewCircleCollider(5, vector2.Zero())
+	gameObject := core.Object{
+		Active: true,
+		Transform: core.Transform2D{
+			Position: vector2.Vector2{
+				X: 0,
+				Y: 0,
+			},
+			Rotation: matrix.Identity(),
+			Scale:    vector2.One(),
+		},
+		RigidBody: &core.RigidBody2D{
+			BodyType:           core.BodyDynamic,
+			CollisionDetection: core.DiscreteDetection,
+			Interpolation:      core.Interpolate,
+			AutoMass:           true,
+			GravityScale:       0,
+		},
+		Collider: &collider,
+		Renderer: &core.Renderer{
+			Width:  10,
+			Height: 10,
+			Offset: vector2.Vector2{
+				X: -5,
+				Y: -5,
+			},
+			Layer: "default",
+		},
+	}
+
+	movementOptions := behaviour.MovementOptions{
+		Speed: 500,
+	}
+	movementBehaviour := behaviour.NewMove(&gameObject, actionManager, movementOptions)
+	if err := gameEngine.CreateGameObject(&gameObject, []engine.Behaviour{&movementBehaviour}); err != nil {
+		return fmt.Errorf("failed to create game object: %w", err)
+	}
+
+	return nil
+}
+
 // GameStep performs an engine step and returns the current state of every game object in the world.
 func (a *App) GameStep(actions map[string]bool) (domain.GameState, error) {
 	// Update the state of the actions.
@@ -40,11 +87,6 @@ func (a *App) GameStep(actions map[string]bool) (domain.GameState, error) {
 	// Get the current time step.
 	timeStep := time.Since(a.lastStep).Seconds()
 	a.lastStep = time.Now()
-
-	// Perform the expected actions.
-	if err := a.performActions(); err != nil {
-		return domain.GameState{}, fmt.Errorf("failed to perform the game actions: %w", err)
-	}
 
 	// Perform the actual game step.
 	if err := a.gameEngine.Engine().Step(timeStep); err != nil {
@@ -110,42 +152,4 @@ func (a *App) GameStep(actions map[string]bool) (domain.GameState, error) {
 		GameObjects: gameObjects,
 		Camera:      *camera,
 	}, nil
-}
-
-// performActions performs the expected actions based on the current state of the actions.
-func (a *App) performActions() error {
-	gameEngine := a.gameEngine.Engine()
-	actionManager := a.gameEngine.ActionManager()
-
-	// TODO: remove this, currently used for testing.
-	if actionManager.ActionStarted(action.Space) {
-		collider := core.NewCircleCollider(5, vector2.Zero())
-		gameObject := core.Object{
-			Active: true,
-			Transform: core.Transform2D{
-				Position: vector2.Vector2{
-					X: 0,
-					Y: 0,
-				},
-				Rotation: matrix.Identity(),
-				Scale:    vector2.One(),
-			},
-			Collider: &collider,
-			Renderer: &core.Renderer{
-				Width:  10,
-				Height: 10,
-				Offset: vector2.Vector2{
-					X: -5,
-					Y: -5,
-				},
-				Layer: "default",
-			},
-		}
-
-		if err := gameEngine.CreateGameObject(&gameObject, nil); err != nil {
-			return fmt.Errorf("failed to create game object: %w", err)
-		}
-	}
-
-	return nil
 }
