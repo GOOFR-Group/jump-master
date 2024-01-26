@@ -8,19 +8,6 @@ import (
 	"github.com/goofr-group/physics-engine/pkg/game"
 )
 
-// marshalErrorResponse serializes an error response.
-func marshalErrorResponse(err error) map[string]interface{} {
-	if err == nil {
-		return map[string]interface{}{
-			"error": nil,
-		}
-	}
-
-	return map[string]interface{}{
-		"error": err.Error(),
-	}
-}
-
 func marshalVector2(v vector2.Vector2) map[string]interface{} {
 	return map[string]interface{}{
 		"x": v.X,

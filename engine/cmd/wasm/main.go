@@ -3,6 +3,7 @@
 package main
 
 import (
+	"fmt"
 	"syscall/js"
 
 	"github.com/goofr-group/jump-master/engine/internal/app"
@@ -35,6 +36,14 @@ func main() {
 	module := js.Global().Get(entryPoint)
 	module.Set(methodVersion, jsVersion(Version, GitCommit, GoVersion, Build))
 	module.Set(methodStep, jsStep(app))
+
+	// Set up game world.
+	err := app.StartGameWorld()
+	if err != nil {
+		err = fmt.Errorf("failed to start game world: %w", err)
+		js.Global().Get("console").Call("error", err.Error())
+		panic(err)
+	}
 
 	// Keep context open.
 	<-make(chan struct{})
