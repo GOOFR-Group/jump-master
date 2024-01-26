@@ -14,6 +14,13 @@ build: clean
 	mkdir -p ./dist/bin/
 	mv ./engine/dist/* ./dist/bin/
 
+## dev: build engine and start web app locally
+dev:
+	make -C engine
+	mkdir -p ./ui/public/bin/
+	mv ./engine/dist/* ./ui/public/bin/
+	npm run --prefix ui dev
+
 ## help: print this help message
 help:
 	@echo "Usage: \n"
