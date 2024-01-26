@@ -1,7 +1,7 @@
 /**
  * Type of user actions.
  */
-type ActionType = 'Space' | 'ArrowLeft' | 'ArrowRight';
+export type ActionType = 'Jump' | 'Left' | 'Right';
 
 /**
  * Action triggered by the user.

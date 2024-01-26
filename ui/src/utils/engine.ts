@@ -1,4 +1,4 @@
-import type { Engine } from '../modules/engine';
+import type { Engine } from '../domain/engine';
 
 declare class Go {
 	importObject: WebAssembly.Imports;

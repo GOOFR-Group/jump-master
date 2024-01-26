@@ -1,29 +1,7 @@
 import { createResource } from 'solid-js';
-import { A } from '@solidjs/router';
-import { loadEngine } from '../utils/engine';
-import type { Version } from '../modules/version';
-
-function GameMenu() {
-	return (
-		<ul>
-			<li>
-				<A href="/game">
-					<button class="btn mx-auto">Start</button>
-				</A>
-			</li>
-		</ul>
-	);
-}
-
-function EngineVersion({ engineVersion }: { engineVersion: Version }) {
-	return (
-		<div class="flex items-end justify-center">
-			<pre class="rounded-xl border border-neutral-950 bg-neutral-900 p-3 text-white shadow-xl">
-				{JSON.stringify(engineVersion, null, 2)}
-			</pre>
-		</div>
-	);
-}
+import { loadEngine } from '../../utils/engine';
+import GameMenu from './menu';
+import EngineVersion from './version';
 
 function Home() {
 	const [engine] = createResource(loadEngine);
