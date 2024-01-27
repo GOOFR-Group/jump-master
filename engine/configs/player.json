@@ -6,7 +6,7 @@
   "jump": {
     "impulse": 250,
     "maxImpulse": 1500,
-    "impulseMultiplier": 0.1,
-    "diagonalAngle": 50
+    "impulseMultiplier": 0.15,
+    "diagonalAngle": 55
   }
 }

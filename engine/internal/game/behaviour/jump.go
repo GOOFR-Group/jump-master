@@ -4,6 +4,7 @@ import (
 	"github.com/goofr-group/game-engine/pkg/action"
 	"github.com/goofr-group/game-engine/pkg/engine"
 	"github.com/goofr-group/go-math/mathf"
+	"github.com/goofr-group/go-math/rotation/matrix"
 	"github.com/goofr-group/go-math/vector2"
 	"github.com/goofr-group/physics-engine/pkg/game"
 
@@ -63,9 +64,28 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		return nil
 	}
 
-	// Apply the accumulated impulse.
-	force := vector2.Up().Mul(b.accumulatedImpulse)
-	b.object.RigidBody.AddVelocity(force)
+	// Compute the diagonal angle based on the fraction of accumulated impulse.
+	// Subtract the diagonal angle from 90 because the velocity vector already starts at 90º degrees.
+	diagonalAngle := 90 - b.options.DiagonalAngle
+	diagonalAngle *= b.accumulatedImpulse / b.options.MaxImpulse
+
+	// Compute the jump rotation based on the left and right actions.
+	rotation := matrix.Identity()
+	leftRotation := matrix.FromEuler(diagonalAngle)
+	if b.actionManager.Action(input.Left) {
+		rotation = rotation.Mul(leftRotation)
+	}
+	if b.actionManager.Action(input.Right) {
+		rightRotation := leftRotation.Transpose()
+		rotation = rotation.Mul(rightRotation)
+	}
+
+	// Apply the jump velocity based on the computed rotation and accumulated impulse.
+	velocity := vector2.Up()
+	velocity = rotation.RotateVector(velocity)
+	velocity = velocity.Mul(b.accumulatedImpulse)
+
+	b.object.RigidBody.AddVelocity(velocity)
 
 	// Reset the accumulated impulse and jump flag.
 	b.accumulatedImpulse = 0
@@ -73,8 +93,6 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 
 	return nil
 }
-
-// TODO: Jump to direction player is moving.
 
 func (b *Jump) Update(_ *engine.Engine) error {
 	// Check if the object is in contact with the ground.
