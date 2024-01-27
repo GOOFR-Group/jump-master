@@ -35,6 +35,7 @@ class GameWorld {
 			const renderer = gameObject.renderer;
 			if (renderer) {
 				this.#ctx.beginPath();
+				this.#ctx.save()
 				this.#ctx.translate(transform.position.x, transform.position.y);
 				this.#ctx.scale(transform.scale.x, transform.scale.y);
 				this.#ctx.rotate(transform.rotation);
@@ -46,6 +47,7 @@ class GameWorld {
 				);
 				this.#ctx.fillStyle = '#fbbf24';
 				this.#ctx.fill();
+				this.#ctx.restore()
 				this.#ctx.closePath();
 			}
 		}
