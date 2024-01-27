@@ -15,6 +15,7 @@ type JumpOptions struct {
 	Impulse           float64 `json:"impulse"`           // Defines the base impulse of the jump.
 	MaxImpulse        float64 `json:"maxImpulse"`        // Defines the maximum impulse of the jump.
 	ImpulseMultiplier float64 `json:"impulseMultiplier"` // Defines the multiplier to apply in the base impulse each frame the jump action is performed.
+	DiagonalAngle     float64 `json:"diagonalAngle"`     // Defines the angle in degrees to apply when jumping left or right.
 }
 
 // Jump defines the structure of the jump behaviour.
@@ -23,19 +24,23 @@ type Jump struct {
 	actionManager *action.Manager
 	options       JumpOptions
 
-	accumulatedImpulse float64
-	canJump            bool
+	checkGround *CheckGround
+
+	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
+	canJump            bool    // Defines if the object is able to jump.
 }
 
 // NewJump returns a new jump behaviour with the given options.
 func NewJump(
 	object *game.Object,
 	actionManager *action.Manager,
+	checkGround *CheckGround,
 	options JumpOptions,
 ) Jump {
 	return Jump{
 		object:        object,
 		actionManager: actionManager,
+		checkGround:   checkGround,
 		options:       options,
 	}
 }
@@ -53,7 +58,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		return nil
 	}
 
-	// Check if the player should jump.
+	// Check if the object can jump.
 	if !b.canJump {
 		return nil
 	}
@@ -69,7 +74,15 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	return nil
 }
 
+// TODO: Jump to direction player is moving.
+
 func (b *Jump) Update(_ *engine.Engine) error {
+	// Check if the object is in contact with the ground.
+	if !b.checkGround.IsGrounded() {
+		b.accumulatedImpulse = 0
+		return nil
+	}
+
 	// Check if the jump action is being performed.
 	if b.actionManager.Action(input.Jump) {
 		// Apply the impulse multiplier.
@@ -79,9 +92,12 @@ func (b *Jump) Update(_ *engine.Engine) error {
 	}
 
 	// Check if the jump action was released.
-	if b.actionManager.ActionEnded(input.Jump) {
-		b.canJump = true
+	if !b.actionManager.ActionEnded(input.Jump) {
+		return nil
 	}
+
+	// The object is able to jump
+	b.canJump = true
 
 	return nil
 }

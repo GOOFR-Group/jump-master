@@ -84,6 +84,35 @@ func (a *App) StartGameWorld() error {
 		return fmt.Errorf("failed to create game object: %w", err)
 	}
 
+	colliderCheckGround := core.NewBoxCollider(vector2.Vector2{X: 100, Y: 10}, vector2.Vector2{X: -50, Y: -5})
+	colliderCheckGround.IsTrigger = true
+	gameObjectCheckGround := core.Object{
+		Active: true,
+		Transform: core.Transform2D{
+			Position: vector2.Vector2{
+				X: 0,
+				Y: 0,
+			},
+			Rotation: matrix.Identity(),
+			Scale:    vector2.One(),
+		},
+		RigidBody: &core.RigidBody2D{
+			BodyType:           core.BodyKinematic,
+			CollisionDetection: core.DiscreteDetection,
+			Interpolation:      core.NoneInterpolation,
+		},
+		Collider: &colliderCheckGround,
+		Renderer: &core.Renderer{
+			Width:  100,
+			Height: 10,
+			Offset: vector2.Vector2{
+				X: -50,
+				Y: -5,
+			},
+			Layer: "default",
+		},
+	}
+
 	colliderPlayer := core.NewBoxCollider(vector2.Vector2{X: 100, Y: 100}, vector2.Vector2{X: -50, Y: -50})
 	colliderPlayer.Material = core.Material{Elasticity: 0, Friction: 0.9}
 	gameObjectPlayer := core.Object{
@@ -117,10 +146,16 @@ func (a *App) StartGameWorld() error {
 		},
 	}
 
-	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, playerConfig.Movement)
-	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, playerConfig.Jump)
+	checkGroundBehaviour := behaviour.NewCheckGround(&gameObjectCheckGround)
+	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, playerConfig.Movement, &checkGroundBehaviour)
+	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, &checkGroundBehaviour, playerConfig.Jump)
 
 	err = gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&movementBehaviour, &jumpBehaviour})
+	if err != nil {
+		return fmt.Errorf("failed to create game object: %w", err)
+	}
+
+	err = gameEngine.CreateGameObjectWithParent(&gameObjectCheckGround, &gameObjectPlayer.Transform, []engine.Behaviour{&checkGroundBehaviour})
 	if err != nil {
 		return fmt.Errorf("failed to create game object: %w", err)
 	}

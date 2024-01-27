@@ -1,36 +1,40 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Player configurations",
-    "description": "Allows customization for the player behaviours.",
-    "type": "object",
-    "properties": {
-        "movement": {
-            "description": "Movement behaviour configurations.",
-            "type": "object",
-            "properties": {
-                "speed": {
-                    "description": "Defines the movement speed.",
-                    "type": "number"
-                }
-            }
-        },
-        "jump": {
-            "description": "Jump behaviour configurations.",
-            "type": "object",
-            "properties": {
-                "impulse": {
-                    "description": "Defines the base impulse of the jump.",
-                    "type": "number"
-                },
-                "maxImpulse": {
-                    "description": "Defines the maximum impulse of the jump.",
-                    "type": "number"
-                },
-                "impulseMultiplier": {
-                    "description": "Defines the multiplier to apply in the base impulse each frame the jump action is performed.",
-                    "type": "number"
-                }
-            }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Player configurations",
+  "description": "Allows customization for the player behaviours.",
+  "type": "object",
+  "properties": {
+    "movement": {
+      "description": "Movement behaviour configurations.",
+      "type": "object",
+      "properties": {
+        "speed": {
+          "description": "Defines the movement speed.",
+          "type": "number"
         }
+      }
+    },
+    "jump": {
+      "description": "Jump behaviour configurations.",
+      "type": "object",
+      "properties": {
+        "impulse": {
+          "description": "Defines the base impulse of the jump.",
+          "type": "number"
+        },
+        "maxImpulse": {
+          "description": "Defines the maximum impulse of the jump.",
+          "type": "number"
+        },
+        "impulseMultiplier": {
+          "description": "Defines the multiplier to apply in the base impulse each frame the jump action is performed.",
+          "type": "number"
+        },
+        "diagonalAngle": {
+          "description": "Defines the angle in degrees to apply when jumping left or right.",
+          "type": "number"
+        }
+      }
     }
+  }
 }

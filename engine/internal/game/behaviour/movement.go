@@ -19,6 +19,8 @@ type Movement struct {
 	object        *game.Object
 	actionManager *action.Manager
 	options       MovementOptions
+
+	checkGround *CheckGround
 }
 
 // NewMovement returns a new movement behaviour with the given options.
@@ -26,16 +28,30 @@ func NewMovement(
 	object *game.Object,
 	actionManager *action.Manager,
 	options MovementOptions,
+	checkGround *CheckGround,
 ) Movement {
 	return Movement{
 		object:        object,
 		actionManager: actionManager,
 		options:       options,
+		checkGround:   checkGround,
 	}
 }
 
 func (b Movement) Enabled() bool {
 	return true
+}
+
+func (b *Movement) Update(_ *engine.Engine) error {
+	// Check if the jump action started.
+	if !b.actionManager.ActionStarted(input.Jump) {
+		return nil
+	}
+
+	// Reset the horizontal velocity of the object when the jump action is started.
+	b.object.RigidBody.Velocity.X = 0
+
+	return nil
 }
 
 func (b *Movement) FixedUpdate(_ *engine.Engine) error {
@@ -47,16 +63,35 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 		return nil
 	}
 
-	// TODO: Update the current movement behaviour to appear more responsive. Also add better documentation.
-	force := vector2.Zero()
-	if b.actionManager.Action(input.Left) {
-		force = force.Add(vector2.Left())
-	}
-	if b.actionManager.Action(input.Right) {
-		force = force.Add(vector2.Right())
+	// Check if the object is in contact with the ground.
+	if !b.checkGround.IsGrounded() {
+		return nil
 	}
 
-	b.object.RigidBody.AddImpulse(force.Mul(b.options.Speed))
+	// Check if the jump action is being performed.
+	if b.actionManager.Action(input.Jump) {
+		return nil
+	}
+
+	// Compute the velocity to add to the object based on the left and right actions.
+	velocity := vector2.Zero()
+	if b.actionManager.Action(input.Left) {
+		// Add velocity to the left direction.
+		velocity = velocity.Add(vector2.Left())
+	}
+	if b.actionManager.Action(input.Right) {
+		// Add velocity to the right direction.
+		velocity = velocity.Add(vector2.Right())
+	}
+
+	// Reset the horizontal velocity of the object when no movement action is performed.
+	if velocity.Zero() {
+		b.object.RigidBody.Velocity.X = 0
+		return nil
+	}
+
+	// Add the computed velocity when the movement actions are performed.
+	b.object.RigidBody.AddVelocity(velocity.Mul(b.options.Speed))
 
 	return nil
 }
