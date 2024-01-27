@@ -10,9 +10,11 @@ import (
 	"github.com/goofr-group/go-math/vector2"
 	core "github.com/goofr-group/physics-engine/pkg/game"
 
+	"github.com/goofr-group/jump-master/engine/internal/config"
 	"github.com/goofr-group/jump-master/engine/internal/domain"
 	"github.com/goofr-group/jump-master/engine/internal/game"
 	"github.com/goofr-group/jump-master/engine/internal/game/behaviour"
+	"github.com/goofr-group/jump-master/engine/internal/game/tag"
 )
 
 // App defines the main application structure.
@@ -33,12 +35,60 @@ func New() *App {
 
 // StartGameWorld sets up the initial game world.
 func (a *App) StartGameWorld() error {
+	physicsEngine := a.gameEngine.Physics()
 	gameEngine := a.gameEngine.Engine()
 	actionManager := a.gameEngine.ActionManager()
 
-	collider := core.NewCircleCollider(5, vector2.Zero())
-	gameObject := core.Object{
+	// Set up physics configurations.
+	physicsEngine.CollisionSolvingIterations = 50
+	physicsEngine.SetGravity(vector2.Vector2{X: 0, Y: -9.8 * 100})
+
+	// Load configurations.
+	playerConfig, err := config.LoadPlayer()
+	if err != nil {
+		return fmt.Errorf("failed to load player config: %w", err)
+	}
+
+	colliderGround := core.NewBoxCollider(vector2.Vector2{X: 1000, Y: 10}, vector2.Vector2{X: -500, Y: -5})
+	gameObjectGround := core.Object{
 		Active: true,
+		Tag:    tag.Ground,
+		Transform: core.Transform2D{
+			Position: vector2.Vector2{
+				X: 0,
+				Y: -350,
+			},
+			Rotation: matrix.Identity(),
+			Scale:    vector2.One(),
+		},
+		RigidBody: &core.RigidBody2D{
+			BodyType:           core.BodyStatic,
+			CollisionDetection: core.DiscreteDetection,
+			Interpolation:      core.NoneInterpolation,
+			AutoMass:           false,
+			GravityScale:       0,
+		},
+		Collider: &colliderGround,
+		Renderer: &core.Renderer{
+			Width:  1000,
+			Height: 10,
+			Offset: vector2.Vector2{
+				X: -500,
+				Y: -5,
+			},
+			Layer: "default",
+		},
+	}
+	err = gameEngine.CreateGameObject(&gameObjectGround, nil)
+	if err != nil {
+		return fmt.Errorf("failed to create game object: %w", err)
+	}
+
+	colliderPlayer := core.NewBoxCollider(vector2.Vector2{X: 100, Y: 100}, vector2.Vector2{X: -50, Y: -50})
+	colliderPlayer.Material = core.Material{Elasticity: 0, Friction: 0.9}
+	gameObjectPlayer := core.Object{
+		Active: true,
+		Tag:    tag.Player,
 		Transform: core.Transform2D{
 			Position: vector2.Vector2{
 				X: 0,
@@ -51,26 +101,27 @@ func (a *App) StartGameWorld() error {
 			BodyType:           core.BodyDynamic,
 			CollisionDetection: core.DiscreteDetection,
 			Interpolation:      core.Interpolate,
-			AutoMass:           true,
-			GravityScale:       0,
+			Mass:               10,
+			GravityScale:       1,
+			Drag:               1,
 		},
-		Collider: &collider,
+		Collider: &colliderPlayer,
 		Renderer: &core.Renderer{
-			Width:  10,
-			Height: 10,
+			Width:  100,
+			Height: 100,
 			Offset: vector2.Vector2{
-				X: -5,
-				Y: -5,
+				X: -50,
+				Y: -50,
 			},
 			Layer: "default",
 		},
 	}
 
-	movementOptions := behaviour.MovementOptions{
-		Speed: 500,
-	}
-	movementBehaviour := behaviour.NewMove(&gameObject, actionManager, movementOptions)
-	if err := gameEngine.CreateGameObject(&gameObject, []engine.Behaviour{&movementBehaviour}); err != nil {
+	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, playerConfig.Movement)
+	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, playerConfig.Jump)
+
+	err = gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&movementBehaviour, &jumpBehaviour})
+	if err != nil {
 		return fmt.Errorf("failed to create game object: %w", err)
 	}
 
