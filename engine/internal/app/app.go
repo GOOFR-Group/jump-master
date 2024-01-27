@@ -49,7 +49,7 @@ func (a *App) StartGameWorld() error {
 		return fmt.Errorf("failed to load player config: %w", err)
 	}
 
-	colliderPlatform := core.NewBoxCollider(vector2.Vector2{X: 1000, Y: 10}, vector2.Vector2{X: -500, Y: -5})
+	colliderPlatform := core.NewBoxCollider(vector2.Vector2{X: 10000, Y: 40}, vector2.Vector2{X: -5000, Y: -20})
 	gameObjectPlatform := core.Object{
 		Active: true,
 		Tag:    tag.Platform,
@@ -70,11 +70,11 @@ func (a *App) StartGameWorld() error {
 		},
 		Collider: &colliderPlatform,
 		Renderer: &core.Renderer{
-			Width:  1000,
-			Height: 10,
+			Width:  10000,
+			Height: 40,
 			Offset: vector2.Vector2{
-				X: -500,
-				Y: -5,
+				X: -5000,
+				Y: -20,
 			},
 			Layer: "default",
 		},
@@ -109,7 +109,7 @@ func (a *App) StartGameWorld() error {
 				X: -50,
 				Y: -5,
 			},
-			Layer: "default",
+			Layer: "helper",
 		},
 	}
 
