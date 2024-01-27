@@ -28,7 +28,7 @@ func (b CheckGround) Enabled() bool {
 }
 
 func (b *CheckGround) Start(_ *engine.Engine) error {
-	// Reset the position of the object each frame.
+	// Reset the position of the object.
 	b.resetPosition()
 
 	return nil
