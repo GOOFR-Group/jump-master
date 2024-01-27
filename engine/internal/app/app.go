@@ -49,10 +49,10 @@ func (a *App) StartGameWorld() error {
 		return fmt.Errorf("failed to load player config: %w", err)
 	}
 
-	colliderGround := core.NewBoxCollider(vector2.Vector2{X: 1000, Y: 10}, vector2.Vector2{X: -500, Y: -5})
-	gameObjectGround := core.Object{
+	colliderPlatform := core.NewBoxCollider(vector2.Vector2{X: 1000, Y: 10}, vector2.Vector2{X: -500, Y: -5})
+	gameObjectPlatform := core.Object{
 		Active: true,
-		Tag:    tag.Ground,
+		Tag:    tag.Platform,
 		Transform: core.Transform2D{
 			Position: vector2.Vector2{
 				X: 0,
@@ -68,7 +68,7 @@ func (a *App) StartGameWorld() error {
 			AutoMass:           false,
 			GravityScale:       0,
 		},
-		Collider: &colliderGround,
+		Collider: &colliderPlatform,
 		Renderer: &core.Renderer{
 			Width:  1000,
 			Height: 10,
@@ -79,7 +79,7 @@ func (a *App) StartGameWorld() error {
 			Layer: "default",
 		},
 	}
-	err = gameEngine.CreateGameObject(&gameObjectGround, nil)
+	err = gameEngine.CreateGameObject(&gameObjectPlatform, nil)
 	if err != nil {
 		return fmt.Errorf("failed to create game object: %w", err)
 	}
