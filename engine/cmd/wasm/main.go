@@ -34,7 +34,7 @@ func main() {
 	// Set up WASM API.
 	js.Global().Set(entryPoint, make(map[string]interface{}))
 	module := js.Global().Get(entryPoint)
-	module.Set(methodVersion, jsVersion(Version, GitCommit, GoVersion, Build))
+	module.Set(methodVersion, jsVersion(GoVersion, Version, GitCommit, Build))
 	module.Set(methodStep, jsStep(app))
 
 	// Set up game world.

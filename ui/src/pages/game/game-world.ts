@@ -1,6 +1,7 @@
 import type { Actions } from '../../domain/actions';
 import type { Engine } from '../../domain/engine';
 import type { Camera, GameObject } from '../../domain/game-state';
+import DebugTools from './utils/debug-tools';
 
 /**
  * Represents the game world.
@@ -30,11 +31,11 @@ class GameWorld {
 		this.#ctx.canvas.height = camera.height;
 
 		for (const gameObject of gameObjects) {
-			const transform = gameObject.transform;
+			const { transform, renderer } = gameObject;
 
-			const renderer = gameObject.renderer;
 			if (renderer) {
 				this.#ctx.beginPath();
+				this.#ctx.save();
 				this.#ctx.translate(transform.position.x, transform.position.y);
 				this.#ctx.scale(transform.scale.x, transform.scale.y);
 				this.#ctx.rotate(transform.rotation);
@@ -46,7 +47,18 @@ class GameWorld {
 				);
 				this.#ctx.fillStyle = '#fbbf24';
 				this.#ctx.fill();
+
+				this.#ctx.restore();
 				this.#ctx.closePath();
+			}
+
+			// Draw debug information of player object
+			if (gameObject.tag === 'Player') {
+				DebugTools.drawGameObjectInfo(
+					this.#ctx,
+					gameObject,
+					gameObject.transform.position,
+				);
 			}
 		}
 	}

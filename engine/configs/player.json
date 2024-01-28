@@ -1,0 +1,12 @@
+{
+  "$schema": "./schemas/player.json",
+  "movement": {
+    "speed": 20
+  },
+  "jump": {
+    "impulse": 250,
+    "maxImpulse": 1500,
+    "impulseMultiplier": 0.15,
+    "diagonalAngle": 55
+  }
+}

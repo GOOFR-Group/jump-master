@@ -1,7 +1,7 @@
 /**
  * Represents a 2D vector, point or position.
  */
-interface Point {
+export interface Point {
 	x: number;
 	y: number;
 }
@@ -9,7 +9,7 @@ interface Point {
 /**
  * Represents spacial information of a game object.
  */
-interface Transform {
+export interface Transform {
 	/**
 	 * Position of the game object in world space.
 	 */
@@ -29,7 +29,7 @@ interface Transform {
 /**
  * Represents simple rendering information of a game object.
  */
-interface Renderer {
+export interface Renderer {
 	/**
 	 * Layer where the game object is rendered.
 	 */
