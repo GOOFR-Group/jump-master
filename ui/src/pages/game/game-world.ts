@@ -31,6 +31,28 @@ class GameWorld {
 		this.#ctx.canvas.height = camera.height;
 
 		for (const gameObject of gameObjects) {
+			const { transform, renderer } = gameObject;
+
+			if (renderer) {
+				this.#ctx.beginPath();
+				this.#ctx.save();
+				this.#ctx.translate(transform.position.x, transform.position.y);
+				this.#ctx.scale(transform.scale.x, transform.scale.y);
+				this.#ctx.rotate(transform.rotation);
+				this.#ctx.rect(
+					renderer.offset.x,
+					renderer.offset.y,
+					renderer.width,
+					renderer.height,
+				);
+				this.#ctx.fillStyle = '#fbbf24';
+				this.#ctx.fill();
+
+				this.#ctx.restore();
+				this.#ctx.closePath();
+			}
+
+			// Draw debug information of player object
 			if (gameObject.tag === 'Player') {
 				DebugTools.drawGameObjectInfo(
 					this.#ctx,
@@ -38,29 +60,6 @@ class GameWorld {
 					gameObject.transform.position,
 				);
 			}
-
-			const { transform, renderer } = gameObject;
-
-			if (!renderer) {
-				continue;
-			}
-
-			this.#ctx.beginPath();
-			this.#ctx.save();
-			this.#ctx.translate(transform.position.x, transform.position.y);
-			this.#ctx.scale(transform.scale.x, transform.scale.y);
-			this.#ctx.rotate(transform.rotation);
-			this.#ctx.rect(
-				renderer.offset.x,
-				renderer.offset.y,
-				renderer.width,
-				renderer.height,
-			);
-			this.#ctx.fillStyle = '#fbbf24';
-			this.#ctx.fill();
-
-			this.#ctx.restore();
-			this.#ctx.closePath();
 		}
 	}
 
