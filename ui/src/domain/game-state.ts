@@ -1,7 +1,7 @@
 /**
  * Represents a 2D vector, point or position.
  */
-interface Point {
+export interface Point {
 	x: number;
 	y: number;
 }

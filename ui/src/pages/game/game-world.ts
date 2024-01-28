@@ -1,49 +1,7 @@
 import type { Actions } from '../../domain/actions';
 import type { Engine } from '../../domain/engine';
-import type {
-	Camera,
-	GameObject,
-	Renderer,
-	Transform,
-} from '../../domain/game-state';
-
-class GameWorldDebugTools {
-	#ctx: CanvasRenderingContext2D;
-
-	/**
-	 * Initializes game world debug tools.
-	 * @param ctx Canvas 2D context.
-	 */
-	constructor(ctx: CanvasRenderingContext2D) {
-		this.#ctx = ctx;
-	}
-
-	draw(transform: Transform, renderer: Renderer) {
-		this.#ctx.fillStyle = 'red';
-		this.#ctx.font = 'bold 1rem monospace';
-		this.#ctx.rotate(transform.rotation);
-		this.#ctx.scale(transform.scale.x, transform.scale.y);
-
-		const objectInfo = [
-			`H: ${renderer.height} W: ${renderer.width}`,
-			`X: ${transform.position.x.toFixed(3)} Y: ${transform.position.y.toFixed(
-				3,
-			)}`,
-			`Sx: ${transform.scale.x} Sy: ${transform.scale.y}`,
-			`R: ${(transform.rotation * (180 / Math.PI)).toFixed(3)}`,
-		];
-		const lineHeight = 16;
-
-		// Draw game object info
-		for (let i = 0; i < objectInfo.length; i++) {
-			this.#ctx.fillText(
-				objectInfo[i],
-				renderer.offset.x,
-				renderer.offset.y - (objectInfo.length - 1 - i) * lineHeight,
-			);
-		}
-	}
-}
+import type { Camera, GameObject } from '../../domain/game-state';
+import DebugTools from './utils/debug-tools';
 
 /**
  * Represents the game world.
@@ -53,8 +11,6 @@ class GameWorld {
 
 	#engine: Engine;
 
-	#debugTools: GameWorldDebugTools;
-
 	/**
 	 * Initializes a game world.
 	 * @param ctx Canvas 2D context.
@@ -63,7 +19,6 @@ class GameWorld {
 	constructor(ctx: CanvasRenderingContext2D, engine: Engine) {
 		this.#ctx = ctx;
 		this.#engine = engine;
-		this.#debugTools = new GameWorldDebugTools(this.#ctx);
 	}
 
 	/**
@@ -76,30 +31,36 @@ class GameWorld {
 		this.#ctx.canvas.height = camera.height;
 
 		for (const gameObject of gameObjects) {
+			if (gameObject.tag === 'Player') {
+				DebugTools.drawGameObjectInfo(
+					this.#ctx,
+					gameObject,
+					gameObject.transform.position,
+				);
+			}
+
 			const { transform, renderer } = gameObject;
 
-			if (renderer) {
-				this.#ctx.beginPath();
-				this.#ctx.save();
-				this.#ctx.translate(transform.position.x, transform.position.y);
-				this.#ctx.scale(transform.scale.x, transform.scale.y);
-				this.#ctx.rotate(transform.rotation);
-				this.#ctx.rect(
-					renderer.offset.x,
-					renderer.offset.y,
-					renderer.width,
-					renderer.height,
-				);
-				this.#ctx.fillStyle = '#fbbf24';
-				this.#ctx.fill();
-
-				if (gameObject.tag === 'Player') {
-					this.#debugTools.draw(transform, renderer);
-				}
-
-				this.#ctx.restore();
-				this.#ctx.closePath();
+			if (!renderer) {
+				continue;
 			}
+
+			this.#ctx.beginPath();
+			this.#ctx.save();
+			this.#ctx.translate(transform.position.x, transform.position.y);
+			this.#ctx.scale(transform.scale.x, transform.scale.y);
+			this.#ctx.rotate(transform.rotation);
+			this.#ctx.rect(
+				renderer.offset.x,
+				renderer.offset.y,
+				renderer.width,
+				renderer.height,
+			);
+			this.#ctx.fillStyle = '#fbbf24';
+			this.#ctx.fill();
+
+			this.#ctx.restore();
+			this.#ctx.closePath();
 		}
 	}
 
