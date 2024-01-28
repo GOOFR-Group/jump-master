@@ -42,18 +42,6 @@ func (b Movement) Enabled() bool {
 	return true
 }
 
-func (b *Movement) Update(_ *engine.Engine) error {
-	// Check if the jump action started.
-	if !b.actionManager.ActionStarted(input.Jump) {
-		return nil
-	}
-
-	// Reset the horizontal velocity of the object when the jump action is started.
-	b.object.RigidBody.Velocity.X = 0
-
-	return nil
-}
-
 func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 	// Check if the rigid body is accessible.
 	if b.object == nil {

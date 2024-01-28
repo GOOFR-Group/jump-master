@@ -41,8 +41,11 @@ func NewJump(
 	return Jump{
 		object:        object,
 		actionManager: actionManager,
-		checkGround:   checkGround,
 		options:       options,
+		checkGround:   checkGround,
+
+		accumulatedImpulse: 0,
+		canJump:            false,
 	}
 }
 
@@ -95,6 +98,14 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 }
 
 func (b *Jump) Update(_ *engine.Engine) error {
+	// Check if the rigid body is accessible.
+	if b.object == nil {
+		return nil
+	}
+	if b.object.RigidBody == nil {
+		return nil
+	}
+
 	// Check if the object is in contact with the ground.
 	if !b.checkGround.IsGrounded() {
 		b.accumulatedImpulse = 0
@@ -107,15 +118,16 @@ func (b *Jump) Update(_ *engine.Engine) error {
 		b.accumulatedImpulse += b.options.Impulse * b.options.ImpulseMultiplier
 		// Ensure that the accumulated impulse is not greater than the maximum defined.
 		b.accumulatedImpulse = mathf.Min(b.accumulatedImpulse, b.options.MaxImpulse)
+
+		// Reset the horizontal velocity of the object when the jump action is being performed.
+		b.object.RigidBody.Velocity.X = 0
 	}
 
 	// Check if the jump action was released.
-	if !b.actionManager.ActionEnded(input.Jump) {
-		return nil
+	if b.actionManager.ActionEnded(input.Jump) {
+		// The object is able to jump
+		b.canJump = true
 	}
-
-	// The object is able to jump
-	b.canJump = true
 
 	return nil
 }

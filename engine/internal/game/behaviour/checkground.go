@@ -20,6 +20,9 @@ type CheckGround struct {
 func NewCheckGround(object *game.Object) CheckGround {
 	return CheckGround{
 		object: object,
+
+		isGrounded:      false,
+		currentGroundID: -1,
 	}
 }
 
