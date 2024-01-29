@@ -4,8 +4,16 @@ import type { Engine } from '../../domain/engine';
 import GameWorld from './game-world';
 import type { Actions } from '../../domain/actions';
 import useActions from './use-actions';
+import type { ImageBySource } from '../../domain/image';
+import { loadAnimator } from './utils/animator';
 
-function Canvas({ engine }: { engine: Engine }) {
+function Canvas({
+	engine,
+	animator,
+}: {
+	engine: Engine;
+	animator: ImageBySource;
+}) {
 	let canvas!: HTMLCanvasElement;
 	const actions = useActions();
 
@@ -17,7 +25,7 @@ function Canvas({ engine }: { engine: Engine }) {
 			return;
 		}
 
-		const gameWorld = new GameWorld(ctx, engine);
+		const gameWorld = new GameWorld(ctx, engine, animator);
 
 		let frame = requestAnimationFrame(step);
 
@@ -34,13 +42,18 @@ function Canvas({ engine }: { engine: Engine }) {
 
 function Game() {
 	const [engine] = createResource(loadEngine);
+	const [animator] = createResource(loadAnimator);
 
 	return (
 		<div class="flex h-full w-full flex-col items-center justify-center">
 			<div class="absolute -z-10 h-full w-full bg-[url('/images/forest.jpg')] brightness-50" />
-			{engine.state === 'pending' && <p>Loading...</p>}
-			{engine.state === 'errored' && <p>An unexpected error ocurred</p>}
-			{engine.state === 'ready' && <Canvas engine={engine()} />}
+			{engine.state === 'pending' ||
+				(animator.state === 'pending' && <p>Loading...</p>)}
+			{engine.state === 'errored' ||
+				(animator.state === 'errored' && <p>An unexpected error ocurred</p>)}
+			{engine.state === 'ready' && animator.state === 'ready' && (
+				<Canvas engine={engine()} animator={animator()} />
+			)}
 		</div>
 	);
 }

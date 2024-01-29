@@ -25,7 +25,7 @@ type App struct {
 
 // New creates a new application by initializing the game engine.
 func New() *App {
-	camera := rendering.NewCamera(1280, 720, 1, nil, nil)
+	camera := rendering.NewCamera(1280, 720, 1, nil, nil) // TODO: this should be done in a config
 	camera.Scale = vector2.Vector2{X: 1, Y: -1}
 
 	return &App{
@@ -40,6 +40,7 @@ func (a *App) StartGameWorld() error {
 	actionManager := a.gameEngine.ActionManager()
 
 	// Set up physics configurations.
+	gameEngine.SetFixedDeltaTime(1. / 75) // TODO: this should be done in a config
 	physicsEngine.CollisionSolvingIterations = 50
 	physicsEngine.SetGravity(vector2.Vector2{X: 0, Y: -9.8 * 100})
 
@@ -49,7 +50,7 @@ func (a *App) StartGameWorld() error {
 		return fmt.Errorf("failed to load player config: %w", err)
 	}
 
-	colliderPlatform := core.NewBoxCollider(vector2.Vector2{X: 10000, Y: 40}, vector2.Vector2{X: -5000, Y: -20})
+	colliderPlatform := core.NewBoxCollider(vector2.Vector2{X: 10000, Y: 100}, vector2.Vector2{X: -5000, Y: -50})
 	gameObjectPlatform := core.Object{
 		Active: true,
 		Tag:    tag.Platform,
@@ -71,10 +72,10 @@ func (a *App) StartGameWorld() error {
 		Collider: &colliderPlatform,
 		Renderer: &core.Renderer{
 			Width:  10000,
-			Height: 40,
+			Height: 100,
 			Offset: vector2.Vector2{
 				X: -5000,
-				Y: -20,
+				Y: -50,
 			},
 			Layer: "default",
 		},
@@ -84,7 +85,7 @@ func (a *App) StartGameWorld() error {
 		return fmt.Errorf("failed to create game object: %w", err)
 	}
 
-	colliderCheckGround := core.NewBoxCollider(vector2.Vector2{X: 100, Y: 10}, vector2.Vector2{X: -50, Y: -5})
+	colliderCheckGround := core.NewBoxCollider(vector2.Vector2{X: 100, Y: 1}, vector2.Vector2{X: -50, Y: -0.5})
 	colliderCheckGround.IsTrigger = true
 	gameObjectCheckGround := core.Object{
 		Active: true,
@@ -104,17 +105,17 @@ func (a *App) StartGameWorld() error {
 		Collider: &colliderCheckGround,
 		Renderer: &core.Renderer{
 			Width:  100,
-			Height: 10,
+			Height: 1,
 			Offset: vector2.Vector2{
 				X: -50,
-				Y: -5,
+				Y: -0.5,
 			},
 			Layer: "helper",
 		},
 	}
 
-	colliderPlayer := core.NewBoxCollider(vector2.Vector2{X: 100, Y: 100}, vector2.Vector2{X: -50, Y: -50})
-	colliderPlayer.Material = core.Material{Elasticity: 0, Friction: 0.9}
+	colliderPlayer := core.NewBoxCollider(vector2.Vector2{X: 96, Y: 96}, vector2.Vector2{X: -96 / 2, Y: -96 / 2})
+	colliderPlayer.Material = core.Material{Elasticity: 0, Friction: 0.7}
 	gameObjectPlayer := core.Object{
 		Active: true,
 		Tag:    tag.Player,
@@ -128,7 +129,7 @@ func (a *App) StartGameWorld() error {
 		},
 		RigidBody: &core.RigidBody2D{
 			BodyType:           core.BodyDynamic,
-			CollisionDetection: core.DiscreteDetection,
+			CollisionDetection: core.ContinuousDetection,
 			Interpolation:      core.Interpolate,
 			Mass:               10,
 			GravityScale:       1,
@@ -136,21 +137,22 @@ func (a *App) StartGameWorld() error {
 		},
 		Collider: &colliderPlayer,
 		Renderer: &core.Renderer{
-			Width:  100,
-			Height: 100,
+			Width:  96,
+			Height: 96,
 			Offset: vector2.Vector2{
-				X: -50,
-				Y: -50,
+				X: -96 / 2,
+				Y: -96 / 2,
 			},
 			Layer: "default",
 		},
 	}
 
 	checkGroundBehaviour := behaviour.NewCheckGround(&gameObjectCheckGround)
-	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, playerConfig.Movement, &checkGroundBehaviour)
-	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, &checkGroundBehaviour, playerConfig.Jump)
+	animatorBehaviour := behaviour.NewAnimator(&gameObjectPlayer, playerConfig.Animations)
+	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, playerConfig.Movement, &checkGroundBehaviour, &animatorBehaviour)
+	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, &checkGroundBehaviour, &animatorBehaviour, playerConfig.Jump)
 
-	err = gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&movementBehaviour, &jumpBehaviour})
+	err = gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&movementBehaviour, &jumpBehaviour, &animatorBehaviour})
 	if err != nil {
 		return fmt.Errorf("failed to create game object: %w", err)
 	}

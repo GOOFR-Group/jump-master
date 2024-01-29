@@ -27,6 +27,61 @@ export interface Transform {
 }
 
 /**
+ * Represents the kinematics related data of a game object.
+ */
+export interface RigidBody {
+	/**
+	 * Defines the type of the rigid body.
+	 */
+	bodyType: number;
+
+	/**
+	 * Used by the physics engine to check if two objects have collided.
+	 */
+	collisionDetection: number;
+
+	/**
+	 * Used to estimate the position of the rigid body between physics updates.
+	 */
+	interpolation: number;
+
+	/**
+	 * Indicates whether to calculate the mass from the Collider2D's density and area.
+	 */
+	autoMass: boolean;
+
+	/**
+	 * Defines the mass of a RigidBody.
+	 */
+	mass: number;
+
+	/**
+	 * Defines the intensity of the force acting opposite to a RigidBody's linear motion.
+	 */
+	drag: number;
+
+	/**
+	 * Defines the linear velocity of a RigidBody.
+	 */
+	velocity: Point;
+
+	/**
+	 * Defines the intensity of the angular force acting opposite to a RigidBody's rotational motion.
+	 */
+	angularDrag: number;
+
+	/**
+	 * Defines the angular velocity of a RigidBody.
+	 */
+	angularVelocity: number;
+
+	/**
+	 * Defines how much gravity affects a RigidBody.
+	 */
+	gravityScale: number;
+}
+
+/**
  * Represents simple rendering information of a game object.
  */
 export interface Renderer {
@@ -49,6 +104,11 @@ export interface Renderer {
 	 * Offset of the game object from its transform position.
 	 */
 	offset: Point;
+
+	/**
+	 * Image asset of the game object.
+	 */
+	image: string | null;
 }
 
 /**
@@ -78,6 +138,11 @@ export interface GameObject {
 	 * Spacial information of a game object.
 	 */
 	transform: Transform;
+
+	/**
+	 * Kinematic information of a game object.
+	 */
+	rigidBody: RigidBody | null;
 
 	/**
 	 * Simple rendering information of a game object.

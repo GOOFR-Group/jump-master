@@ -9,6 +9,7 @@ import (
 	"github.com/goofr-group/physics-engine/pkg/game"
 
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
+	"github.com/goofr-group/jump-master/engine/internal/game/animation"
 )
 
 // JumpOptions defines the structure of the jump options.
@@ -26,6 +27,7 @@ type Jump struct {
 	options       JumpOptions
 
 	checkGround *CheckGround
+	animator    *Animator
 
 	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
 	canJump            bool    // Defines if the object is able to jump.
@@ -36,6 +38,7 @@ func NewJump(
 	object *game.Object,
 	actionManager *action.Manager,
 	checkGround *CheckGround,
+	animator *Animator,
 	options JumpOptions,
 ) Jump {
 	return Jump{
@@ -43,6 +46,7 @@ func NewJump(
 		actionManager: actionManager,
 		options:       options,
 		checkGround:   checkGround,
+		animator:      animator,
 
 		accumulatedImpulse: 0,
 		canJump:            false,
@@ -60,6 +64,11 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	}
 	if b.object.RigidBody == nil {
 		return nil
+	}
+
+	// Check if the object is falling.
+	if b.object.RigidBody.Velocity.Y < 0 && !b.checkGround.IsGrounded() {
+		b.animator.SetAnimation(animation.JumpFall)
 	}
 
 	// Check if the object can jump.
@@ -89,6 +98,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	velocity = velocity.Mul(b.accumulatedImpulse)
 
 	b.object.RigidBody.AddVelocity(velocity)
+	b.animator.SetAnimation(animation.Jump)
 
 	// Reset the accumulated impulse and jump flag.
 	b.accumulatedImpulse = 0
@@ -121,6 +131,7 @@ func (b *Jump) Update(_ *engine.Engine) error {
 
 		// Reset the horizontal velocity of the object when the jump action is being performed.
 		b.object.RigidBody.Velocity.X = 0
+		b.animator.SetAnimation(animation.JumpHold)
 	}
 
 	// Check if the jump action was released.

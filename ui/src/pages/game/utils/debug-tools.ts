@@ -7,6 +7,7 @@ import type { GameObject, Point } from '../../../domain/game-state';
 class DebugTools {
 	static readonly #FILL_STYLE = 'red';
 	static readonly #FONT = 'bold 1rem monospace';
+	static readonly #OFFSET = { x: 42, y: 0 };
 
 	/**
 	 * Renders multiline text.
@@ -48,9 +49,12 @@ class DebugTools {
 		ctx.fillStyle = DebugTools.#FILL_STYLE;
 		ctx.font = DebugTools.#FONT;
 
-		const { transform, renderer } = gameObject;
+		const { transform, rigidBody, renderer } = gameObject;
 
-		ctx.translate(debugPosition.x, debugPosition.y);
+		ctx.translate(
+			debugPosition.x + DebugTools.#OFFSET.x,
+			debugPosition.y + DebugTools.#OFFSET.y,
+		);
 		ctx.rotate(transform.rotation);
 
 		const info = [
@@ -61,8 +65,20 @@ class DebugTools {
 			`R: ${(transform.rotation * (180 / Math.PI)).toFixed(3)}`,
 		];
 
+		if (rigidBody) {
+			const { mass, velocity, angularVelocity, drag, angularDrag } = rigidBody;
+			info.push(
+				`M: ${mass}`,
+				`Vx: ${velocity.x} Vy: ${velocity.y}`,
+				`AV: ${angularVelocity}`,
+				`D: ${drag}`,
+				`AD: ${angularDrag}`,
+			);
+		}
+
 		if (renderer) {
-			info.push(`H: ${renderer.height} W: ${renderer.width}`);
+			const { height, width } = renderer;
+			info.push(`H: ${height} W: ${width}`);
 		}
 
 		DebugTools.#renderMultilineText(ctx, info);
