@@ -1,7 +1,7 @@
 {
   "$schema": "./schemas/player.json",
   "movement": {
-    "speed": 20
+    "speed": 13
   },
   "jump": {
     "impulse": 250,
@@ -31,7 +31,9 @@
     "jumpHold": {
       "repeat": false,
       "duration": 0,
-      "frames": ["/animations/player/jump-hold/0.png"]
+      "frames": [
+        "/animations/player/jump-hold/0.png"
+      ]
     },
     "jump": {
       "repeat": false,
