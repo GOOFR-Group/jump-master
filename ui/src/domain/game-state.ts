@@ -105,6 +105,9 @@ export interface Renderer {
 	 */
 	offset: Point;
 
+	/**
+	 * Image asset of the game object.
+	 */
 	image: string | null;
 }
 
