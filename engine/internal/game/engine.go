@@ -5,7 +5,7 @@ import (
 	"github.com/goofr-group/game-engine/pkg/engine"
 	"github.com/goofr-group/game-engine/pkg/rendering"
 	"github.com/goofr-group/game-engine/pkg/time"
-	"github.com/goofr-group/physics-engine/pkg/collision/detector/quadtree"
+	"github.com/goofr-group/physics-engine/pkg/collision/detector/naive"
 	physics "github.com/goofr-group/physics-engine/pkg/engine"
 	"github.com/goofr-group/physics-engine/pkg/integrator"
 )
@@ -20,7 +20,7 @@ type Engine struct {
 
 // NewEngine initializes the physics and game engines and returns the Engine structure.
 func NewEngine(camera rendering.Camera) Engine {
-	physicsEngine := physics.NewEngine(&integrator.SymplecticEulerIntegrator{}, quadtree.QuadTreeDetector{})
+	physicsEngine := physics.NewEngine(&integrator.SymplecticEulerIntegrator{}, naive.MultipleDetector{})
 	gameTime := time.NewTime()
 	gameEngine := engine.NewEngine(physicsEngine, gameTime)
 	actionManager := action.NewManager()

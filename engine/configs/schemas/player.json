@@ -35,6 +35,60 @@
           "type": "number"
         }
       }
+    },
+    "animations": {
+      "description": "Animation configurations.",
+      "type": "object",
+      "properties": {
+        "idle": {
+          "description": "Idle animation.",
+          "$ref": "#/$defs/animation"
+        },
+        "walk": {
+          "description": "Walk animation.",
+          "$ref": "#/$defs/animation"
+        },
+        "jumpHold": {
+          "description": "Jump hold animation.",
+          "$ref": "#/$defs/animation"
+        },
+        "jump": {
+          "description": "Jump animation.",
+          "$ref": "#/$defs/animation"
+        },
+        "jumpFall": {
+          "description": "Jump fall animation.",
+          "$ref": "#/$defs/animation"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "animation": {
+      "type": "object",
+      "properties": {
+        "repeat": {
+          "description": "Defines if the frames should loop.",
+          "type": "boolean"
+        },
+        "duration": {
+          "description": "Defines the duration in seconds of each frame.",
+          "type": "number",
+          "minimum": 0
+        },
+        "frames": {
+          "description": "Defines the images to display per frame.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      },
+      "dependentRequired": {
+        "credit_card": ["billing_address"],
+        "billing_address": ["credit_card"]
+      }
     }
   }
 }

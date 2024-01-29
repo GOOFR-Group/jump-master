@@ -7,6 +7,7 @@ import type { GameObject, Point } from '../../../domain/game-state';
 class DebugTools {
 	static readonly #FILL_STYLE = 'red';
 	static readonly #FONT = 'bold 1rem monospace';
+	static readonly #OFFSET = { x: 42, y: 0 };
 
 	/**
 	 * Renders multiline text.
@@ -50,7 +51,10 @@ class DebugTools {
 
 		const { transform, renderer } = gameObject;
 
-		ctx.translate(debugPosition.x, debugPosition.y);
+		ctx.translate(
+			debugPosition.x + DebugTools.#OFFSET.x,
+			debugPosition.y + DebugTools.#OFFSET.y,
+		);
 		ctx.rotate(transform.rotation);
 
 		const info = [

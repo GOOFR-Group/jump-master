@@ -49,6 +49,8 @@ export interface Renderer {
 	 * Offset of the game object from its transform position.
 	 */
 	offset: Point;
+
+	image: string | null;
 }
 
 /**
