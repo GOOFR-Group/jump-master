@@ -24,6 +24,25 @@ func marshalTransform(transform game.Transform2D) map[string]interface{} {
 	}
 }
 
+func marshalRigidBody(rigidBody *game.RigidBody2D) map[string]interface{} {
+	if rigidBody == nil {
+		return nil
+	}
+
+	return map[string]interface{}{
+		"bodyType":           int(rigidBody.BodyType),
+		"collisionDetection": int(rigidBody.CollisionDetection),
+		"interpolation":      int(rigidBody.Interpolation),
+		"autoMass":           rigidBody.AutoMass,
+		"mass":               rigidBody.Mass,
+		"drag":               rigidBody.Drag,
+		"velocity":           marshalVector2(rigidBody.Velocity),
+		"angularDrag":        rigidBody.AngularDrag,
+		"angularVelocity":    rigidBody.AngularVelocity,
+		"gravityScale":       rigidBody.GravityScale,
+	}
+}
+
 func marshalRenderer(renderer *game.Renderer, image interface{}) map[string]interface{} {
 	if renderer == nil {
 		return nil
@@ -46,6 +65,7 @@ func marshalGameObject(gameObject game.Object) map[string]interface{} {
 		"tag":    gameObject.Tag,
 
 		"transform": marshalTransform(gameObject.Transform),
+		"rigidBody": marshalRigidBody(gameObject.RigidBody),
 		"renderer":  marshalRenderer(gameObject.Renderer, gameObject.Property(property.Image)),
 	}
 }

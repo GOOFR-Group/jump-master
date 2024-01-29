@@ -39,8 +39,13 @@ func (a *App) StartGameWorld() error {
 	gameEngine := a.gameEngine.Engine()
 	actionManager := a.gameEngine.ActionManager()
 
+	// TODO: remove this
+	gameEngine.SetTimeScale(0.5)
+	physicsEngine.SetDebug(true)
+
 	// Set up physics configurations.
-	physicsEngine.CollisionSolvingIterations = 100
+	// TODO: update this to 30
+	physicsEngine.CollisionSolvingIterations = 2
 	physicsEngine.SetGravity(vector2.Vector2{X: 0, Y: -9.8 * 100})
 
 	// Load configurations.

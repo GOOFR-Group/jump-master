@@ -49,7 +49,7 @@ class DebugTools {
 		ctx.fillStyle = DebugTools.#FILL_STYLE;
 		ctx.font = DebugTools.#FONT;
 
-		const { transform, renderer } = gameObject;
+		const { transform, rigidBody, renderer } = gameObject;
 
 		ctx.translate(
 			debugPosition.x + DebugTools.#OFFSET.x,
@@ -65,8 +65,20 @@ class DebugTools {
 			`R: ${(transform.rotation * (180 / Math.PI)).toFixed(3)}`,
 		];
 
+		if (rigidBody) {
+			const { mass, velocity, angularVelocity, drag, angularDrag } = rigidBody;
+			info.push(
+				`M: ${mass}`,
+				`Vx: ${velocity.x} Vy: ${velocity.y}`,
+				`AV: ${angularVelocity}`,
+				`D: ${drag}`,
+				`AD: ${angularDrag}`,
+			);
+		}
+
 		if (renderer) {
-			info.push(`H: ${renderer.height} W: ${renderer.width}`);
+			const { height, width } = renderer;
+			info.push(`H: ${height} W: ${width}`);
 		}
 
 		DebugTools.#renderMultilineText(ctx, info);

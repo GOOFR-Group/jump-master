@@ -4,10 +4,16 @@ import type { Engine } from '../../domain/engine';
 import GameWorld from './game-world';
 import type { Actions } from '../../domain/actions';
 import useActions from './use-actions';
-import type { Animator } from '../../domain/animations';
-import { loadAnimator } from './utils/animations';
+import type { ImageBySource } from '../../domain/image';
+import { loadAnimator } from './utils/animator';
 
-function Canvas({ engine, animator }: { engine: Engine; animator: Animator }) {
+function Canvas({
+	engine,
+	animator,
+}: {
+	engine: Engine;
+	animator: ImageBySource;
+}) {
 	let canvas!: HTMLCanvasElement;
 	const actions = useActions();
 

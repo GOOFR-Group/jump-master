@@ -1,10 +1,5 @@
 import type { Actions } from '../../domain/actions';
-import type {
-	Animator,
-	GameObjectAnimation,
-	GameObjectAnimator,
-	ImageFrame,
-} from '../../domain/animations';
+import type { ImageBySource } from '../../domain/image';
 import type { Engine } from '../../domain/engine';
 import type { Camera, GameObject, Point } from '../../domain/game-state';
 import DebugTools from './utils/debug-tools';
@@ -17,7 +12,7 @@ class GameWorld {
 
 	#engine: Engine;
 
-	#animator: Animator;
+	#animator: ImageBySource;
 
 	/**
 	 * Initializes a game world.
@@ -27,23 +22,22 @@ class GameWorld {
 	constructor(
 		ctx: CanvasRenderingContext2D,
 		engine: Engine,
-		animations: Animator,
+		animator: ImageBySource,
 	) {
 		this.#ctx = ctx;
 		this.#engine = engine;
-		this.#animator = animations;
+		this.#animator = animator;
 	}
 
+	/**
+	 * Draws an image at the position relative to the canvas context origin.
+	 * @param src Image source.
+	 * @param offset Image offset.
+	 * @param width Image width.
+	 * @param height Image height.
+	 */
 	#drawImage(src: string, offset: Point, width: number, height: number) {
-		const [, animator, animation, frame] = src.substring(1).split('/') as [
-			string,
-			GameObjectAnimator,
-			GameObjectAnimation,
-			ImageFrame,
-		];
-
-		const img = this.#animator[animator][animation][frame];
-
+		const img = this.#animator[src];
 		this.#ctx.drawImage(img, offset.x, offset.y, width, height);
 	}
 
@@ -89,7 +83,7 @@ class GameWorld {
 			this.#ctx.closePath();
 
 			// Draw debug information of player object
-			if (gameObject.tag === 'Player') {
+			if (import.meta.env.DEV && gameObject.tag === 'Player') {
 				DebugTools.drawGameObjectInfo(
 					this.#ctx,
 					gameObject,
