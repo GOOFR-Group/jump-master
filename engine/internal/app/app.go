@@ -25,7 +25,7 @@ type App struct {
 
 // New creates a new application by initializing the game engine.
 func New() *App {
-	camera := rendering.NewCamera(1280, 720, 1, nil, nil)
+	camera := rendering.NewCamera(1280, 720, 1, nil, nil) // TODO: this should be done in a config
 	camera.Scale = vector2.Vector2{X: 1, Y: -1}
 
 	return &App{
@@ -39,13 +39,9 @@ func (a *App) StartGameWorld() error {
 	gameEngine := a.gameEngine.Engine()
 	actionManager := a.gameEngine.ActionManager()
 
-	// TODO: remove this
-	gameEngine.SetTimeScale(0.5)
-	physicsEngine.SetDebug(true)
-
 	// Set up physics configurations.
-	// TODO: update this to 30
-	physicsEngine.CollisionSolvingIterations = 2
+	gameEngine.SetFixedDeltaTime(1. / 75) // TODO: this should be done in a config
+	physicsEngine.CollisionSolvingIterations = 50
 	physicsEngine.SetGravity(vector2.Vector2{X: 0, Y: -9.8 * 100})
 
 	// Load configurations.

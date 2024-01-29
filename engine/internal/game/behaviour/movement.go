@@ -67,6 +67,12 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 
 	// Check if the jump action is being performed.
 	if b.jumpAction {
+		if b.actionManager.Action(input.Left) {
+			b.object.Transform.Scale.X = -math.Abs(b.object.Transform.Scale.X)
+		}
+		if b.actionManager.Action(input.Right) {
+			b.object.Transform.Scale.X = math.Abs(b.object.Transform.Scale.X)
+		}
 		return nil
 	}
 
