@@ -1,12 +1,12 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/goofr-group/game-engine v0.10.0 h1:doVbFakSTVpbq1buQTK/hdKndGhZw4R35TVxiPMSvgw=
-github.com/goofr-group/game-engine v0.10.0/go.mod h1:cJLjrMpWJYvowmji8kjsv++sC28BdMnPAgrD9Cbrags=
+github.com/goofr-group/game-engine v0.10.1 h1:OkxEVmr+ztq7QLzk4fnkdq8G8tZqZRBoDUjoX2/XHC0=
+github.com/goofr-group/game-engine v0.10.1/go.mod h1:nS8PftAQss7NtVWaITrnQ4zNbA/uhPaFDPih6fkJkJ8=
 github.com/goofr-group/go-math v0.3.0 h1:nK/YH5BUqwCPJBpOPGw/tY3/CoHI/eUmh0x8L2qpkqo=
 github.com/goofr-group/go-math v0.3.0/go.mod h1:rgQZu7nkMyXImbmjFqyuZx/iwkW93UIJVMbVD/1HtnE=
-github.com/goofr-group/physics-engine v0.11.0 h1:jWtaJ3HYktBGlzH3s5KhGW/piknk6UU9Vcl9mfQPT1A=
-github.com/goofr-group/physics-engine v0.11.0/go.mod h1:FJBUJ/TGN9I/iJ1Vn5DQGX1rLgMCKRpqFY20gdj7S7w=
+github.com/goofr-group/physics-engine v0.11.1 h1:1lF2Ln+LOCyI4euQXdnMtoCigiue7mg5RQ6vhfiO0do=
+github.com/goofr-group/physics-engine v0.11.1/go.mod h1:FJBUJ/TGN9I/iJ1Vn5DQGX1rLgMCKRpqFY20gdj7S7w=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
