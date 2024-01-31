@@ -39,6 +39,8 @@ func (a *App) StartGameWorld() error {
 	gameEngine := a.gameEngine.Engine()
 	actionManager := a.gameEngine.ActionManager()
 
+	// TODO: test physics engine by always simulating at least a step
+
 	// Set up physics configurations.
 	gameEngine.SetFixedDeltaTime(1. / 75) // TODO: this should be done in a config
 	physicsEngine.CollisionSolvingIterations = 50

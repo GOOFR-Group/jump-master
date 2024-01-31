@@ -7,27 +7,27 @@ import { loadImage } from '../../../utils/image';
 const ANIMATION_IMAGE_SOURCES = {
 	PLAYER: {
 		IDLE: {
-			0: '/animations/player/idle/0.png',
-			1: '/animations/player/idle/1.png',
+			0: '/images/player/idle/0.png',
+			1: '/images/player/idle/1.png',
 		},
 		WALK: {
-			0: '/animations/player/walk/0.png',
-			1: '/animations/player/walk/1.png',
-			2: '/animations/player/walk/2.png',
-			3: '/animations/player/walk/3.png',
+			0: '/images/player/walk/0.png',
+			1: '/images/player/walk/1.png',
+			2: '/images/player/walk/2.png',
+			3: '/images/player/walk/3.png',
 		},
 		JUMP_HOLD: {
-			0: '/animations/player/jump-hold/0.png',
+			0: '/images/player/jump-hold/0.png',
 		},
 		JUMP: {
-			0: '/animations/player/jump/0.png',
-			1: '/animations/player/jump/1.png',
+			0: '/images/player/jump/0.png',
+			1: '/images/player/jump/1.png',
 		},
 		JUMP_FALL: {
-			0: '/animations/player/jump-fall/0.png',
-			1: '/animations/player/jump-fall/1.png',
-			2: '/animations/player/jump-fall/2.png',
-			3: '/animations/player/jump-fall/3.png',
+			0: '/images/player/jump-fall/0.png',
+			1: '/images/player/jump-fall/1.png',
+			2: '/images/player/jump-fall/2.png',
+			3: '/images/player/jump-fall/3.png',
 		},
 	},
 } as const;

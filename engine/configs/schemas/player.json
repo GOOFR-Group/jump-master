@@ -84,10 +84,6 @@
           },
           "minItems": 1
         }
-      },
-      "dependentRequired": {
-        "credit_card": ["billing_address"],
-        "billing_address": ["credit_card"]
       }
     }
   }

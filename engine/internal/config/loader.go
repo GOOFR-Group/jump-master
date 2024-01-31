@@ -9,7 +9,7 @@ import (
 
 const (
 	// pathPlayerConfig defines the path of the player configuration.
-	pathPlayerConfig = "configs/player.json"
+	pathPlayerConfig = "configs/player.jsonc"
 )
 
 // LoadPlayer loads the player configuration.
