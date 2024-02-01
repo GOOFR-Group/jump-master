@@ -30,6 +30,18 @@ const ANIMATION_IMAGE_SOURCES = {
 			3: '/images/player/jump-fall/3.png',
 		},
 	},
+	PLATFORM: {
+		FOREST: {
+			GRASS: {
+				0: '/images/platform/forest/grass/0.png',
+				1: '/images/platform/forest/grass/1.png',
+				2: '/images/platform/forest/grass/2.png',
+				3: '/images/platform/forest/grass/3.png',
+				4: '/images/platform/forest/grass/4.png',
+				5: '/images/platform/forest/grass/5.png',
+			},
+		},
+	},
 } as const;
 
 /**
@@ -93,11 +105,43 @@ export async function loadPlayerAnimator(): Promise<ImageBySource> {
 }
 
 /**
+ * Loads the world animator.
+ *
+ * Pre-loads the images for the different animations of the world.
+ *
+ * @returns World animator.
+ */
+export async function loadWorldAnimator(): Promise<ImageBySource> {
+	return {
+		// Load platform forest grass images
+		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[0]]: await loadImage(
+			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[0],
+		),
+		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[1]]: await loadImage(
+			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[1],
+		),
+		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[2]]: await loadImage(
+			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[2],
+		),
+		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[3]]: await loadImage(
+			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[3],
+		),
+		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[4]]: await loadImage(
+			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[4],
+		),
+		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[5]]: await loadImage(
+			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[5],
+		),
+	};
+}
+
+/**
  * Loads the animator.
  * @returns Animator.
  */
 export async function loadAnimator() {
 	const playerAnimator = await loadPlayerAnimator();
+	const worldAnimator = await loadWorldAnimator();
 
-	return playerAnimator;
+	return { ...playerAnimator, ...worldAnimator };
 }

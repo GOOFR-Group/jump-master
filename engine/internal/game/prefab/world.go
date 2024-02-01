@@ -10,6 +10,7 @@ import (
 
 	"github.com/goofr-group/jump-master/engine/internal/config"
 	"github.com/goofr-group/jump-master/engine/internal/game"
+	"github.com/goofr-group/jump-master/engine/internal/game/property"
 	"github.com/goofr-group/jump-master/engine/internal/game/tag"
 )
 
@@ -57,17 +58,23 @@ func NewGridObjects(e game.Engine, config config.Grid) error {
 					Renderer: &core.Renderer{
 						Width:  grid.X,
 						Height: grid.Y,
-						Layer:  rendering.DefaultRenderLayer,
+						Offset: vector2.Vector2{
+							X: -grid.X / 2,
+							Y: -grid.Y / 2,
+						},
+						Layer: rendering.DefaultRenderLayer,
 					},
 				}
 
 				// Set the image path of the object.
-				// TODO: gameObject.SetProperty(property.Image, image)
-				// TODO: fix collider
+				gameObject.SetProperty(property.Image, image)
 
 				// Check if the object needs a collider.
 				if gridObject.CanCollide {
-					collider := core.NewBoxCollider(grid, vector2.Zero())
+					collider := core.NewBoxCollider(grid, vector2.Vector2{
+						X: -grid.X / 2,
+						Y: -grid.Y / 2,
+					})
 					gameObject.Collider = &collider
 				}
 

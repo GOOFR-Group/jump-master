@@ -54,7 +54,7 @@ func NewPlayer(e game.Engine, config config.Player) error {
 		},
 		RigidBody: &core.RigidBody2D{
 			BodyType:           core.BodyDynamic,
-			CollisionDetection: core.ContinuousDetection,
+			CollisionDetection: core.DiscreteDetection,
 			Interpolation:      core.Interpolate,
 			Mass:               config.Object.Mass,
 			GravityScale:       1,

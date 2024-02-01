@@ -53,30 +53,36 @@ class GameWorld {
 		for (const gameObject of gameObjects) {
 			const { transform, renderer } = gameObject;
 
+			if (!renderer) {
+				continue;
+			}
+
 			this.#ctx.beginPath();
 			this.#ctx.save();
 
 			this.#ctx.translate(transform.position.x, transform.position.y);
 			this.#ctx.scale(transform.scale.x, -transform.scale.y);
-			this.#ctx.rotate(transform.rotation);
+			this.#ctx.rotate(-transform.rotation);
 
-			if (renderer) {
-				if (renderer.image) {
-					this.#drawImage(
-						renderer.image,
-						renderer.offset,
-						renderer.width,
-						renderer.height,
-					);
-				} else {
-					this.#ctx.fillStyle = '#fbbf24';
-					this.#ctx.fillRect(
-						renderer.offset.x,
-						renderer.offset.y,
-						renderer.width,
-						renderer.height,
-					);
-				}
+			if (renderer.flipHorizontally) {
+				this.#ctx.scale(-1, 1);
+			}
+
+			if (renderer.image) {
+				this.#drawImage(
+					renderer.image,
+					renderer.offset,
+					renderer.width,
+					renderer.height,
+				);
+			} else {
+				this.#ctx.fillStyle = '#fbbf24';
+				this.#ctx.fillRect(
+					renderer.offset.x,
+					renderer.offset.y,
+					renderer.width,
+					renderer.height,
+				);
 			}
 
 			this.#ctx.restore();

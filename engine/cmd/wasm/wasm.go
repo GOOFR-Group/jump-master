@@ -53,17 +53,18 @@ func marshalRigidBody(rigidBody *game.RigidBody2D) map[string]interface{} {
 	}
 }
 
-func marshalRenderer(renderer *game.Renderer, image interface{}) map[string]interface{} {
+func marshalRenderer(renderer *game.Renderer, image interface{}, flipHorizontally interface{}) map[string]interface{} {
 	if renderer == nil {
 		return nil
 	}
 
 	return map[string]interface{}{
-		"width":  renderer.Width,
-		"height": renderer.Height,
-		"offset": marshalVector2(renderer.Offset),
-		"layer":  renderer.Layer,
-		"image":  image,
+		"width":            renderer.Width,
+		"height":           renderer.Height,
+		"offset":           marshalVector2(renderer.Offset),
+		"layer":            renderer.Layer,
+		"image":            image,
+		"flipHorizontally": flipHorizontally,
 	}
 }
 
@@ -115,7 +116,7 @@ func marshalGameObject(gameObject game.Object) map[string]interface{} {
 
 		"transform": marshalTransform(gameObject.Transform),
 		"rigidBody": marshalRigidBody(gameObject.RigidBody),
-		"renderer":  marshalRenderer(gameObject.Renderer, gameObject.Property(property.Image)),
+		"renderer":  marshalRenderer(gameObject.Renderer, gameObject.Property(property.Image), gameObject.Property(property.FlipHorizontally)),
 		"collider":  marshalCollider(gameObject.Collider),
 	}
 }

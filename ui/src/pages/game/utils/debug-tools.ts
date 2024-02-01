@@ -55,7 +55,7 @@ class DebugTools {
 			debugPosition.x + DebugTools.#OFFSET.x,
 			debugPosition.y + DebugTools.#OFFSET.y,
 		);
-		ctx.rotate(transform.rotation);
+		ctx.rotate(-transform.rotation);
 
 		const info = [
 			`X: ${transform.position.x.toFixed(3)} Y: ${transform.position.y.toFixed(
