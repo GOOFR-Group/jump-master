@@ -60,7 +60,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Check if the object is falling.
-	if b.object.RigidBody.Velocity.Y < 0 && !b.checkGround.IsGrounded() {
+	if b.object.RigidBody.Velocity.Y < -Epsilon && !b.checkGround.IsGrounded() {
 		b.animator.SetAnimation(animation.JumpFall)
 	}
 

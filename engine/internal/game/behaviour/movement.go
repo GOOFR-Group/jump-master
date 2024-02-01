@@ -3,7 +3,6 @@ package behaviour
 import (
 	"github.com/goofr-group/game-engine/pkg/action"
 	"github.com/goofr-group/game-engine/pkg/engine"
-	"github.com/goofr-group/go-math/mathf"
 	"github.com/goofr-group/go-math/rotation/matrix"
 	"github.com/goofr-group/go-math/vector2"
 	"github.com/goofr-group/physics-engine/pkg/game"
@@ -57,7 +56,7 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Check if the object is in contact with the ground.
-	if !b.checkGround.IsGrounded() || b.object.RigidBody.Velocity.Y > mathf.Epsilon64*100 {
+	if !b.checkGround.IsGrounded() || b.object.RigidBody.Velocity.Y > Epsilon {
 		return nil
 	}
 

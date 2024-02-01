@@ -37,7 +37,7 @@ func (b *CheckGround) Start(_ *engine.Engine) error {
 	return nil
 }
 
-func (b *CheckGround) OnTriggerEnter(e *engine.Engine, otherID int64) error {
+func (b *CheckGround) OnTriggerStay(e *engine.Engine, otherID int64) error {
 	// Get the colliding object.
 	otherObject := e.World().GetGameObjectByID(otherID)
 	if otherObject == nil {
