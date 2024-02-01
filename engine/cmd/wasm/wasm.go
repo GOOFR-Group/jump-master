@@ -5,8 +5,9 @@ package main
 import (
 	"github.com/goofr-group/game-engine/pkg/rendering"
 	"github.com/goofr-group/go-math/vector2"
-	"github.com/goofr-group/jump-master/engine/internal/game/property"
 	"github.com/goofr-group/physics-engine/pkg/game"
+
+	"github.com/goofr-group/jump-master/engine/internal/game/property"
 )
 
 func marshalVector2(v vector2.Vector2) map[string]interface{} {

@@ -1,7 +1,19 @@
 {
   "$schema": "./schemas/player.json",
+  "object": {
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "size": {
+      "x": 96,
+      "y": 96
+    },
+    "mass": 10,
+    "drag": 1
+  },
   "movement": {
-    "speed": 13
+    "speed": 8
   },
   "jump": {
     "impulse": 250,
@@ -13,7 +25,10 @@
     "idle": {
       "repeat": true,
       "duration": 0.4,
-      "frames": ["/images/player/idle/0.png", "/images/player/idle/1.png"]
+      "frames": [
+        "/images/player/idle/0.png",
+        "/images/player/idle/1.png"
+      ]
     },
     "walk": {
       "repeat": true,
@@ -28,12 +43,17 @@
     "jumpHold": {
       "repeat": false,
       "duration": 0,
-      "frames": ["/images/player/jump-hold/0.png"]
+      "frames": [
+        "/images/player/jump-hold/0.png"
+      ]
     },
     "jump": {
       "repeat": false,
       "duration": 0.25,
-      "frames": ["/images/player/jump/0.png", "/images/player/jump/1.png"]
+      "frames": [
+        "/images/player/jump/0.png",
+        "/images/player/jump/1.png"
+      ]
     },
     "jumpFall": {
       "repeat": false,

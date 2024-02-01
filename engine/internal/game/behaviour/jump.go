@@ -8,23 +8,16 @@ import (
 	"github.com/goofr-group/go-math/vector2"
 	"github.com/goofr-group/physics-engine/pkg/game"
 
+	"github.com/goofr-group/jump-master/engine/internal/config"
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
 )
-
-// JumpOptions defines the structure of the jump options.
-type JumpOptions struct {
-	Impulse           float64 `json:"impulse"`           // Defines the base impulse of the jump.
-	MaxImpulse        float64 `json:"maxImpulse"`        // Defines the maximum impulse of the jump.
-	ImpulseMultiplier float64 `json:"impulseMultiplier"` // Defines the multiplier to apply in the base impulse each frame the jump action is performed.
-	DiagonalAngle     float64 `json:"diagonalAngle"`     // Defines the angle in degrees to apply when jumping left or right.
-}
 
 // Jump defines the structure of the jump behaviour.
 type Jump struct {
 	object        *game.Object
 	actionManager *action.Manager
-	options       JumpOptions
+	config        config.Jump
 
 	checkGround *CheckGround
 	animator    *Animator
@@ -33,18 +26,18 @@ type Jump struct {
 	canJump            bool    // Defines if the object is able to jump.
 }
 
-// NewJump returns a new jump behaviour with the given options.
+// NewJump returns a new jump behaviour with the given configuration.
 func NewJump(
 	object *game.Object,
 	actionManager *action.Manager,
 	checkGround *CheckGround,
 	animator *Animator,
-	options JumpOptions,
+	config config.Jump,
 ) Jump {
 	return Jump{
 		object:        object,
 		actionManager: actionManager,
-		options:       options,
+		config:        config,
 		checkGround:   checkGround,
 		animator:      animator,
 
@@ -78,8 +71,8 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 
 	// Compute the diagonal angle based on the fraction of accumulated impulse.
 	// Subtract the diagonal angle from 90 because the velocity vector already starts at 90º degrees.
-	diagonalAngle := 90 - b.options.DiagonalAngle
-	diagonalAngle *= b.accumulatedImpulse / b.options.MaxImpulse
+	diagonalAngle := 90 - b.config.DiagonalAngle
+	diagonalAngle *= b.accumulatedImpulse / b.config.MaxImpulse
 
 	// Compute the jump rotation based on the left and right actions.
 	rotation := matrix.Identity()
@@ -125,9 +118,9 @@ func (b *Jump) Update(_ *engine.Engine) error {
 	// Check if the jump action is being performed.
 	if b.actionManager.Action(input.Jump) {
 		// Apply the impulse multiplier.
-		b.accumulatedImpulse += b.options.Impulse * b.options.ImpulseMultiplier
+		b.accumulatedImpulse += b.config.Impulse * b.config.ImpulseMultiplier
 		// Ensure that the accumulated impulse is not greater than the maximum defined.
-		b.accumulatedImpulse = mathf.Min(b.accumulatedImpulse, b.options.MaxImpulse)
+		b.accumulatedImpulse = mathf.Min(b.accumulatedImpulse, b.config.MaxImpulse)
 
 		// Reset the horizontal velocity of the object when the jump action is being performed.
 		b.object.RigidBody.Velocity.X = 0

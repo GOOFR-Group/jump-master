@@ -7,6 +7,7 @@ import (
 	"syscall/js"
 
 	"github.com/goofr-group/jump-master/engine/internal/app"
+	"github.com/goofr-group/jump-master/engine/internal/config"
 )
 
 const (
@@ -28,8 +29,21 @@ var (
 
 // main entry point for the application to register our engine API into a JavaScript global context.
 func main() {
+	// Load configurations.
+	playerConfig, err := config.LoadPlayer()
+	if err != nil {
+		err = fmt.Errorf("failed to load player configuration: %w", err)
+		panic(err)
+	}
+
+	worldConfig, err := config.LoadWorld()
+	if err != nil {
+		err = fmt.Errorf("failed to load world configuration: %w", err)
+		panic(err)
+	}
+
 	// Set up engine.
-	app := app.New()
+	app := app.New(playerConfig, worldConfig)
 
 	// Set up WASM API.
 	js.Global().Set(entryPoint, make(map[string]interface{}))
@@ -38,10 +52,9 @@ func main() {
 	module.Set(methodStep, jsStep(app))
 
 	// Set up game world.
-	err := app.StartGameWorld()
+	err = app.StartGameWorld()
 	if err != nil {
 		err = fmt.Errorf("failed to start game world: %w", err)
-		js.Global().Get("console").Call("error", err.Error())
 		panic(err)
 	}
 

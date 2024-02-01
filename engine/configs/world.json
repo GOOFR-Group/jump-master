@@ -1,0 +1,78 @@
+{
+  "$schema": "./schemas/world.json",
+  "physics": {
+    "updateRate": 0.01333333333333333333333333333333,
+    "gravity": {
+      "x": 0,
+      "y": -980
+    }
+  },
+  "camera": {
+    "width": 1280,
+    "height": 720,
+    "ppu": 1
+  },
+  "grid": {
+    "width": 32,
+    "height": 32,
+    "objects": [
+      {
+        "position": {
+          "x": -10,
+          "y": -10
+        },
+        "canCollide": true,
+        "blocks": [
+          [
+            "/images/platform/forest/grass/0.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            ""
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/2.png"
+          ]
+        ]
+      }
+    ]
+  }
+}

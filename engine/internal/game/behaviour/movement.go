@@ -9,20 +9,16 @@ import (
 	"github.com/goofr-group/go-math/vector2"
 	"github.com/goofr-group/physics-engine/pkg/game"
 
+	"github.com/goofr-group/jump-master/engine/internal/config"
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
 )
-
-// MovementOptions defines the structure of the movement options.
-type MovementOptions struct {
-	Speed float64 `json:"speed"` // Defines the movement speed.
-}
 
 // Movement defines the structure of the movement behaviour.
 type Movement struct {
 	object        *game.Object
 	actionManager *action.Manager
-	options       MovementOptions
+	config        config.Movement
 
 	checkGround *CheckGround
 	animator    *Animator
@@ -30,18 +26,18 @@ type Movement struct {
 	jumpAction bool
 }
 
-// NewMovement returns a new movement behaviour with the given options.
+// NewMovement returns a new movement behaviour with the given configuration.
 func NewMovement(
 	object *game.Object,
 	actionManager *action.Manager,
-	options MovementOptions,
+	config config.Movement,
 	checkGround *CheckGround,
 	animator *Animator,
 ) Movement {
 	return Movement{
 		object:        object,
 		actionManager: actionManager,
-		options:       options,
+		config:        config,
 		checkGround:   checkGround,
 		animator:      animator,
 	}
@@ -97,7 +93,7 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Add the computed velocity when the movement actions are performed.
-	b.object.RigidBody.AddVelocity(velocity.Mul(b.options.Speed))
+	b.object.RigidBody.AddVelocity(velocity.Mul(b.config.Speed))
 	b.animator.SetAnimation(animation.Walk)
 
 	return nil
