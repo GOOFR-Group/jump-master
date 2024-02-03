@@ -22,7 +22,9 @@ type Movement struct {
 	checkGround *CheckGround
 	animator    *Animator
 
-	jumpAction bool
+	leftAction  bool
+	rightAction bool
+	jumpAction  bool
 }
 
 // NewMovement returns a new movement behaviour with the given configuration.
@@ -62,10 +64,10 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 
 	// Check if the jump action is being performed.
 	if b.jumpAction {
-		if b.actionManager.Action(input.Left) {
+		if b.leftAction {
 			b.object.SetProperty(property.FlipHorizontally, true)
 		}
-		if b.actionManager.Action(input.Right) {
+		if b.rightAction {
 			b.object.SetProperty(property.FlipHorizontally, false)
 		}
 		return nil
@@ -73,12 +75,12 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 
 	// Compute the velocity to add to the object based on the left and right actions.
 	velocity := vector2.Zero()
-	if b.actionManager.Action(input.Left) {
+	if b.leftAction {
 		// Add velocity to the left direction.
 		velocity = velocity.Add(vector2.Left())
 		b.object.SetProperty(property.FlipHorizontally, true)
 	}
-	if b.actionManager.Action(input.Right) {
+	if b.rightAction {
 		// Add velocity to the right direction.
 		velocity = velocity.Add(vector2.Right())
 		b.object.SetProperty(property.FlipHorizontally, false)
@@ -102,7 +104,9 @@ func (b *Movement) Update(_ *engine.Engine) error {
 	// Avoid the object from rotating.
 	b.object.Transform.Rotation = matrix.Identity()
 
-	// Update the jump action.
+	// Update the actions.
+	b.leftAction = b.actionManager.Action(input.Left)
+	b.rightAction = b.actionManager.Action(input.Right)
 	b.jumpAction = b.actionManager.Action(input.Jump)
 
 	return nil
