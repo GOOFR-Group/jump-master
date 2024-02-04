@@ -4,10 +4,12 @@ import "github.com/goofr-group/go-math/vector2"
 
 // Object defines the structure of the object configuration.
 type Object struct {
-	Position vector2.Vector2 `json:"position"` // Defines the position of the object.
-	Size     vector2.Vector2 `json:"size"`     // Defines the size of the object.
-	Mass     float64         `json:"mass"`     // Defines the mass of the object.
-	Drag     float64         `json:"drag"`     // Defines the drag of the object.
+	Position       vector2.Vector2 `json:"position"`       // Defines the position of the object.
+	ColliderSize   vector2.Vector2 `json:"colliderSize"`   // Defines the collider size of the object.
+	ColliderOffset vector2.Vector2 `json:"colliderOffset"` // Defines the collider offset of the object.
+	RendererSize   vector2.Vector2 `json:"rendererSize"`   // Defines the renderer size of the object.
+	Mass           float64         `json:"mass"`           // Defines the mass of the object.
+	Drag           float64         `json:"drag"`           // Defines the drag of the object.
 }
 
 // Movement defines the structure of the movement configuration.

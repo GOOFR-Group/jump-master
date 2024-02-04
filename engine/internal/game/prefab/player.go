@@ -20,12 +20,14 @@ func NewPlayer(e game.Engine, config config.Player) error {
 	gameEngine := e.Engine()
 	actionManager := e.ActionManager()
 
-	playerSize := config.Object.Size
+	colliderSize := config.Object.ColliderSize
+	colliderOffset := config.Object.ColliderOffset
+	rendererSize := config.Object.RendererSize
 
 	// Create the game object to check if the player is in contact with the ground.
 	colliderCheckGround := core.NewBoxCollider(
-		vector2.Vector2{X: playerSize.X, Y: 1},
-		vector2.Vector2{X: -playerSize.X / 2, Y: -0.5},
+		vector2.Vector2{X: colliderSize.X / 2, Y: 0.5},
+		vector2.Vector2{X: -colliderSize.X / 4, Y: -0.25},
 	)
 	colliderCheckGround.IsTrigger = true
 	gameObjectCheckGround := core.Object{
@@ -43,7 +45,7 @@ func NewPlayer(e game.Engine, config config.Player) error {
 	}
 
 	// Create the player game object.
-	colliderPlayer := core.NewBoxCollider(playerSize, playerSize.Div(-2))
+	colliderPlayer := core.NewBoxCollider(colliderSize, colliderOffset)
 	gameObjectPlayer := core.Object{
 		Active: true,
 		Tag:    tag.Player,
@@ -62,9 +64,9 @@ func NewPlayer(e game.Engine, config config.Player) error {
 		},
 		Collider: &colliderPlayer,
 		Renderer: &core.Renderer{
-			Width:  playerSize.X,
-			Height: playerSize.Y,
-			Offset: playerSize.Div(-2),
+			Width:  rendererSize.X,
+			Height: rendererSize.Y,
+			Offset: rendererSize.Div(-2),
 			Layer:  rendering.DefaultRenderLayer,
 		},
 	}

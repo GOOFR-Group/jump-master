@@ -22,8 +22,36 @@
             }
           }
         },
-        "size": {
-          "description": "Defines the size of the object.",
+        "colliderSize": {
+          "description": "Defines the collider size of the object.",
+          "type": "object",
+          "properties": {
+            "x": {
+              "description": "Defines the x size.",
+              "type": "number"
+            },
+            "y": {
+              "description": "Defines the y size.",
+              "type": "number"
+            }
+          }
+        },
+        "colliderOffset": {
+          "description": "Defines the collider offset of the object.",
+          "type": "object",
+          "properties": {
+            "x": {
+              "description": "Defines the x size.",
+              "type": "number"
+            },
+            "y": {
+              "description": "Defines the y size.",
+              "type": "number"
+            }
+          }
+        },
+        "rendererSize": {
+          "description": "Defines the renderer size of the object.",
           "type": "object",
           "properties": {
             "x": {

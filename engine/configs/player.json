@@ -5,7 +5,15 @@
       "x": 0,
       "y": 0
     },
-    "size": {
+    "colliderSize": {
+      "x": 42,
+      "y": 84
+    },
+    "colliderOffset": {
+      "x": -21,
+      "y": -45.5
+    },
+    "rendererSize": {
       "x": 96,
       "y": 96
     },
