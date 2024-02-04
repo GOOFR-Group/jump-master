@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/goofr-group/game-engine/pkg/rendering"
+	"github.com/goofr-group/go-math/rotation/matrix"
 	"github.com/goofr-group/go-math/vector2"
 	core "github.com/goofr-group/physics-engine/pkg/game"
 
@@ -48,8 +49,14 @@ func (a *App) StartGameWorld() error {
 	physicsEngine.SetGravity(physicsConfig.Gravity)
 	physicsEngine.CollisionSolvingIterations = 50
 
+	// Create the camera controller object.
+	err := prefab.NewCameraController(a.gameEngine)
+	if err != nil {
+		return fmt.Errorf("failed to create camera controller prefab: %w", err)
+	}
+
 	// Create the player object.
-	err := prefab.NewPlayer(a.gameEngine, a.playerConfig)
+	err = prefab.NewPlayer(a.gameEngine, a.playerConfig)
 	if err != nil {
 		return fmt.Errorf("failed to create player prefab: %w", err)
 	}
@@ -92,6 +99,8 @@ func (a *App) GameStep(actions map[string]bool) (domain.GameState, error) {
 
 		// Convert the object's transform to screen space.
 		camera.WorldToScreenTransform(&object.Transform)
+		// Prevent the objects from rotating.
+		object.Transform.Rotation = matrix.Identity()
 
 		// Convert the object's collider to screen space.
 		if object.Collider != nil {
