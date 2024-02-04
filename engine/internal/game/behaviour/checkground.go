@@ -30,7 +30,7 @@ func (b CheckGround) Enabled() bool {
 	return true
 }
 
-func (b *CheckGround) Start(_ *engine.Engine) error {
+func (b *CheckGround) Update(_ *engine.Engine) error {
 	// Reset the position of the object.
 	b.resetPosition()
 
