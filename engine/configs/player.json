@@ -57,7 +57,7 @@
     },
     "jump": {
       "repeat": false,
-      "duration": 0.25,
+      "duration": 0.15,
       "frames": [
         "/images/player/jump/0.png",
         "/images/player/jump/1.png"
@@ -65,12 +65,10 @@
     },
     "jumpFall": {
       "repeat": false,
-      "duration": 0.25,
+      "duration": 0.15,
       "frames": [
         "/images/player/jump-fall/0.png",
-        "/images/player/jump-fall/1.png",
-        "/images/player/jump-fall/2.png",
-        "/images/player/jump-fall/3.png"
+        "/images/player/jump-fall/1.png"
       ]
     }
   }

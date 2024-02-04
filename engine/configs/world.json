@@ -13,13 +13,13 @@
     "ppu": 1
   },
   "grid": {
-    "width": 32,
-    "height": 32,
+    "width": 64,
+    "height": 64,
     "objects": [
       {
         "position": {
-          "x": -5,
-          "y": -10
+          "x": -3,
+          "y": -5
         },
         "canCollide": true,
         "blocks": [
@@ -60,7 +60,7 @@
       },
       {
         "position": {
-          "x": -15,
+          "x": -13,
           "y": 0
         },
         "canCollide": true,
@@ -94,7 +94,46 @@
       {
         "position": {
           "x": 0,
-          "y": 13
+          "y": 3
+        },
+        "canCollide": true,
+        "blocks": [
+          [
+            "/images/platform/forest/grass/0.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/2.png"
+          ]
+        ]
+      },
+      {
+        "position": {
+          "x": -13,
+          "y": 7
         },
         "canCollide": true,
         "blocks": [
