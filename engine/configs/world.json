@@ -18,27 +18,116 @@
     "objects": [
       {
         "position": {
-          "x": -10,
+          "x": -5,
           "y": -10
         },
         "canCollide": true,
         "blocks": [
-          ["/images/platform/forest/grass/0.png"],
-          ["/images/platform/forest/grass/1.png"],
-          [""],
-          [""],
-          [""],
-          [""],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/1.png"],
-          ["/images/platform/forest/grass/2.png"]
+          [
+            "/images/platform/forest/grass/0.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/2.png"
+          ]
+        ]
+      },
+      {
+        "position": {
+          "x": -15,
+          "y": 0
+        },
+        "canCollide": true,
+        "blocks": [
+          [
+            "/images/platform/forest/grass/0.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/2.png"
+          ]
+        ]
+      },
+      {
+        "position": {
+          "x": 0,
+          "y": 13
+        },
+        "canCollide": true,
+        "blocks": [
+          [
+            "/images/platform/forest/grass/0.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/1.png"
+          ],
+          [
+            "/images/platform/forest/grass/2.png"
+          ]
         ]
       }
     ]
