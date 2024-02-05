@@ -36,8 +36,8 @@ func NewGridObjects(e game.Engine, config config.Grid) error {
 
 				// Compute block position relative to the first block and based on the grid dimensions.
 				blockPosition := grid.Scale(vector2.Vector2{
-					X: float64(i),
-					Y: float64(j),
+					X: float64(j),
+					Y: float64(i),
 				})
 				blockPosition = gridObjectPosition.Add(blockPosition)
 
