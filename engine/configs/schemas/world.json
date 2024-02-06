@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "World configurations",
+  "description": "Configuration of the game objects in the world grid.",
+  "type": "object",
+  "properties": {
+    "physics": {
+      "description": "Defines the physics of the game world.",
+      "type": "object",
+      "properties": {
+        "updateRate": {
+          "description": "Defines the physics update rate in seconds.",
+          "type": "number",
+          "minimum": 0
+        },
+        "gravity": {
+          "description": "Defines the gravity of the game world.",
+          "type": "object",
+          "properties": {
+            "x": {
+              "description": "Defines the x-axis force.",
+              "type": "number"
+            },
+            "y": {
+              "description": "Defines the y-axis force.",
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "camera": {
+      "description": "Defines the camera of the game world.",
+      "type": "object",
+      "properties": {
+        "width": {
+          "description": "Defines the width of the camera.",
+          "type": "number",
+          "minimum": 0
+        },
+        "height": {
+          "description": "Defines the height of the camera.",
+          "type": "number",
+          "minimum": 0
+        },
+        "ppu": {
+          "description": "Defines pixels per game world unit.",
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "grid": {
+      "description": "Defines the grid of the game world.",
+      "type": "object",
+      "properties": {
+        "width": {
+          "description": "Defines the width of each block in the grid.",
+          "type": "number",
+          "minimum": 0
+        },
+        "height": {
+          "description": "Defines the height of each block in the grid.",
+          "type": "number",
+          "minimum": 0
+        },
+        "objects": {
+          "description": "Defines the objects in the grid.",
+          "type": "array",
+          "items": {
+            "description": "Defines an object in the grid.",
+            "type": "object",
+            "properties": {
+              "position": {
+                "description": "Defines the position of the object in the grid.\nThe first element in \"blocks\" represents the origin.\nThe others blocks are added from the left to right, top to bottom.",
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "description": "Defines the x position in the grid.",
+                    "type": "integer"
+                  },
+                  "y": {
+                    "description": "Defines the y position in the grid.",
+                    "type": "integer"
+                  }
+                }
+              },
+              "canCollide": {
+                "description": "Defines if the object can collide with other dynamic objects.",
+                "type": "boolean"
+              },
+              "blocks": {
+                "description": "Defines the matrix representation of each block in the object.",
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "description": "Defines the path of an image of the block. If an empty string is provided (\"\"), the block is omitted from the grid.",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

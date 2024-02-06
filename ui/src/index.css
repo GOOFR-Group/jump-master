@@ -6,6 +6,10 @@
 	html {
 		font-family: 'Pixelify Sans', sans-serif;
 	}
+
+	canvas {
+		image-rendering: pixelated;
+	}
 }
 
 @layer components {

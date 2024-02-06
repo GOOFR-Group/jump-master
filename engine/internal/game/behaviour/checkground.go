@@ -12,8 +12,9 @@ import (
 type CheckGround struct {
 	object *game.Object
 
-	isGrounded      bool  // Defines if the object is in contact with the ground.
-	currentGroundID int64 // Defines the id of the object that the current object is in contact with.
+	// grounds defines the map of ground objects that the current object is in contact with. The map represents the
+	// state of the contact by the ground object id.
+	grounds map[int64]bool
 }
 
 // NewCheckGround returns a new behaviour to check if the object is in contact with the ground.
@@ -21,8 +22,7 @@ func NewCheckGround(object *game.Object) CheckGround {
 	return CheckGround{
 		object: object,
 
-		isGrounded:      false,
-		currentGroundID: -1,
+		grounds: make(map[int64]bool),
 	}
 }
 
@@ -30,7 +30,7 @@ func (b CheckGround) Enabled() bool {
 	return true
 }
 
-func (b *CheckGround) Start(_ *engine.Engine) error {
+func (b *CheckGround) Update(_ *engine.Engine) error {
 	// Reset the position of the object.
 	b.resetPosition()
 
@@ -50,20 +50,13 @@ func (b *CheckGround) OnTriggerEnter(e *engine.Engine, otherID int64) error {
 		return nil
 	}
 
-	// Set the flag as true since the current object is touching the ground.
-	// Also update the id of the current ground object being touched.
-	b.isGrounded = true
-	b.currentGroundID = otherID
+	// Set the current ground as true since it is touching the object.
+	b.grounds[otherID] = true
 
 	return nil
 }
 
 func (b *CheckGround) OnTriggerExit(e *engine.Engine, otherID int64) error {
-	// Check if the collision being exited is related to the current ground object in contact.
-	if b.currentGroundID != otherID {
-		return nil
-	}
-
 	// Get the colliding object.
 	otherObject := e.World().GetGameObjectByID(otherID)
 	if otherObject == nil {
@@ -75,16 +68,22 @@ func (b *CheckGround) OnTriggerExit(e *engine.Engine, otherID int64) error {
 		return nil
 	}
 
-	// Set the flag as false since the current object is not touching the ground anymore.
-	b.isGrounded = false
+	// Set the current ground as false since it is not touching the object anymore.
+	b.grounds[otherID] = false
 
 	return nil
 }
 
-// IsGrounded returns true if the current object is touching the ground. The ground is represented by an object with the
-// Platform tag.
+// IsGrounded returns true if the current object is touching the ground. The ground is represented by any object with
+// the Platform tag.
 func (b CheckGround) IsGrounded() bool {
-	return b.isGrounded
+	for _, touching := range b.grounds {
+		if touching {
+			return true
+		}
+	}
+
+	return false
 }
 
 // resetPosition resets the position of the object.

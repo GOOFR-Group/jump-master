@@ -4,6 +4,76 @@
   "description": "Allows customization for the player behaviours.",
   "type": "object",
   "properties": {
+    "object": {
+      "description": "Object configurations.",
+      "type": "object",
+      "properties": {
+        "position": {
+          "description": "Defines the position of the object.",
+          "type": "object",
+          "properties": {
+            "x": {
+              "description": "Defines the x-axis position.",
+              "type": "number"
+            },
+            "y": {
+              "description": "Defines the y-axis position.",
+              "type": "number"
+            }
+          }
+        },
+        "colliderSize": {
+          "description": "Defines the collider size of the object.",
+          "type": "object",
+          "properties": {
+            "x": {
+              "description": "Defines the x size.",
+              "type": "number"
+            },
+            "y": {
+              "description": "Defines the y size.",
+              "type": "number"
+            }
+          }
+        },
+        "colliderOffset": {
+          "description": "Defines the collider offset of the object.",
+          "type": "object",
+          "properties": {
+            "x": {
+              "description": "Defines the x size.",
+              "type": "number"
+            },
+            "y": {
+              "description": "Defines the y size.",
+              "type": "number"
+            }
+          }
+        },
+        "rendererSize": {
+          "description": "Defines the renderer size of the object.",
+          "type": "object",
+          "properties": {
+            "x": {
+              "description": "Defines the x size.",
+              "type": "number"
+            },
+            "y": {
+              "description": "Defines the y size.",
+              "type": "number"
+            }
+          }
+        },
+        "mass": {
+          "description": "Defines the mass of the object.",
+          "type": "number"
+        },
+        "drag": {
+          "description": "Defines the drag of the object.",
+          "type": "number"
+        }
+      }
+    },
     "movement": {
       "description": "Movement behaviour configurations.",
       "type": "object",
@@ -84,10 +154,6 @@
           },
           "minItems": 1
         }
-      },
-      "dependentRequired": {
-        "credit_card": ["billing_address"],
-        "billing_address": ["credit_card"]
       }
     }
   }

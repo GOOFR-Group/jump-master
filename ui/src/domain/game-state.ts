@@ -109,6 +109,19 @@ export interface Renderer {
 	 * Image asset of the game object.
 	 */
 	image: string | null;
+
+	/**
+	 * Indicates whether the player should be flipped horizontally or not.
+	 */
+	flipHorizontally: boolean | null;
+}
+
+/**
+ * Defines the game object tags.
+ */
+export enum GameObjectTag {
+	PLAYER = 'Player',
+	PLATFORM = 'Platform',
 }
 
 /**

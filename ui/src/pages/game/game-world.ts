@@ -1,7 +1,12 @@
 import type { Actions } from '../../domain/actions';
 import type { ImageBySource } from '../../domain/image';
 import type { Engine } from '../../domain/engine';
-import type { Camera, GameObject, Point } from '../../domain/game-state';
+import {
+	GameObjectTag,
+	type Camera,
+	type GameObject,
+	type Point,
+} from '../../domain/game-state';
 import DebugTools from './utils/debug-tools';
 
 /**
@@ -51,43 +56,58 @@ class GameWorld {
 		this.#ctx.canvas.height = camera.height;
 
 		for (const gameObject of gameObjects) {
-			const { transform, renderer } = gameObject;
+			const { transform, renderer, tag } = gameObject;
+
+			if (!renderer) {
+				continue;
+			}
 
 			this.#ctx.beginPath();
 			this.#ctx.save();
 
 			this.#ctx.translate(transform.position.x, transform.position.y);
 			this.#ctx.scale(transform.scale.x, -transform.scale.y);
-			this.#ctx.rotate(transform.rotation);
+			this.#ctx.rotate(-transform.rotation);
 
-			if (renderer) {
-				if (renderer.image) {
-					this.#drawImage(
-						renderer.image,
-						renderer.offset,
-						renderer.width,
-						renderer.height,
-					);
-				} else {
-					this.#ctx.fillStyle = '#fbbf24';
-					this.#ctx.fillRect(
-						renderer.offset.x,
-						renderer.offset.y,
-						renderer.width,
-						renderer.height,
-					);
-				}
+			switch (tag) {
+				case GameObjectTag.PLAYER:
+					this.#ctx.globalCompositeOperation = 'destination-over';
+					break;
+				default:
+					this.#ctx.globalCompositeOperation = 'source-over';
+					break;
+			}
+
+			if (renderer.flipHorizontally) {
+				this.#ctx.scale(-1, 1);
+			}
+
+			if (renderer.image) {
+				this.#drawImage(
+					renderer.image,
+					renderer.offset,
+					renderer.width,
+					renderer.height,
+				);
+			} else {
+				this.#ctx.fillStyle = '#fbbf24';
+				this.#ctx.fillRect(
+					renderer.offset.x,
+					renderer.offset.y,
+					renderer.width,
+					renderer.height,
+				);
 			}
 
 			this.#ctx.restore();
 			this.#ctx.closePath();
 
 			// Draw debug information of player object
-			if (import.meta.env.DEV && gameObject.tag === 'Player') {
+			if (import.meta.env.DEV && tag === GameObjectTag.PLAYER) {
 				DebugTools.drawGameObjectInfo(
 					this.#ctx,
 					gameObject,
-					gameObject.transform.position,
+					transform.position,
 				);
 			}
 		}

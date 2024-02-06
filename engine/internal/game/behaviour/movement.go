@@ -1,47 +1,44 @@
 package behaviour
 
 import (
-	"math"
-
 	"github.com/goofr-group/game-engine/pkg/action"
 	"github.com/goofr-group/game-engine/pkg/engine"
-	"github.com/goofr-group/go-math/mathf"
+	"github.com/goofr-group/go-math/rotation/matrix"
 	"github.com/goofr-group/go-math/vector2"
 	"github.com/goofr-group/physics-engine/pkg/game"
 
+	"github.com/goofr-group/jump-master/engine/internal/config"
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
+	"github.com/goofr-group/jump-master/engine/internal/game/property"
 )
-
-// MovementOptions defines the structure of the movement options.
-type MovementOptions struct {
-	Speed float64 `json:"speed"` // Defines the movement speed.
-}
 
 // Movement defines the structure of the movement behaviour.
 type Movement struct {
 	object        *game.Object
 	actionManager *action.Manager
-	options       MovementOptions
+	config        config.Movement
 
 	checkGround *CheckGround
 	animator    *Animator
 
-	jumpAction bool
+	leftAction  bool
+	rightAction bool
+	jumpAction  bool
 }
 
-// NewMovement returns a new movement behaviour with the given options.
+// NewMovement returns a new movement behaviour with the given configuration.
 func NewMovement(
 	object *game.Object,
 	actionManager *action.Manager,
-	options MovementOptions,
+	config config.Movement,
 	checkGround *CheckGround,
 	animator *Animator,
 ) Movement {
 	return Movement{
 		object:        object,
 		actionManager: actionManager,
-		options:       options,
+		config:        config,
 		checkGround:   checkGround,
 		animator:      animator,
 	}
@@ -61,32 +58,32 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Check if the object is in contact with the ground.
-	if !b.checkGround.IsGrounded() || b.object.RigidBody.Velocity.Y > mathf.Epsilon64*100 {
+	if !b.checkGround.IsGrounded() || b.object.RigidBody.Velocity.Y > Epsilon {
 		return nil
 	}
 
 	// Check if the jump action is being performed.
 	if b.jumpAction {
-		if b.actionManager.Action(input.Left) {
-			b.object.Transform.Scale.X = -math.Abs(b.object.Transform.Scale.X)
+		if b.leftAction {
+			b.object.SetProperty(property.FlipHorizontally, true)
 		}
-		if b.actionManager.Action(input.Right) {
-			b.object.Transform.Scale.X = math.Abs(b.object.Transform.Scale.X)
+		if b.rightAction {
+			b.object.SetProperty(property.FlipHorizontally, false)
 		}
 		return nil
 	}
 
 	// Compute the velocity to add to the object based on the left and right actions.
 	velocity := vector2.Zero()
-	if b.actionManager.Action(input.Left) {
+	if b.leftAction {
 		// Add velocity to the left direction.
 		velocity = velocity.Add(vector2.Left())
-		b.object.Transform.Scale.X = -math.Abs(b.object.Transform.Scale.X)
+		b.object.SetProperty(property.FlipHorizontally, true)
 	}
-	if b.actionManager.Action(input.Right) {
+	if b.rightAction {
 		// Add velocity to the right direction.
 		velocity = velocity.Add(vector2.Right())
-		b.object.Transform.Scale.X = math.Abs(b.object.Transform.Scale.X)
+		b.object.SetProperty(property.FlipHorizontally, false)
 	}
 
 	// Reset the horizontal velocity of the object when no movement action is performed.
@@ -97,14 +94,19 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Add the computed velocity when the movement actions are performed.
-	b.object.RigidBody.AddVelocity(velocity.Mul(b.options.Speed))
+	b.object.RigidBody.AddAcceleration(velocity.Mul(b.config.Speed))
 	b.animator.SetAnimation(animation.Walk)
 
 	return nil
 }
 
 func (b *Movement) Update(_ *engine.Engine) error {
-	// Update the jump action.
+	// Avoid the object from rotating.
+	b.object.Transform.Rotation = matrix.Identity()
+
+	// Update the actions.
+	b.leftAction = b.actionManager.Action(input.Left)
+	b.rightAction = b.actionManager.Action(input.Right)
 	b.jumpAction = b.actionManager.Action(input.Jump)
 
 	return nil

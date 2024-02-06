@@ -1,4 +1,4 @@
-Closes: #ISSUE_NUMBER
+Refs: closes #ISSUE_NUMBER_1, closes #ISSUE_NUMBER_2
 
 ## Summary
 
