@@ -8,13 +8,13 @@
     }
   },
   "camera": {
-    "width": 1280,
-    "height": 720,
+    "width": 1000,
+    "height": 844,
     "ppu": 1
   },
   "grid": {
-    "width": 64,
-    "height": 64,
+    "width": 48,
+    "height": 48,
     "objects": [
       {
         "position": {
@@ -24,37 +24,39 @@
         "canCollide": true,
         "blocks": [
           [
-            "/images/platform/forest/grass/0.png"
-          ],
+            "/images/platform/forest/grass/3.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/4.png"
+          ]
+        ]
+      },
+      {
+        "position": {
+          "x": -3,
+          "y": -4
+        },
+        "canCollide": false,
+        "blocks": [
           [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/2.png"
+            "/images/rock/0.png",
+            "/images/fence/0.png",
+            "/images/fence/1.png",
+            "/images/fence/2.png",
+            "/images/sign/0.png",
+            "/images/plant/3.png",
+            "/images/plant/0.png",
+            "/images/plant/2.png",
+            "",
+            "",
+            ""
           ]
         ]
       },
@@ -66,28 +68,14 @@
         "canCollide": true,
         "blocks": [
           [
-            "/images/platform/forest/grass/0.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/2.png"
+            "/images/platform/forest/grass/3.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/4.png"
           ]
         ]
       },
@@ -99,34 +87,16 @@
         "canCollide": true,
         "blocks": [
           [
-            "/images/platform/forest/grass/0.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/2.png"
+            "/images/platform/forest/grass/3.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/4.png"
           ]
         ]
       },
@@ -138,34 +108,16 @@
         "canCollide": true,
         "blocks": [
           [
-            "/images/platform/forest/grass/0.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/1.png"
-          ],
-          [
-            "/images/platform/forest/grass/2.png"
+            "/images/platform/forest/grass/3.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/1.png",
+            "/images/platform/forest/grass/4.png"
           ]
         ]
       }

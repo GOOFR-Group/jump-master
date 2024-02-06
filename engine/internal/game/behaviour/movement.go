@@ -94,7 +94,7 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Add the computed velocity when the movement actions are performed.
-	b.object.RigidBody.AddVelocity(velocity.Mul(b.config.Speed))
+	b.object.RigidBody.AddAcceleration(velocity.Mul(b.config.Speed))
 	b.animator.SetAnimation(animation.Walk)
 
 	return nil

@@ -4,144 +4,134 @@ import { loadImage } from '../../../utils/image';
 /**
  * Sources of the animation images used in the game world.
  */
-const ANIMATION_IMAGE_SOURCES = {
-	PLAYER: {
-		IDLE: {
-			0: '/images/player/idle/0.png',
-			1: '/images/player/idle/1.png',
-		},
-		WALK: {
-			0: '/images/player/walk/0.png',
-			1: '/images/player/walk/1.png',
-			2: '/images/player/walk/2.png',
-			3: '/images/player/walk/3.png',
-		},
-		JUMP_HOLD: {
-			0: '/images/player/jump-hold/0.png',
-		},
-		JUMP: {
-			0: '/images/player/jump/0.png',
-			1: '/images/player/jump/1.png',
-		},
-		JUMP_FALL: {
-			0: '/images/player/jump-fall/0.png',
-			1: '/images/player/jump-fall/1.png',
-			2: '/images/player/jump-fall/2.png',
-			3: '/images/player/jump-fall/3.png',
-		},
-	},
-	PLATFORM: {
-		FOREST: {
-			GRASS: {
-				0: '/images/platform/forest/grass/0.png',
-				1: '/images/platform/forest/grass/1.png',
-				2: '/images/platform/forest/grass/2.png',
-				3: '/images/platform/forest/grass/3.png',
-				4: '/images/platform/forest/grass/4.png',
-				5: '/images/platform/forest/grass/5.png',
-			},
-		},
-	},
-} as const;
+const ANIMATION_IMAGE_SOURCES = [
+	// Fence
+	'/images/fence/0.png',
+	'/images/fence/1.png',
+	'/images/fence/2.png',
+	'/images/fence/3.png',
+	'/images/fence/4.png',
+	'/images/fence/5.png',
 
-/**
- * Loads the player animator.
- *
- * Pre-loads the images for the different animations of the player.
- *
- * @returns Player animator.
- */
-export async function loadPlayerAnimator(): Promise<ImageBySource> {
-	return {
-		// Load idle images
-		[ANIMATION_IMAGE_SOURCES.PLAYER.IDLE[0]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.IDLE[0],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLAYER.IDLE[1]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.IDLE[1],
-		),
+	// Plant
+	'/images/plant/0.png',
+	'/images/plant/1.png',
+	'/images/plant/2.png',
+	'/images/plant/3.png',
+	'/images/plant/4.png',
 
-		// Load walk images
-		[ANIMATION_IMAGE_SOURCES.PLAYER.WALK[0]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.WALK[0],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLAYER.WALK[1]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.WALK[1],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLAYER.WALK[2]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.WALK[2],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLAYER.WALK[3]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.WALK[3],
-		),
+	// Platform bush
+	'/images/platform/bush/0.png',
+	'/images/platform/bush/1.png',
+	'/images/platform/bush/2.png',
+	'/images/platform/bush/3.png',
+	'/images/platform/bush/4.png',
+	'/images/platform/bush/5.png',
 
-		// Load jump hold image
-		[ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_HOLD[0]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_HOLD[0],
-		),
+	// Platform forest dirt
+	'/images/platform/forest/dirt/0.png',
+	'/images/platform/forest/dirt/1.png',
+	'/images/platform/forest/dirt/2.png',
+	'/images/platform/forest/dirt/3.png',
+	'/images/platform/forest/dirt/4.png',
+	'/images/platform/forest/dirt/5.png',
+	'/images/platform/forest/dirt/6.png',
+	'/images/platform/forest/dirt/7.png',
 
-		// Load jump images
-		[ANIMATION_IMAGE_SOURCES.PLAYER.JUMP[0]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.JUMP[0],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLAYER.JUMP[1]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.JUMP[1],
-		),
+	// Platform forest grass
+	'/images/platform/forest/grass/0.png',
+	'/images/platform/forest/grass/1.png',
+	'/images/platform/forest/grass/2.png',
+	'/images/platform/forest/grass/3.png',
+	'/images/platform/forest/grass/4.png',
+	'/images/platform/forest/grass/5.png',
 
-		// Load jump fall images
-		[ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_FALL[0]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_FALL[0],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_FALL[1]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_FALL[1],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_FALL[2]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_FALL[2],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_FALL[3]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLAYER.JUMP_FALL[3],
-		),
-	};
-}
+	// Platform grass
+	'/images/platform/grass/0.png',
+	'/images/platform/grass/1.png',
+	'/images/platform/grass/2.png',
+	'/images/platform/grass/3.png',
+	'/images/platform/grass/4.png',
+	'/images/platform/grass/5.png',
+	'/images/platform/grass/6.png',
+	'/images/platform/grass/7.png',
+	'/images/platform/grass/8.png',
 
-/**
- * Loads the world animator.
- *
- * Pre-loads the images for the different animations of the world.
- *
- * @returns World animator.
- */
-export async function loadWorldAnimator(): Promise<ImageBySource> {
-	return {
-		// Load platform forest grass images
-		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[0]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[0],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[1]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[1],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[2]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[2],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[3]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[3],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[4]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[4],
-		),
-		[ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[5]]: await loadImage(
-			ANIMATION_IMAGE_SOURCES.PLATFORM.FOREST.GRASS[5],
-		),
-	};
-}
+	// Platform jungle dirt
+	'/images/platform/jungle/dirt/0.png',
+	'/images/platform/jungle/dirt/1.png',
+	'/images/platform/jungle/dirt/2.png',
+	'/images/platform/jungle/dirt/3.png',
+	'/images/platform/jungle/dirt/4.png',
+	'/images/platform/jungle/dirt/5.png',
+	'/images/platform/jungle/dirt/6.png',
+
+	// Platform jungle grass
+	'/images/platform/jungle/grass/0.png',
+	'/images/platform/jungle/grass/1.png',
+	'/images/platform/jungle/grass/2.png',
+	'/images/platform/jungle/grass/3.png',
+	'/images/platform/jungle/grass/4.png',
+	'/images/platform/jungle/grass/5.png',
+
+	// Platform water
+	'/images/platform/water/0.png',
+	'/images/platform/water/1.png',
+
+	// Player idle
+	'/images/player/idle/0.png',
+	'/images/player/idle/1.png',
+
+	// Player jump
+	'/images/player/jump/0.png',
+	'/images/player/jump/1.png',
+
+	// Player jump fall
+	'/images/player/jump-fall/0.png',
+	'/images/player/jump-fall/1.png',
+	'/images/player/jump-fall/2.png',
+	'/images/player/jump-fall/3.png',
+
+	// Player jump hold
+	'/images/player/jump-hold/0.png',
+
+	// Player walk
+	'/images/player/walk/0.png',
+	'/images/player/walk/1.png',
+	'/images/player/walk/2.png',
+	'/images/player/walk/3.png',
+
+	// Rock
+	'/images/rock/0.png',
+	'/images/rock/1.png',
+
+	// Sign
+	'/images/sign/0.png',
+	'/images/sign/1.png',
+	'/images/sign/2.png',
+	'/images/sign/3.png',
+	'/images/sign/4.png',
+	'/images/sign/5.png',
+];
 
 /**
  * Loads the animator.
  * @returns Animator.
  */
 export async function loadAnimator() {
-	const playerAnimator = await loadPlayerAnimator();
-	const worldAnimator = await loadWorldAnimator();
+	const animator: ImageBySource = {};
+	const imagePromises = [];
 
-	return { ...playerAnimator, ...worldAnimator };
+	for (const imgSrc of ANIMATION_IMAGE_SOURCES) {
+		imagePromises.push(loadImage(imgSrc));
+	}
+
+	const imageElements = await Promise.all(imagePromises);
+
+	for (let i = 0; i < ANIMATION_IMAGE_SOURCES.length; i++) {
+		const imgSrc = ANIMATION_IMAGE_SOURCES[i];
+		animator[imgSrc] = imageElements[i];
+	}
+
+	return animator;
 }

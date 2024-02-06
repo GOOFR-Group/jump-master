@@ -90,7 +90,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	velocity = rotation.RotateVector(velocity)
 	velocity = velocity.Mul(b.accumulatedImpulse)
 
-	b.object.RigidBody.AddVelocity(velocity)
+	b.object.RigidBody.AddAcceleration(velocity)
 	b.animator.SetAnimation(animation.Jump)
 
 	// Reset the accumulated impulse and jump flag.
