@@ -21,7 +21,7 @@
     "drag": 1
   },
   "movement": {
-    "speed": 500
+    "speed": 13000
   },
   "jump": {
     "impulse": 15625,
