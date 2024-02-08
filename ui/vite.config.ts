@@ -9,6 +9,7 @@ export default defineConfig({
 			registerType: 'autoUpdate',
 			strategies: 'generateSW',
 			injectRegister: 'inline',
+			includeAssets: ['**/*'],
 			manifest: {
 				name: 'Jump Master',
 				start_url: '/',
