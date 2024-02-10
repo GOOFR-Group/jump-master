@@ -1,6 +1,8 @@
 package behaviour
 
 import (
+	"math"
+
 	"github.com/goofr-group/game-engine/pkg/action"
 	"github.com/goofr-group/game-engine/pkg/engine"
 	"github.com/goofr-group/go-math/mathf"
@@ -69,6 +71,9 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		return nil
 	}
 
+	// Limit the minimum jump impulse.
+	b.accumulatedImpulse = math.Max(b.accumulatedImpulse, b.config.MinImpulse)
+
 	// Compute the jump rotation based on the left and right actions.
 	direction := vector2.Up()
 
@@ -105,7 +110,9 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	return nil
 }
 
-func (b *Jump) Update(_ *engine.Engine) error {
+func (b *Jump) Update(e *engine.Engine) error {
+	time := e.Time()
+
 	// Check if the rigid body is accessible.
 	if b.object == nil {
 		return nil
@@ -122,9 +129,8 @@ func (b *Jump) Update(_ *engine.Engine) error {
 
 	// Check if the jump action is being performed.
 	if b.actionManager.Action(input.Jump) {
-		// Apply the impulse multiplier.
-		b.accumulatedImpulse += b.config.Impulse * b.config.ImpulseMultiplier
-		// Ensure that the accumulated impulse is not greater than the maximum defined.
+		// Apply the impulse multiplier and ensure that the accumulated impulse is not greater than the maximum defined.
+		b.accumulatedImpulse += b.config.Impulse * time.FixedDeltaTime
 		b.accumulatedImpulse = mathf.Min(b.accumulatedImpulse, b.config.MaxImpulse)
 
 		// Reset the horizontal velocity of the object when the jump action is being performed.

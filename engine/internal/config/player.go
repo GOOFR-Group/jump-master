@@ -19,10 +19,10 @@ type Movement struct {
 
 // Jump defines the structure of the jump configuration.
 type Jump struct {
-	Impulse           float64 `json:"impulse"`           // Defines the base impulse of the jump.
-	MaxImpulse        float64 `json:"maxImpulse"`        // Defines the maximum impulse of the jump.
-	ImpulseMultiplier float64 `json:"impulseMultiplier"` // Defines the multiplier to apply in the base impulse each frame the jump action is performed.
-	DiagonalAngle     float64 `json:"diagonalAngle"`     // Defines the angle in degrees to apply when jumping left or right.
+	Impulse       float64 `json:"impulse"`       // Defines the base impulse of the jump to accumulate each second the jump action is performed.
+	MinImpulse    float64 `json:"minImpulse"`    // Defines the minimum impulse of the jump.
+	MaxImpulse    float64 `json:"maxImpulse"`    // Defines the maximum impulse of the jump.
+	DiagonalAngle float64 `json:"diagonalAngle"` // Defines the angle in degrees to apply when jumping left or right.
 }
 
 // Animator defines the structure of the animator configuration.

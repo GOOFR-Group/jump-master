@@ -24,9 +24,9 @@
     "speed": 13000
   },
   "jump": {
-    "impulse": 20000,
+    "impulse": 300000,
+    "minImpulse": 35000,
     "maxImpulse": 90000,
-    "impulseMultiplier": 0.20,
     "diagonalAngle": 75
   },
   "animations": {
