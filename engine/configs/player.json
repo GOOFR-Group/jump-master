@@ -24,16 +24,19 @@
     "speed": 13000
   },
   "jump": {
-    "impulse": 15625,
-    "maxImpulse": 93750,
-    "impulseMultiplier": 0.15,
-    "diagonalAngle": 55
+    "impulse": 20000,
+    "maxImpulse": 90000,
+    "impulseMultiplier": 0.20,
+    "diagonalAngle": 75
   },
   "animations": {
     "idle": {
       "repeat": true,
       "duration": 0.4,
-      "frames": ["/images/player/idle/0.png", "/images/player/idle/1.png"]
+      "frames": [
+        "/images/player/idle/0.png",
+        "/images/player/idle/1.png"
+      ]
     },
     "walk": {
       "repeat": true,
@@ -48,12 +51,17 @@
     "jumpHold": {
       "repeat": false,
       "duration": 0,
-      "frames": ["/images/player/jump-hold/0.png"]
+      "frames": [
+        "/images/player/jump-hold/0.png"
+      ]
     },
     "jump": {
       "repeat": false,
       "duration": 0.15,
-      "frames": ["/images/player/jump/0.png", "/images/player/jump/1.png"]
+      "frames": [
+        "/images/player/jump/0.png",
+        "/images/player/jump/1.png"
+      ]
     },
     "jumpFall": {
       "repeat": false,

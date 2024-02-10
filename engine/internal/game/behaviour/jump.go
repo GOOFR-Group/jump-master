@@ -69,26 +69,31 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		return nil
 	}
 
-	// Compute the diagonal angle based on the fraction of accumulated impulse.
-	// Subtract the diagonal angle from 90 because the velocity vector already starts at 90º degrees.
-	diagonalAngle := 90 - b.config.DiagonalAngle
-	diagonalAngle *= b.accumulatedImpulse / b.config.MaxImpulse
-
 	// Compute the jump rotation based on the left and right actions.
-	rotation := matrix.Identity()
-	leftRotation := matrix.FromEuler(diagonalAngle)
-	if b.actionManager.Action(input.Left) {
-		rotation = rotation.Mul(leftRotation)
-	}
-	if b.actionManager.Action(input.Right) {
-		rightRotation := leftRotation.Transpose()
-		rotation = rotation.Mul(rightRotation)
+	direction := vector2.Up()
+
+	leftAction := b.actionManager.Action(input.Left)
+	rightAction := b.actionManager.Action(input.Right)
+
+	// Check that the left or right action is being performed. Also check that both actions are not being performed at
+	// the same time.
+	if (leftAction || rightAction) && !(leftAction && rightAction) {
+		// Compute the diagonal angle based on the fraction of accumulated impulse.
+		diagonalAngle := b.config.DiagonalAngle
+		diagonalAngle *= b.accumulatedImpulse / b.config.MaxImpulse
+
+		// Compute the rotated direction from the right side.
+		rotation := matrix.FromEuler(diagonalAngle)
+		direction = rotation.RotateVector(vector2.Right())
+
+		// If the object is performing a left action, invert the direction vector.
+		if leftAction {
+			direction.X = -direction.X
+		}
 	}
 
 	// Apply the jump velocity based on the computed rotation and accumulated impulse.
-	velocity := vector2.Up()
-	velocity = rotation.RotateVector(velocity)
-	velocity = velocity.Mul(b.accumulatedImpulse)
+	velocity := direction.Mul(b.accumulatedImpulse)
 
 	b.object.RigidBody.AddAcceleration(velocity)
 	b.animator.SetAnimation(animation.Jump)
