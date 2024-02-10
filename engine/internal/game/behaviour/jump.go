@@ -62,7 +62,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Check if the object is falling.
-	if b.object.RigidBody.Velocity.Y < -Epsilon && !b.checkGround.IsGrounded() {
+	if b.object.RigidBody.Velocity.Y < -Epsilon && !b.checkGround.Grounded() {
 		b.animator.SetAnimation(animation.JumpFall)
 	}
 
@@ -122,7 +122,7 @@ func (b *Jump) Update(e *engine.Engine) error {
 	}
 
 	// Check if the object is in contact with the ground.
-	if !b.checkGround.IsGrounded() {
+	if !b.checkGround.Grounded() {
 		b.accumulatedImpulse = 0
 		return nil
 	}

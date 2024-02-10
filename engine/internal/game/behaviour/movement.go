@@ -60,7 +60,7 @@ func (b *Movement) FixedUpdate(e *engine.Engine) error {
 	}
 
 	// Check if the object is in contact with the ground.
-	if !b.checkGround.IsGrounded() || b.object.RigidBody.Velocity.Y > Epsilon {
+	if !b.checkGround.Grounded() || b.object.RigidBody.Velocity.Y > Epsilon {
 		return nil
 	}
 
