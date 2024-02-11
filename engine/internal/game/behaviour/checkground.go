@@ -74,9 +74,9 @@ func (b *CheckGround) OnTriggerExit(e *engine.Engine, otherID int64) error {
 	return nil
 }
 
-// Grounded returns true if the current object is touching the ground. The ground is represented by any object with the
-// Platform tag.
-func (b CheckGround) Grounded() bool {
+// TouchingGround returns true if the current object is touching the ground. The ground is represented by any object
+// with the Platform tag that is in contact with the feet of this object.
+func (b CheckGround) TouchingGround() bool {
 	for _, touching := range b.grounds {
 		if touching {
 			return true
