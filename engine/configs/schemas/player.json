@@ -106,6 +106,20 @@
         }
       }
     },
+    "knockBack": {
+      "description": "Knock-back behaviour configurations.",
+      "type": "object",
+      "properties": {
+        "impulse": {
+          "description": "Defines the impulse of the knock-back.",
+          "type": "number"
+        },
+        "diagonalAngle": {
+          "description": "Defines the angle in degrees to apply when there is a knock-back.",
+          "type": "number"
+        }
+      }
+    },
     "animations": {
       "description": "Animation configurations.",
       "type": "object",

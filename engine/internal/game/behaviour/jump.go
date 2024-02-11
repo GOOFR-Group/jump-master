@@ -24,6 +24,7 @@ type Jump struct {
 	checkGround *CheckGround
 	animator    *Animator
 
+	usedImpulse        float64 // Defines the previously used jump impulse.
 	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
 	canJump            bool    // Defines if the object is able to jump.
 }
@@ -32,9 +33,9 @@ type Jump struct {
 func NewJump(
 	object *game.Object,
 	actionManager *action.Manager,
+	config config.Jump,
 	checkGround *CheckGround,
 	animator *Animator,
-	config config.Jump,
 ) Jump {
 	return Jump{
 		object:        object,
@@ -43,6 +44,7 @@ func NewJump(
 		checkGround:   checkGround,
 		animator:      animator,
 
+		usedImpulse:        0,
 		accumulatedImpulse: 0,
 		canJump:            false,
 	}
@@ -98,6 +100,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Apply the jump velocity based on the computed rotation and accumulated impulse.
+	b.usedImpulse = b.accumulatedImpulse
 	velocity := direction.Mul(b.accumulatedImpulse)
 
 	b.object.RigidBody.AddAcceleration(velocity)
@@ -145,4 +148,14 @@ func (b *Jump) Update(e *engine.Engine) error {
 	}
 
 	return nil
+}
+
+// UsedImpulse returns the previously used jump impulse.
+func (b Jump) UsedImpulse() float64 {
+	return b.usedImpulse
+}
+
+// MaxImpulse returns the maximum jump impulse.
+func (b Jump) MaxImpulse() float64 {
+	return b.config.MaxImpulse
 }

@@ -44,6 +44,26 @@ func NewPlayer(e game.Engine, config config.Player) error {
 		Collider: &colliderCheckGround,
 	}
 
+	// Create the game object to check if the player is in contact with the ceiling.
+	colliderCheckCeiling := core.NewBoxCollider(
+		vector2.Vector2{X: colliderSize.X / 2, Y: 0.5},
+		vector2.Vector2{X: -colliderSize.X / 4, Y: -0.25},
+	)
+	colliderCheckCeiling.IsTrigger = true
+	gameObjectCheckCeiling := core.Object{
+		Active: true,
+		Transform: core.Transform2D{
+			Rotation: matrix.Identity(),
+			Scale:    vector2.One(),
+		},
+		RigidBody: &core.RigidBody2D{
+			BodyType:           core.BodyKinematic,
+			CollisionDetection: core.DiscreteDetection,
+			Interpolation:      core.NoneInterpolation,
+		},
+		Collider: &colliderCheckCeiling,
+	}
+
 	// Create the player game object.
 	colliderPlayer := core.NewBoxCollider(colliderSize, colliderOffset)
 	gameObjectPlayer := core.Object{
@@ -73,12 +93,14 @@ func NewPlayer(e game.Engine, config config.Player) error {
 
 	// Create the behaviours.
 	checkGroundBehaviour := behaviour.NewCheckGround(&gameObjectCheckGround)
+	checkCeilingBehaviour := behaviour.NewCheckCeiling(&gameObjectCheckCeiling)
 	animatorBehaviour := behaviour.NewAnimator(&gameObjectPlayer, config.Animations)
 	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, config.Movement, &checkGroundBehaviour, &animatorBehaviour)
-	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, &checkGroundBehaviour, &animatorBehaviour, config.Jump)
+	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, config.Jump, &checkGroundBehaviour, &animatorBehaviour)
+	knockBackBehaviour := behaviour.NewKnockBack(&gameObjectPlayer, config.KnockBack, &checkGroundBehaviour, &checkCeilingBehaviour, &jumpBehaviour)
 
 	// Add the player game object to the game engine.
-	err := gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&movementBehaviour, &jumpBehaviour, &animatorBehaviour})
+	err := gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&movementBehaviour, &jumpBehaviour, &animatorBehaviour, &knockBackBehaviour})
 	if err != nil {
 		return fmt.Errorf("failed to create player game object: %w", err)
 	}
@@ -87,6 +109,12 @@ func NewPlayer(e game.Engine, config config.Player) error {
 	err = gameEngine.CreateGameObjectWithParent(&gameObjectCheckGround, &gameObjectPlayer.Transform, []engine.Behaviour{&checkGroundBehaviour})
 	if err != nil {
 		return fmt.Errorf("failed to create check ground game object: %w", err)
+	}
+
+	// Add the check ceiling game object to the game engine.
+	err = gameEngine.CreateGameObjectWithParent(&gameObjectCheckCeiling, &gameObjectPlayer.Transform, []engine.Behaviour{&checkCeilingBehaviour})
+	if err != nil {
+		return fmt.Errorf("failed to create check ceiling game object: %w", err)
 	}
 
 	return nil

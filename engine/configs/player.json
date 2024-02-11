@@ -29,6 +29,10 @@
     "maxImpulse": 90000,
     "diagonalAngle": 75
   },
+  "knockBack": {
+    "impulse": 30000,
+    "diagonalAngle": 30
+  },
   "animations": {
     "idle": {
       "repeat": true,

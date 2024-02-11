@@ -25,6 +25,12 @@ type Jump struct {
 	DiagonalAngle float64 `json:"diagonalAngle"` // Defines the angle in degrees to apply when jumping left or right.
 }
 
+// KnockBack defines the structure of the knock-back configuration.
+type KnockBack struct {
+	Impulse       float64 `json:"impulse"`       // Defines the impulse of the knock-back.
+	DiagonalAngle float64 `json:"diagonalAngle"` // Defines the angle in degrees to apply when there is a knock-back.
+}
+
 // Animator defines the structure of the animator configuration.
 type Animator struct {
 	Repeat   bool     `json:"repeat"`   // Defines if the frames should loop.
@@ -40,5 +46,6 @@ type Player struct {
 	Object     Object     `json:"object"`     // Object configurations.
 	Movement   Movement   `json:"movement"`   // Movement behaviour configurations.
 	Jump       Jump       `json:"jump"`       // Jump behaviour configurations.
+	KnockBack  KnockBack  `json:"knockBack"`  // Knock-back behaviour configurations.
 	Animations Animations `json:"animations"` // Animation configurations.
 }
