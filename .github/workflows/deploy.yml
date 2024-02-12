@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js 20
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
@@ -24,6 +24,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: 1.21
+          cache-dependency-path: ./engine/go.sum
 
       - name: Set up git ssh instead of https
         run: |
