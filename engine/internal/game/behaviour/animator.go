@@ -65,6 +65,11 @@ func (b *Animator) Update(e *engine.Engine) error {
 		nextFrame = b.currentFrame
 	}
 
+	// Check if there is no next frame.
+	if b.currentFrame == nextFrame {
+		return nil
+	}
+
 	// Update the current frame of the animation.
 	b.currentFrame = nextFrame
 	b.currentTimer = animatorConfigs.Duration
@@ -112,5 +117,5 @@ func (b Animator) AnimationEnded() bool {
 		return false
 	}
 
-	return !animatorConfigs.Repeat && b.currentFrame == len(animatorConfigs.Frames)-1
+	return !animatorConfigs.Repeat && b.currentFrame == len(animatorConfigs.Frames)-1 && b.currentTimer < 0
 }
