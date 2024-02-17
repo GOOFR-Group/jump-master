@@ -61,7 +61,7 @@
     },
     "jump": {
       "repeat": false,
-      "duration": 0.15,
+      "duration": 0,
       "frames": [
         "/images/player/jump/0.png"
       ]
