@@ -34,6 +34,8 @@ func (b Animator) Enabled() bool {
 }
 
 func (b *Animator) Update(e *engine.Engine) error {
+	time := e.Time()
+
 	// Check if the object is accessible.
 	if b.object == nil {
 		return nil
@@ -52,7 +54,7 @@ func (b *Animator) Update(e *engine.Engine) error {
 	}
 
 	// Update the current timer.
-	b.currentTimer -= e.Time().DeltaTime
+	b.currentTimer -= time.DeltaTime
 	if b.currentTimer >= 0 {
 		return nil
 	}
@@ -68,6 +70,11 @@ func (b *Animator) Update(e *engine.Engine) error {
 	b.currentTimer = animatorConfigs.Duration
 
 	return nil
+}
+
+// Animation returns the current animation being displayed.
+func (b Animator) Animation() string {
+	return b.currentAnimation
 }
 
 // SetAnimation updates the current animation being displayed.
@@ -91,4 +98,19 @@ func (b *Animator) SetAnimation(animation string) {
 	b.currentAnimation = animation
 	b.currentFrame = 0
 	b.currentTimer = animatorConfigs.Duration
+}
+
+// AnimationEnded returns true if the current animation has ended, false otherwise.
+func (b Animator) AnimationEnded() bool {
+	if b.animations == nil {
+		return false
+	}
+
+	// Get the current animation.
+	animatorConfigs, ok := b.animations[b.currentAnimation]
+	if !ok {
+		return false
+	}
+
+	return !animatorConfigs.Repeat && b.currentFrame == len(animatorConfigs.Frames)-1
 }

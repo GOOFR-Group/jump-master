@@ -25,6 +25,11 @@ type Jump struct {
 	DiagonalAngle float64 `json:"diagonalAngle"` // Defines the angle in degrees to apply when jumping left or right.
 }
 
+// Fall defines the structure of the fall configuration.
+type Fall struct {
+	AllowedDuration float64 `json:"allowedDuration"` // Defines the amount of time possible to be in the air until it is considered a fall when touching the ground.
+}
+
 // KnockBack defines the structure of the knock-back configuration.
 type KnockBack struct {
 	Impulse       float64 `json:"impulse"`       // Defines the impulse of the knock-back.
@@ -46,6 +51,7 @@ type Player struct {
 	Object     Object     `json:"object"`     // Object configurations.
 	Movement   Movement   `json:"movement"`   // Movement behaviour configurations.
 	Jump       Jump       `json:"jump"`       // Jump behaviour configurations.
+	Fall       Fall       `json:"fall"`       // Fall behaviour configurations.
 	KnockBack  KnockBack  `json:"knockBack"`  // Knock-back behaviour configurations.
 	Animations Animations `json:"animations"` // Animation configurations.
 }

@@ -124,8 +124,9 @@ func (b *Jump) Update(e *engine.Engine) error {
 		return nil
 	}
 
-	// Check if the object is in contact with the ground.
-	if !b.checkGround.TouchingGround() {
+	// Check if the object is in contact with the ground and if the fall animation has already ended.
+	if !b.checkGround.TouchingGround() ||
+		(b.animator.Animation() == animation.Fall && !b.animator.AnimationEnded()) {
 		b.accumulatedImpulse = 0
 		return nil
 	}

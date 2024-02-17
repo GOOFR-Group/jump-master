@@ -45,6 +45,7 @@ func (a *App) StartGameWorld() error {
 	physicsConfig := a.worldConfig.Physics
 
 	// Set up physics configurations.
+	a.lastStep = time.Now()
 	gameEngine.SetFixedDeltaTime(physicsConfig.UpdateRate)
 	physicsEngine.SetGravity(physicsConfig.Gravity)
 	physicsEngine.CollisionSolvingIterations = 50

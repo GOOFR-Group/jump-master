@@ -29,6 +29,9 @@
     "maxImpulse": 90000,
     "diagonalAngle": 75
   },
+  "fall": {
+    "allowedDuration": 1
+  },
   "knockBack": {
     "impulse": 30000,
     "diagonalAngle": 30
@@ -72,6 +75,16 @@
       "frames": [
         "/images/player/jump-fall/0.png",
         "/images/player/jump-fall/1.png"
+      ]
+    },
+    "fall": {
+      "repeat": false,
+      "duration": 0.15,
+      "frames": [
+        "/images/player/fall/0.png",
+        "/images/player/fall/1.png",
+        "/images/player/fall/2.png",
+        "/images/player/fall/3.png"
       ]
     }
   }
