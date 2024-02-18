@@ -11,6 +11,7 @@ import (
 	"github.com/goofr-group/physics-engine/pkg/game"
 
 	"github.com/goofr-group/jump-master/engine/internal/config"
+	"github.com/goofr-group/jump-master/engine/internal/game/animation"
 	"github.com/goofr-group/jump-master/engine/internal/game/tag"
 )
 
@@ -22,6 +23,7 @@ type KnockBack struct {
 	checkGround  *CheckGround
 	checkCeiling *CheckCeiling
 	jump         *Jump
+	animator     *Animator
 
 	// platforms defines the map of platform objects that the current object is in contact with. The map represents the
 	// state of the contact by the platform object id.
@@ -38,6 +40,7 @@ func NewKnockBack(
 	checkGround *CheckGround,
 	checkCeiling *CheckCeiling,
 	jump *Jump,
+	animator *Animator,
 ) KnockBack {
 	return KnockBack{
 		object:       object,
@@ -45,6 +48,7 @@ func NewKnockBack(
 		checkGround:  checkGround,
 		checkCeiling: checkCeiling,
 		jump:         jump,
+		animator:     animator,
 
 		platforms: make(map[int64]bool),
 	}
@@ -125,6 +129,7 @@ func (b *KnockBack) OnCollisionEnter(e *engine.Engine, otherID int64, manifold c
 	// Apply the knock-back velocity based on the computed rotation and impulse.
 	velocity := direction.Mul(b.config.Impulse)
 	b.object.RigidBody.AddAcceleration(velocity)
+	b.animator.SetAnimation(animation.KnockBack)
 
 	return nil
 }

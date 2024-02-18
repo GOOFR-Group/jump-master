@@ -95,6 +95,9 @@ const ANIMATION_IMAGE_SOURCES = [
 	// Player jump hold
 	'/images/player/jump-hold/0.png',
 
+	// Player knock-back
+	'/images/player/knock-back/0.png',
+
 	// Player walk
 	'/images/player/walk/0.png',
 	'/images/player/walk/1.png',

@@ -73,6 +73,13 @@
         "/images/player/jump-fall/0.png",
         "/images/player/jump-fall/1.png"
       ]
+    },
+    "knockBack": {
+      "repeat": false,
+      "duration": 0,
+      "frames": [
+        "/images/player/knock-back/0.png"
+      ]
     }
   }
 }
