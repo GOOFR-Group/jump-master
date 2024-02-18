@@ -155,6 +155,10 @@
           "description": "Jump fall animation.",
           "$ref": "#/$defs/animation"
         },
+        "knockBack": {
+          "description": "Knock-back animation.",
+          "$ref": "#/$defs/animation"
+        },
         "fall": {
           "description": "Fall animation.",
           "$ref": "#/$defs/animation"

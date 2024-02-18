@@ -98,7 +98,7 @@ func NewPlayer(e game.Engine, config config.Player) error {
 	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, config.Movement, &checkGroundBehaviour, &animatorBehaviour)
 	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, config.Jump, &checkGroundBehaviour, &animatorBehaviour)
 	fallBehaviour := behaviour.NewFall(&gameObjectPlayer, config.Fall, &checkGroundBehaviour, &animatorBehaviour)
-	knockBackBehaviour := behaviour.NewKnockBack(&gameObjectPlayer, config.KnockBack, &checkGroundBehaviour, &checkCeilingBehaviour, &jumpBehaviour)
+	knockBackBehaviour := behaviour.NewKnockBack(&gameObjectPlayer, config.KnockBack, &checkGroundBehaviour, &checkCeilingBehaviour, &jumpBehaviour, &animatorBehaviour)
 
 	// Add the player game object to the game engine.
 	err := gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&animatorBehaviour, &movementBehaviour, &jumpBehaviour, &fallBehaviour, &knockBackBehaviour})
