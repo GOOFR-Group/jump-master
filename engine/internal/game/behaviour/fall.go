@@ -16,7 +16,7 @@ type Fall struct {
 	checkGround *CheckGround
 	animator    *Animator
 
-	timer float64 // Defines the timer that captures the amount of time the object is falling..
+	timer float64 // Defines the timer that captures the amount of time the object is falling.
 }
 
 // NewFall returns a new fall behaviour with the given configuration.
