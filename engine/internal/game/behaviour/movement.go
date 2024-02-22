@@ -64,6 +64,11 @@ func (b *Movement) FixedUpdate(e *engine.Engine) error {
 		return nil
 	}
 
+	// Check if the fall animation has already ended.
+	if b.animator.Animation() == animation.Fall && !b.animator.AnimationEnded() {
+		return nil
+	}
+
 	// Check if the jump action is being performed.
 	if b.jumpAction {
 		if b.leftAction {
@@ -91,7 +96,11 @@ func (b *Movement) FixedUpdate(e *engine.Engine) error {
 	// Reset the horizontal velocity of the object when no movement action is performed.
 	if mathf.Approximately(direction, 0) {
 		b.object.RigidBody.Velocity.X = 0
-		b.animator.SetAnimation(animation.Idle)
+
+		// Do not perform the idle animation when the fall animation is being played.
+		if b.animator.Animation() != animation.Fall {
+			b.animator.SetAnimation(animation.Idle)
+		}
 		return nil
 	}
 

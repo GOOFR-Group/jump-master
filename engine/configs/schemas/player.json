@@ -106,6 +106,17 @@
         }
       }
     },
+    "fall": {
+      "description": "Fall behaviour configurations.",
+      "type": "object",
+      "properties": {
+        "allowedDuration": {
+          "description": " Defines the amount of time possible to be in the air until it is considered a fall when touching the ground.",
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
     "knockBack": {
       "description": "Knock-back behaviour configurations.",
       "type": "object",
@@ -146,6 +157,10 @@
         },
         "knockBack": {
           "description": "Knock-back animation.",
+          "$ref": "#/$defs/animation"
+        },
+        "fall": {
+          "description": "Fall animation.",
           "$ref": "#/$defs/animation"
         }
       }

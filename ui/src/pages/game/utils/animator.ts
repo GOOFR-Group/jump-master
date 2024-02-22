@@ -78,19 +78,22 @@ const ANIMATION_IMAGE_SOURCES = [
 	'/images/platform/water/0.png',
 	'/images/platform/water/1.png',
 
+	// Player fall
+	'/images/player/fall/0.png',
+	'/images/player/fall/1.png',
+	'/images/player/fall/2.png',
+	'/images/player/fall/3.png',
+
 	// Player idle
 	'/images/player/idle/0.png',
 	'/images/player/idle/1.png',
 
 	// Player jump
 	'/images/player/jump/0.png',
-	'/images/player/jump/1.png',
 
 	// Player jump fall
 	'/images/player/jump-fall/0.png',
 	'/images/player/jump-fall/1.png',
-	'/images/player/jump-fall/2.png',
-	'/images/player/jump-fall/3.png',
 
 	// Player jump hold
 	'/images/player/jump-hold/0.png',

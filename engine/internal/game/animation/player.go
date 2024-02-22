@@ -7,4 +7,5 @@ const (
 	Jump      = "jump"      // Represents the player jump animation.
 	JumpFall  = "jumpFall"  // Represents the player jump fall animation.
 	KnockBack = "knockBack" // Represents the player knock-back animation.
+	Fall      = "fall"      // Represents the player fall animation.
 )
