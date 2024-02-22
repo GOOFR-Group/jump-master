@@ -8,36 +8,36 @@ import (
 	"github.com/goofr-group/jump-master/engine/internal/game/tag"
 )
 
-// CheckGround defines the structure of the behaviour to check if the object is in contact with the ground.
-type CheckGround struct {
+// CheckCeiling defines the structure of the behaviour to check if the object is in contact with the ceiling.
+type CheckCeiling struct {
 	object *game.Object
 
-	// grounds defines the map of ground objects that the current object is in contact with. The map represents the
-	// state of the contact by the ground object id.
-	grounds map[int64]bool
+	// ceilings defines the map of ceiling objects that the current object is in contact with. The map represents the
+	// state of the contact by the ceiling object id.
+	ceilings map[int64]bool
 }
 
-// NewCheckGround returns a new behaviour to check if the object is in contact with the ground.
-func NewCheckGround(object *game.Object) CheckGround {
-	return CheckGround{
+// NewCheckCeiling returns a new behaviour to check if the object is in contact with the ceiling.
+func NewCheckCeiling(object *game.Object) CheckCeiling {
+	return CheckCeiling{
 		object: object,
 
-		grounds: make(map[int64]bool),
+		ceilings: make(map[int64]bool),
 	}
 }
 
-func (b CheckGround) Enabled() bool {
+func (b CheckCeiling) Enabled() bool {
 	return true
 }
 
-func (b *CheckGround) Update(_ *engine.Engine) error {
+func (b *CheckCeiling) Update(_ *engine.Engine) error {
 	// Reset the position of the object.
 	b.resetPosition()
 
 	return nil
 }
 
-func (b *CheckGround) OnTriggerEnter(e *engine.Engine, otherID int64) error {
+func (b *CheckCeiling) OnTriggerEnter(e *engine.Engine, otherID int64) error {
 	// Get the colliding object.
 	otherObject := e.World().GetGameObjectByID(otherID)
 	if otherObject == nil {
@@ -45,18 +45,18 @@ func (b *CheckGround) OnTriggerEnter(e *engine.Engine, otherID int64) error {
 	}
 
 	// Check if the colliding object contains the platform tag.
-	// If not, there is not contact with the ground.
+	// If not, there is not contact with the ceiling.
 	if otherObject.Tag != tag.Platform {
 		return nil
 	}
 
-	// Set the current ground as true since it is touching the object.
-	b.grounds[otherID] = true
+	// Set the current ceiling as true since it is touching the object.
+	b.ceilings[otherID] = true
 
 	return nil
 }
 
-func (b *CheckGround) OnTriggerExit(e *engine.Engine, otherID int64) error {
+func (b *CheckCeiling) OnTriggerExit(e *engine.Engine, otherID int64) error {
 	// Get the colliding object.
 	otherObject := e.World().GetGameObjectByID(otherID)
 	if otherObject == nil {
@@ -68,16 +68,16 @@ func (b *CheckGround) OnTriggerExit(e *engine.Engine, otherID int64) error {
 		return nil
 	}
 
-	// Set the current ground as false since it is not touching the object anymore.
-	b.grounds[otherID] = false
+	// Set the current ceiling as false since it is not touching the object anymore.
+	b.ceilings[otherID] = false
 
 	return nil
 }
 
-// TouchingGround returns true if the current object is touching the ground. The ground is represented by any object
-// with the Platform tag that is in contact with the feet of this object.
-func (b CheckGround) TouchingGround() bool {
-	for _, touching := range b.grounds {
+// TouchingCeiling returns true if the current object is touching the ceiling. The ceiling is represented by any object
+// with the Platform tag that is in contact with the head of this object.
+func (b CheckCeiling) TouchingCeiling() bool {
+	for _, touching := range b.ceilings {
 		if touching {
 			return true
 		}
@@ -87,8 +87,8 @@ func (b CheckGround) TouchingGround() bool {
 }
 
 // resetPosition resets the position of the object.
-// Places the current object below its parent.
-func (b *CheckGround) resetPosition() {
+// Places the current object above its parent.
+func (b *CheckCeiling) resetPosition() {
 	// Get the parent object.
 	parent := b.object.Transform.Parent()
 	if parent == nil {
@@ -114,7 +114,7 @@ func (b *CheckGround) resetPosition() {
 
 	// Compute the position to place the current object below its parent.
 	position := parentObject.Transform.Position
-	position.Y = parentObject.Collider.Bounds().Min.Y - height*0.5
+	position.Y = parentObject.Collider.Bounds().Max.Y + height*0.5
 
 	// Update the position and rotation of the object.
 	b.object.Transform.Position = position

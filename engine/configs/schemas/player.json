@@ -89,19 +89,33 @@
       "type": "object",
       "properties": {
         "impulse": {
-          "description": "Defines the base impulse of the jump.",
+          "description": "Defines the base impulse of the jump to accumulate each second the jump action is performed.",
+          "type": "number"
+        },
+        "minImpulse": {
+          "description": "Defines the minimum impulse of the jump.",
           "type": "number"
         },
         "maxImpulse": {
           "description": "Defines the maximum impulse of the jump.",
           "type": "number"
         },
-        "impulseMultiplier": {
-          "description": "Defines the multiplier to apply in the base impulse each frame the jump action is performed.",
+        "diagonalAngle": {
+          "description": "Defines the angle in degrees to apply when jumping left or right.",
+          "type": "number"
+        }
+      }
+    },
+    "knockBack": {
+      "description": "Knock-back behaviour configurations.",
+      "type": "object",
+      "properties": {
+        "impulse": {
+          "description": "Defines the impulse of the knock-back.",
           "type": "number"
         },
         "diagonalAngle": {
-          "description": "Defines the angle in degrees to apply when jumping left or right.",
+          "description": "Defines the angle in degrees to apply when there is a knock-back.",
           "type": "number"
         }
       }
@@ -128,6 +142,10 @@
         },
         "jumpFall": {
           "description": "Jump fall animation.",
+          "$ref": "#/$defs/animation"
+        },
+        "knockBack": {
+          "description": "Knock-back animation.",
           "$ref": "#/$defs/animation"
         }
       }

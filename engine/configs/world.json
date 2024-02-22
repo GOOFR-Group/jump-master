@@ -4,7 +4,7 @@
     "updateRate": 0.01333333333333333333333333333333,
     "gravity": {
       "x": 0,
-      "y": -980
+      "y": -1500
     }
   },
   "camera": {
@@ -18,7 +18,7 @@
     "objects": [
       {
         "position": {
-          "x": -3,
+          "x": -4,
           "y": -5
         },
         "canCollide": true,
@@ -40,7 +40,91 @@
       },
       {
         "position": {
-          "x": -3,
+          "x": -5,
+          "y": -10
+        },
+        "canCollide": true,
+        "blocks": [
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/5.png"
+          ],
+          [
+            "/images/platform/grass/2.png"
+          ]
+        ]
+      },
+      {
+        "position": {
+          "x": 7,
+          "y": -8
+        },
+        "canCollide": true,
+        "blocks": [
+          [
+            "/images/platform/grass/6.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/3.png"
+          ],
+          [
+            "/images/platform/grass/0.png"
+          ]
+        ]
+      },
+      {
+        "position": {
+          "x": -4,
           "y": -4
         },
         "canCollide": false,

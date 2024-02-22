@@ -3,8 +3,8 @@ package behaviour
 import (
 	"github.com/goofr-group/game-engine/pkg/action"
 	"github.com/goofr-group/game-engine/pkg/engine"
+	"github.com/goofr-group/go-math/mathf"
 	"github.com/goofr-group/go-math/rotation/matrix"
-	"github.com/goofr-group/go-math/vector2"
 	"github.com/goofr-group/physics-engine/pkg/game"
 
 	"github.com/goofr-group/jump-master/engine/internal/config"
@@ -48,7 +48,9 @@ func (b Movement) Enabled() bool {
 	return true
 }
 
-func (b *Movement) FixedUpdate(_ *engine.Engine) error {
+func (b *Movement) FixedUpdate(e *engine.Engine) error {
+	time := e.Time()
+
 	// Check if the rigid body is accessible.
 	if b.object == nil {
 		return nil
@@ -58,7 +60,7 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Check if the object is in contact with the ground.
-	if !b.checkGround.IsGrounded() || b.object.RigidBody.Velocity.Y > Epsilon {
+	if !b.checkGround.TouchingGround() || b.object.RigidBody.Velocity.Y > Epsilon {
 		return nil
 	}
 
@@ -73,28 +75,28 @@ func (b *Movement) FixedUpdate(_ *engine.Engine) error {
 		return nil
 	}
 
-	// Compute the velocity to add to the object based on the left and right actions.
-	velocity := vector2.Zero()
+	// Compute the direction to add to the object based on the left and right actions.
+	var direction float64
 	if b.leftAction {
-		// Add velocity to the left direction.
-		velocity = velocity.Add(vector2.Left())
+		// Add the left direction.
+		direction -= 1
 		b.object.SetProperty(property.FlipHorizontally, true)
 	}
 	if b.rightAction {
-		// Add velocity to the right direction.
-		velocity = velocity.Add(vector2.Right())
+		// Add the right direction.
+		direction += 1
 		b.object.SetProperty(property.FlipHorizontally, false)
 	}
 
 	// Reset the horizontal velocity of the object when no movement action is performed.
-	if velocity.Zero() {
+	if mathf.Approximately(direction, 0) {
 		b.object.RigidBody.Velocity.X = 0
 		b.animator.SetAnimation(animation.Idle)
 		return nil
 	}
 
 	// Add the computed velocity when the movement actions are performed.
-	b.object.RigidBody.AddAcceleration(velocity.Mul(b.config.Speed))
+	b.object.RigidBody.Velocity.X = direction * b.config.Speed * time.FixedDeltaTime
 	b.animator.SetAnimation(animation.Walk)
 
 	return nil

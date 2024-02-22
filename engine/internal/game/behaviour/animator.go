@@ -70,6 +70,11 @@ func (b *Animator) Update(e *engine.Engine) error {
 	return nil
 }
 
+// Animation returns the current animation being displayed.
+func (b Animator) Animation() string {
+	return b.currentAnimation
+}
+
 // SetAnimation updates the current animation being displayed.
 func (b *Animator) SetAnimation(animation string) {
 	if b.animations == nil {

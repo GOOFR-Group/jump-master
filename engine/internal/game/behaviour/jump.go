@@ -1,6 +1,8 @@
 package behaviour
 
 import (
+	"math"
+
 	"github.com/goofr-group/game-engine/pkg/action"
 	"github.com/goofr-group/game-engine/pkg/engine"
 	"github.com/goofr-group/go-math/mathf"
@@ -22,6 +24,7 @@ type Jump struct {
 	checkGround *CheckGround
 	animator    *Animator
 
+	usedImpulse        float64 // Defines the previously used jump impulse.
 	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
 	canJump            bool    // Defines if the object is able to jump.
 }
@@ -30,9 +33,9 @@ type Jump struct {
 func NewJump(
 	object *game.Object,
 	actionManager *action.Manager,
+	config config.Jump,
 	checkGround *CheckGround,
 	animator *Animator,
-	config config.Jump,
 ) Jump {
 	return Jump{
 		object:        object,
@@ -41,6 +44,7 @@ func NewJump(
 		checkGround:   checkGround,
 		animator:      animator,
 
+		usedImpulse:        0,
 		accumulatedImpulse: 0,
 		canJump:            false,
 	}
@@ -60,7 +64,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	}
 
 	// Check if the object is falling.
-	if b.object.RigidBody.Velocity.Y < -Epsilon && !b.checkGround.IsGrounded() {
+	if b.object.RigidBody.Velocity.Y < -Epsilon && !b.checkGround.TouchingGround() {
 		b.animator.SetAnimation(animation.JumpFall)
 	}
 
@@ -69,26 +73,35 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		return nil
 	}
 
-	// Compute the diagonal angle based on the fraction of accumulated impulse.
-	// Subtract the diagonal angle from 90 because the velocity vector already starts at 90º degrees.
-	diagonalAngle := 90 - b.config.DiagonalAngle
-	diagonalAngle *= b.accumulatedImpulse / b.config.MaxImpulse
+	// Limit the minimum jump impulse.
+	b.accumulatedImpulse = math.Max(b.accumulatedImpulse, b.config.MinImpulse)
 
 	// Compute the jump rotation based on the left and right actions.
-	rotation := matrix.Identity()
-	leftRotation := matrix.FromEuler(diagonalAngle)
-	if b.actionManager.Action(input.Left) {
-		rotation = rotation.Mul(leftRotation)
-	}
-	if b.actionManager.Action(input.Right) {
-		rightRotation := leftRotation.Transpose()
-		rotation = rotation.Mul(rightRotation)
+	direction := vector2.Up()
+
+	leftAction := b.actionManager.Action(input.Left)
+	rightAction := b.actionManager.Action(input.Right)
+
+	// Check that the left or right action is being performed. Also check that both actions are not being performed at
+	// the same time.
+	if (leftAction || rightAction) && !(leftAction && rightAction) {
+		// Compute the diagonal angle based on the fraction of accumulated impulse.
+		diagonalAngle := b.config.DiagonalAngle
+		diagonalAngle *= b.accumulatedImpulse / b.config.MaxImpulse
+
+		// Compute the rotated direction from the right side.
+		rotation := matrix.FromEuler(diagonalAngle)
+		direction = rotation.RotateVector(vector2.Right())
+
+		// If the object is performing a left action, invert the direction vector.
+		if leftAction {
+			direction.X = -direction.X
+		}
 	}
 
 	// Apply the jump velocity based on the computed rotation and accumulated impulse.
-	velocity := vector2.Up()
-	velocity = rotation.RotateVector(velocity)
-	velocity = velocity.Mul(b.accumulatedImpulse)
+	b.usedImpulse = b.accumulatedImpulse
+	velocity := direction.Mul(b.accumulatedImpulse)
 
 	b.object.RigidBody.AddAcceleration(velocity)
 	b.animator.SetAnimation(animation.Jump)
@@ -100,7 +113,9 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 	return nil
 }
 
-func (b *Jump) Update(_ *engine.Engine) error {
+func (b *Jump) Update(e *engine.Engine) error {
+	time := e.Time()
+
 	// Check if the rigid body is accessible.
 	if b.object == nil {
 		return nil
@@ -110,16 +125,15 @@ func (b *Jump) Update(_ *engine.Engine) error {
 	}
 
 	// Check if the object is in contact with the ground.
-	if !b.checkGround.IsGrounded() {
+	if !b.checkGround.TouchingGround() {
 		b.accumulatedImpulse = 0
 		return nil
 	}
 
 	// Check if the jump action is being performed.
 	if b.actionManager.Action(input.Jump) {
-		// Apply the impulse multiplier.
-		b.accumulatedImpulse += b.config.Impulse * b.config.ImpulseMultiplier
-		// Ensure that the accumulated impulse is not greater than the maximum defined.
+		// Apply the impulse multiplier and ensure that the accumulated impulse is not greater than the maximum defined.
+		b.accumulatedImpulse += b.config.Impulse * time.FixedDeltaTime
 		b.accumulatedImpulse = mathf.Min(b.accumulatedImpulse, b.config.MaxImpulse)
 
 		// Reset the horizontal velocity of the object when the jump action is being performed.
@@ -134,4 +148,14 @@ func (b *Jump) Update(_ *engine.Engine) error {
 	}
 
 	return nil
+}
+
+// UsedImpulse returns the previously used jump impulse.
+func (b Jump) UsedImpulse() float64 {
+	return b.usedImpulse
+}
+
+// MaxImpulse returns the maximum jump impulse.
+func (b Jump) MaxImpulse() float64 {
+	return b.config.MaxImpulse
 }

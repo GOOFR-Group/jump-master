@@ -21,19 +21,26 @@
     "drag": 1
   },
   "movement": {
-    "speed": 500
+    "speed": 13000
   },
   "jump": {
-    "impulse": 15625,
-    "maxImpulse": 93750,
-    "impulseMultiplier": 0.15,
-    "diagonalAngle": 55
+    "impulse": 300000,
+    "minImpulse": 35000,
+    "maxImpulse": 90000,
+    "diagonalAngle": 75
+  },
+  "knockBack": {
+    "impulse": 30000,
+    "diagonalAngle": 30
   },
   "animations": {
     "idle": {
       "repeat": true,
       "duration": 0.4,
-      "frames": ["/images/player/idle/0.png", "/images/player/idle/1.png"]
+      "frames": [
+        "/images/player/idle/0.png",
+        "/images/player/idle/1.png"
+      ]
     },
     "walk": {
       "repeat": true,
@@ -48,12 +55,16 @@
     "jumpHold": {
       "repeat": false,
       "duration": 0,
-      "frames": ["/images/player/jump-hold/0.png"]
+      "frames": [
+        "/images/player/jump-hold/0.png"
+      ]
     },
     "jump": {
       "repeat": false,
-      "duration": 0.15,
-      "frames": ["/images/player/jump/0.png", "/images/player/jump/1.png"]
+      "duration": 0,
+      "frames": [
+        "/images/player/jump/0.png"
+      ]
     },
     "jumpFall": {
       "repeat": false,
@@ -61,6 +72,13 @@
       "frames": [
         "/images/player/jump-fall/0.png",
         "/images/player/jump-fall/1.png"
+      ]
+    },
+    "knockBack": {
+      "repeat": false,
+      "duration": 0,
+      "frames": [
+        "/images/player/knock-back/0.png"
       ]
     }
   }
