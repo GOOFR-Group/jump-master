@@ -50,7 +50,13 @@ git config --global url."git@github.com:goofr-group".insteadOf https://github.co
 
 ### UI
 
-// TODO
+The game UI runs on [Node.js](https://nodejs.org/) version `20.10.0`.
+
+
+Install the dependencies inside the `ui` directory with:
+```shell
+npm install
+```
 
 ## Web App
 
@@ -85,7 +91,12 @@ make help
 
 ## Game UI
 
-// TODO
+The game UI can be found in the `ui` directory. It uses [Solid](https://www.solidjs.com/) and [Tailwind CSS](https://tailwindcss.com/) for styling.
+
+The game UI contains several scripts to lint, format, build and run the project. To check the available scripts, run the following command inside the `ui` directory:
+```shell
+npm run
+```
 
 ## WASM API
 
