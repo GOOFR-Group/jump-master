@@ -32,7 +32,7 @@ The following section focuses on the development part of the game, including pre
 
 ### Engine
 
-The game engine is written in Go and uses the version `1.21`.
+The game engine is written in [Go](https://go.dev/) and uses the version `1.21`.
 
 
 The `GOPRIVATE` environment variable should be set to download the private go modules.  
