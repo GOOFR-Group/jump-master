@@ -30,6 +30,9 @@
 		"vite-plugin-pwa": "^0.17.5",
 		"vite-plugin-solid": "^2.8.0"
 	},
+	"engines": {
+		"node": ">=20.0.0 <21.0.0"
+	},
 	"eslintConfig": {
 		"env": {
 			"browser": true,
