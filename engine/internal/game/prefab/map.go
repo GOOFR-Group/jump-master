@@ -33,7 +33,7 @@ func NewMap(e game.Engine, config config.Map, tileSprites map[string]string) err
 				Transform: core.Transform2D{
 					Position: grid.Scale(vector2.Vector2{
 						X: float64(tile.X),
-						Y: float64(tile.Y),
+						Y: float64(config.Height-1) - float64(tile.Y), // Invert the y-axis as the map is defined from left to right, top to bottom.
 					}),
 					Rotation: matrix.Identity(),
 					Scale:    vector2.One(),
