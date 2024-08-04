@@ -17,6 +17,7 @@ type Camera struct {
 
 // Engine defines the structure of the engine configuration.
 type Engine struct {
-	Physics Physics `json:"physics"` // Defines the physics of the game engine.
-	Camera  Camera  `json:"camera"`  // Defines the camera of the game engine.
+	Physics     Physics           `json:"physics"`     // Defines the physics of the game engine.
+	Camera      Camera            `json:"camera"`      // Defines the camera of the game engine.
+	TileSprites map[string]string `json:"tileSprites"` // Defines the sprites of the map tileset per tile id.
 }

@@ -49,6 +49,12 @@
           "minimum": 0
         }
       }
+    },
+    "tileSprites": {
+      "description": "Defines the sprites of the map tileset per tile id.",
+      "additionalProperties": {
+        "type": "string"
+      }
     }
   }
 }

@@ -11,5 +11,17 @@
     "width": 1000,
     "height": 844,
     "ppu": 1
+  },
+  "tileSprites": {
+    "0": "/images/platform/forest/grass/0.png",
+    "1": "/images/platform/forest/grass/1.png",
+    "2": "/images/platform/forest/grass/2.png",
+    "3": "/images/platform/forest/dirt/0.png",
+    "4": "/images/platform/forest/dirt/1.png",
+    "5": "/images/platform/forest/dirt/2.png",
+    "6": "/images/platform/forest/dirt/6.png",
+    "7": "/images/sign/0.png",
+    "8": "/images/sign/1.png",
+    "9": "/images/sign/2.png"
   }
 }

@@ -20,20 +20,22 @@ type App struct {
 	gameEngine game.Engine // Represents the game engine being used.
 	lastStep   time.Time   // Represents the time when the last step occurred.
 
+	engineConfig config.Engine // Represents the engine configuration.
 	playerConfig config.Player // Represents the player configuration.
-	worldConfig  config.World  // Represents the world configuration.
+	mapConfig    config.Map    // Represents the map configuration.
 }
 
 // New creates a new application by initializing the game engine.
-func New(playerConfig config.Player, worldConfig config.World) *App {
-	cameraConfig := worldConfig.Camera
+func New(engineConfig config.Engine, playerConfig config.Player, mapConfig config.Map) *App {
+	cameraConfig := engineConfig.Camera
 	camera := rendering.NewCamera(cameraConfig.Width, cameraConfig.Height, cameraConfig.PPU, nil, nil)
 	camera.Scale = vector2.Vector2{X: 1, Y: -1}
 
 	return &App{
 		gameEngine:   game.NewEngine(camera),
+		engineConfig: engineConfig,
 		playerConfig: playerConfig,
-		worldConfig:  worldConfig,
+		mapConfig:    mapConfig,
 	}
 }
 
@@ -42,7 +44,7 @@ func (a *App) StartGameWorld() error {
 	physicsEngine := a.gameEngine.Physics()
 	gameEngine := a.gameEngine.Engine()
 
-	physicsConfig := a.worldConfig.Physics
+	physicsConfig := a.engineConfig.Physics
 
 	// Set up physics configurations.
 	a.lastStep = time.Now()
@@ -62,10 +64,10 @@ func (a *App) StartGameWorld() error {
 		return fmt.Errorf("failed to create player prefab: %w", err)
 	}
 
-	// Create the grid objects (platforms and props).
-	err = prefab.NewGridObjects(a.gameEngine, a.worldConfig.Grid)
+	// Create the map objects (platforms and props).
+	err = prefab.NewMap(a.gameEngine, a.mapConfig, a.engineConfig.TileSprites)
 	if err != nil {
-		return fmt.Errorf("failed to create grid objects prefab: %w", err)
+		return fmt.Errorf("failed to create map objects prefab: %w", err)
 	}
 
 	return nil
