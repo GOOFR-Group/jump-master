@@ -1,0 +1,15 @@
+{
+  "$schema": "./schemas/engine.json",
+  "physics": {
+    "updateRate": 0.01333333333333333333333333333333,
+    "gravity": {
+      "x": 0,
+      "y": -1500
+    }
+  },
+  "camera": {
+    "width": 1000,
+    "height": 844,
+    "ppu": 1
+  }
+}
