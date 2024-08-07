@@ -8,6 +8,10 @@
     }
   },
   "camera": {
+    "position": {
+      "x": 500,
+      "y": 500
+    },
     "width": 1000,
     "height": 844,
     "ppu": 1

@@ -2,8 +2,8 @@
   "$schema": "./schemas/player.json",
   "object": {
     "position": {
-      "x": 100,
-      "y": 100
+      "x": 500,
+      "y": 300
     },
     "colliderSize": {
       "x": 42,
