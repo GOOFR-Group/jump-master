@@ -10,9 +10,10 @@ type Physics struct {
 
 // Camera defines the structure of the camera configuration.
 type Camera struct {
-	Width  float64 `json:"width"`  // Defines the width of the camera.
-	Height float64 `json:"height"` // Defines the height of the camera.
-	PPU    float64 `json:"ppu"`    // Defines pixels per game world unit.
+	Position vector2.Vector2 `json:"position"` // Defines the position of the camera.
+	Width    float64         `json:"width"`    // Defines the width of the camera.
+	Height   float64         `json:"height"`   // Defines the height of the camera.
+	PPU      float64         `json:"ppu"`      // Defines pixels per game world unit.
 }
 
 // Engine defines the structure of the engine configuration.

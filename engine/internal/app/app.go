@@ -29,6 +29,7 @@ type App struct {
 func New(engineConfig config.Engine, playerConfig config.Player, mapConfig config.Map) *App {
 	cameraConfig := engineConfig.Camera
 	camera := rendering.NewCamera(cameraConfig.Width, cameraConfig.Height, cameraConfig.PPU, nil, nil)
+	camera.Position = cameraConfig.Position
 	camera.Scale = vector2.Vector2{X: 1, Y: -1}
 
 	return &App{

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "World configurations",
-  "description": "Configuration of the game objects in the world grid.",
+  "title": "Engine configurations",
+  "description": "Configuration of the game engine.",
   "type": "object",
   "properties": {
     "physics": {
@@ -33,6 +33,20 @@
       "description": "Defines the camera of the game world.",
       "type": "object",
       "properties": {
+        "position": {
+          "description": "Defines the position of the camera.",
+          "type": "object",
+          "properties": {
+            "x": {
+              "description": "Defines the x-axis position.",
+              "type": "number"
+            },
+            "y": {
+              "description": "Defines the y-axis position.",
+              "type": "number"
+            }
+          }
+        },
         "width": {
           "description": "Defines the width of the camera.",
           "type": "number",
