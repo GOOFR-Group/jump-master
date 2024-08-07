@@ -14,57 +14,35 @@ const (
 	pathPlayerConfig = "configs/player.json"
 	// pathMapConfig defines the path of the map configuration.
 	pathMapConfig = "configs/map.json"
-
-	failedToReadFile  = "failed to read file"
-	failedToUnmarshal = "failed to unmarshal"
 )
 
 // LoadEngine loads the engine configuration.
 func LoadEngine() (Engine, error) {
-	data, err := engine.ConfigsFS.ReadFile(pathEngineConfig)
-	if err != nil {
-		return Engine{}, fmt.Errorf("%s: %w", failedToReadFile, err)
-	}
-
-	var config Engine
-
-	err = json.Unmarshal(data, &config)
-	if err != nil {
-		return Engine{}, fmt.Errorf("%s: %w", failedToUnmarshal, err)
-	}
-
-	return config, nil
+	return loadConfig[Engine](pathEngineConfig)
 }
 
 // LoadPlayer loads the player configuration.
 func LoadPlayer() (Player, error) {
-	data, err := engine.ConfigsFS.ReadFile(pathPlayerConfig)
-	if err != nil {
-		return Player{}, fmt.Errorf("%s: %w", failedToReadFile, err)
-	}
-
-	var config Player
-
-	err = json.Unmarshal(data, &config)
-	if err != nil {
-		return Player{}, fmt.Errorf("%s: %w", failedToUnmarshal, err)
-	}
-
-	return config, nil
+	return loadConfig[Player](pathPlayerConfig)
 }
 
 // LoadMap loads the map configuration.
 func LoadMap() (Map, error) {
-	data, err := engine.ConfigsFS.ReadFile(pathMapConfig)
-	if err != nil {
-		return Map{}, fmt.Errorf("%s: %w", failedToReadFile, err)
-	}
+	return loadConfig[Map](pathMapConfig)
+}
 
-	var config Map
+// loadConfig returns the configuration in the specified path.
+func loadConfig[T any](path string) (T, error) {
+	var config T
+
+	data, err := engine.ConfigsFS.ReadFile(path)
+	if err != nil {
+		return config, fmt.Errorf("failed to read file: %w", err)
+	}
 
 	err = json.Unmarshal(data, &config)
 	if err != nil {
-		return Map{}, fmt.Errorf("%s: %w", failedToUnmarshal, err)
+		return config, fmt.Errorf("failed to unmarshal: %w", err)
 	}
 
 	return config, nil
