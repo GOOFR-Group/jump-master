@@ -30,20 +30,26 @@ var (
 // main entry point for the application to register our engine API into a JavaScript global context.
 func main() {
 	// Load configurations.
+	engineConfig, err := config.LoadEngine()
+	if err != nil {
+		err = fmt.Errorf("failed to load engine configuration: %w", err)
+		panic(err)
+	}
+
 	playerConfig, err := config.LoadPlayer()
 	if err != nil {
 		err = fmt.Errorf("failed to load player configuration: %w", err)
 		panic(err)
 	}
 
-	worldConfig, err := config.LoadWorld()
+	mapConfig, err := config.LoadMap()
 	if err != nil {
-		err = fmt.Errorf("failed to load world configuration: %w", err)
+		err = fmt.Errorf("failed to load map configuration: %w", err)
 		panic(err)
 	}
 
 	// Set up engine.
-	app := app.New(playerConfig, worldConfig)
+	app := app.New(engineConfig, playerConfig, mapConfig)
 
 	// Set up WASM API.
 	js.Global().Set(entryPoint, make(map[string]interface{}))

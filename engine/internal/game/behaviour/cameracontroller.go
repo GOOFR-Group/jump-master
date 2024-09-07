@@ -3,6 +3,7 @@ package behaviour
 import (
 	"github.com/goofr-group/game-engine/pkg/engine"
 	"github.com/goofr-group/game-engine/pkg/rendering"
+	"github.com/goofr-group/go-math/vector2"
 	"github.com/goofr-group/physics-engine/pkg/game"
 
 	"github.com/goofr-group/jump-master/engine/internal/game/tag"
@@ -12,7 +13,8 @@ import (
 type CameraController struct {
 	camera *rendering.Camera
 
-	playerObject *game.Object // Defines the player object.
+	playerObject    *game.Object    // Defines the player object.
+	initialPosition vector2.Vector2 // Defines the camera initial position.
 }
 
 // NewCameraController returns a new camera controller behaviour.
@@ -32,6 +34,9 @@ func (b *CameraController) Start(e *engine.Engine) error {
 	// Get the player object.
 	b.playerObject = e.World().FindGameObjectWithTag(tag.Player)
 
+	// Save the camera initial position.
+	b.initialPosition = b.camera.Position
+
 	return nil
 }
 
@@ -48,8 +53,8 @@ func (b *CameraController) Update(_ *engine.Engine) error {
 	playerBounds := b.playerObject.Collider.Bounds()
 
 	// Compute the camera position based on the player minimum bound.
-	level := int((playerBounds.Min.Y + b.camera.PixelHeight*0.5) / b.camera.PixelHeight)
-	b.camera.Position.Y = b.camera.PixelHeight * float64(level)
+	level := int((playerBounds.Min.Y - b.initialPosition.Y + b.camera.PixelHeight*0.5) / b.camera.PixelHeight)
+	b.camera.Position.Y = b.camera.PixelHeight*float64(level) + b.initialPosition.Y
 
 	return nil
 }

@@ -1,0 +1,2782 @@
+{
+    "id": "1",
+    "name": "Jump Master",
+    "description": "No description",
+    "tileSize": 48,
+    "mapWidth": 1584,
+    "mapHeight": 1872,
+    "spriteSheets": {
+        "4061efae-99d0-40cc-a0ea-a45dcadd20b4": "data:image/png;base64,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"
+    },
+    "layers": [
+        {
+            "id": "bbf9436c-7425-4818-945e-9e4ccba2abc0",
+            "name": "Tileset",
+            "description": "",
+            "tiles": [
+                {
+                    "id": "7",
+                    "x": 912,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 960,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 1008,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "10",
+                    "x": 1056,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 1104,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "12",
+                    "x": 1152,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "13",
+                    "x": 1200,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "14",
+                    "x": 1248,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "15",
+                    "x": 1296,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "16",
+                    "x": 1344,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "24",
+                    "x": 912,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "25",
+                    "x": 960,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "26",
+                    "x": 1008,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "27",
+                    "x": 1056,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "28",
+                    "x": 1104,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "29",
+                    "x": 1152,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "30",
+                    "x": 1200,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "31",
+                    "x": 1248,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "32",
+                    "x": 1296,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "33",
+                    "x": 1344,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "41",
+                    "x": 912,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "42",
+                    "x": 960,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "43",
+                    "x": 1008,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "44",
+                    "x": 1056,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "45",
+                    "x": 1104,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "46",
+                    "x": 1152,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "47",
+                    "x": 1200,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "48",
+                    "x": 1248,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "49",
+                    "x": 1296,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "50",
+                    "x": 1344,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "58",
+                    "x": 912,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "59",
+                    "x": 960,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "60",
+                    "x": 1008,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "61",
+                    "x": 1056,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "62",
+                    "x": 1104,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "63",
+                    "x": 1152,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "64",
+                    "x": 1200,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "65",
+                    "x": 1248,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "66",
+                    "x": 1296,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "67",
+                    "x": 1344,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "75",
+                    "x": 912,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "76",
+                    "x": 960,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "77",
+                    "x": 1008,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "78",
+                    "x": 1056,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "79",
+                    "x": 1104,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 1152,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "81",
+                    "x": 1200,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "82",
+                    "x": 1248,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "83",
+                    "x": 1296,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "84",
+                    "x": 1344,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "92",
+                    "x": 912,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "93",
+                    "x": 960,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "94",
+                    "x": 1008,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "95",
+                    "x": 1056,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1104,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1152,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1200,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "99",
+                    "x": 1248,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "100",
+                    "x": 1296,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "101",
+                    "x": 1344,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "109",
+                    "x": 912,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "110",
+                    "x": 960,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "111",
+                    "x": 1008,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "112",
+                    "x": 1056,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "113",
+                    "x": 1104,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 1152,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "115",
+                    "x": 1200,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "116",
+                    "x": 1248,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "117",
+                    "x": 1296,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "118",
+                    "x": 1344,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                }
+            ],
+            "collider": false
+        },
+        {
+            "id": "18ea797a-de61-4299-b590-1b681caa4c06",
+            "name": "Props",
+            "description": "",
+            "tiles": [
+                {
+                    "id": "15",
+                    "x": 672,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "99",
+                    "x": 576,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "101",
+                    "x": 624,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "118",
+                    "x": 768,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "116",
+                    "x": 816,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "48",
+                    "x": 96,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "49",
+                    "x": 144,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "50",
+                    "x": 192,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "101",
+                    "x": 240,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "116",
+                    "x": 48,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                }
+            ],
+            "collider": false
+        },
+        {
+            "id": "9da3ef22-8da3-422c-ae5b-9957a55c38e8",
+            "name": "Platforms Grass",
+            "description": "",
+            "tiles": [
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -960,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -960,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -912,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -912,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -864,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -864,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -816,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -816,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -768,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -768,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -720,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -720,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -96,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -96,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 0,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 0,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 96,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 96,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": -96,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "113",
+                    "x": -192,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": -144,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": -144,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": -48,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 0,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 48,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 48,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 48,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 96,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 96,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 96,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 144,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 144,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 144,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 192,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 240,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 288,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 192,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 192,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 240,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 240,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 288,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 288,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 336,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 336,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 336,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 384,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 384,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 384,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 432,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 432,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 432,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 480,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 480,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 480,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 528,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 528,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 528,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 576,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 576,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 576,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 624,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 624,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 624,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 672,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 720,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 768,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 816,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "115",
+                    "x": 864,
+                    "y": 672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 816,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 864,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 864,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "79",
+                    "x": 816,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 816,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": -144,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 864,
+                    "y": 96,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 912,
+                    "y": 96,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 864,
+                    "y": 144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 912,
+                    "y": 144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 864,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 912,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -816,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -864,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -960,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -912,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "79",
+                    "x": 1008,
+                    "y": -1056,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -1008,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 1056,
+                    "y": -1056,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "81",
+                    "x": 1104,
+                    "y": -1056,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -1008,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -1008,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -960,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -960,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -912,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -912,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -864,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -864,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -816,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -816,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -768,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -720,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -768,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -768,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -720,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -720,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "79",
+                    "x": 912,
+                    "y": -432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 912,
+                    "y": -384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 960,
+                    "y": -384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 912,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 912,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 960,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 960,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 960,
+                    "y": -432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1008,
+                    "y": -432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -672,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 1008,
+                    "y": -528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "79",
+                    "x": 960,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1008,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 912,
+                    "y": -288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 960,
+                    "y": -288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 912,
+                    "y": -240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 960,
+                    "y": -240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 912,
+                    "y": -192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 960,
+                    "y": -192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1008,
+                    "y": -384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1056,
+                    "y": -384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 1104,
+                    "y": -384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 1008,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "114",
+                    "x": 1056,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "115",
+                    "x": 1104,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "115",
+                    "x": 1008,
+                    "y": -288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 864,
+                    "y": 48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 912,
+                    "y": 48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 912,
+                    "y": -96,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 960,
+                    "y": -96,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "79",
+                    "x": 864,
+                    "y": -48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 912,
+                    "y": -48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "115",
+                    "x": 960,
+                    "y": -48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 864,
+                    "y": 0,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 912,
+                    "y": 0,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 672,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 720,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 768,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 672,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 720,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 768,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": -96,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": -48,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "80",
+                    "x": 0,
+                    "y": 576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": -96,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": -48,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 0,
+                    "y": 624,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": -144,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "81",
+                    "x": -96,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 864,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 912,
+                    "y": 240,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 864,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 912,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 864,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 912,
+                    "y": 336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 864,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "115",
+                    "x": 912,
+                    "y": 384,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 816,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 864,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": 816,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 864,
+                    "y": 480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "79",
+                    "x": 768,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "97",
+                    "x": 816,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": 864,
+                    "y": 528,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -1008,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -1008,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -1056,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -1056,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "79",
+                    "x": -192,
+                    "y": -1152,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "81",
+                    "x": -144,
+                    "y": -1152,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "96",
+                    "x": -192,
+                    "y": -1104,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "98",
+                    "x": -144,
+                    "y": -1104,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                }
+            ],
+            "collider": true,
+            "defaultTile": {
+                "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                "id": "97"
+            },
+            "rules": [
+                {
+                    "id": "822c2bed-2928-4185-9433-d3ee4aaa2bef",
+                    "tile": {
+                        "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                        "id": "79"
+                    },
+                    "ruleSet": [
+                        [
+                            null,
+                            false,
+                            null
+                        ],
+                        [
+                            false,
+                            null,
+                            true
+                        ],
+                        [
+                            null,
+                            true,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "id": "a218e001-6f2e-4b9b-b80d-f98804d522c4",
+                    "tile": {
+                        "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                        "id": "113"
+                    },
+                    "ruleSet": [
+                        [
+                            null,
+                            true,
+                            null
+                        ],
+                        [
+                            false,
+                            null,
+                            true
+                        ],
+                        [
+                            null,
+                            false,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "id": "bca7ea9a-ed9f-45de-bf0e-e56763b52a05",
+                    "tile": {
+                        "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                        "id": "81"
+                    },
+                    "ruleSet": [
+                        [
+                            null,
+                            false,
+                            null
+                        ],
+                        [
+                            true,
+                            null,
+                            false
+                        ],
+                        [
+                            null,
+                            true,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "id": "638a7fb2-8b66-40ab-9ffc-b0808365c460",
+                    "tile": {
+                        "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                        "id": "115"
+                    },
+                    "ruleSet": [
+                        [
+                            null,
+                            true,
+                            null
+                        ],
+                        [
+                            true,
+                            null,
+                            false
+                        ],
+                        [
+                            null,
+                            false,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "id": "a5ea1559-f794-4baa-b0fe-26efe0a77f54",
+                    "tile": {
+                        "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                        "id": "80"
+                    },
+                    "ruleSet": [
+                        [
+                            null,
+                            false,
+                            null
+                        ],
+                        [
+                            null,
+                            null,
+                            null
+                        ],
+                        [
+                            null,
+                            true,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "id": "5b93013c-9ff1-4461-98d6-ca09bc144b7e",
+                    "tile": {
+                        "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                        "id": "96"
+                    },
+                    "ruleSet": [
+                        [
+                            null,
+                            null,
+                            null
+                        ],
+                        [
+                            false,
+                            null,
+                            true
+                        ],
+                        [
+                            null,
+                            null,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "id": "c8252d40-da26-40a9-9ded-6b088ac3c9ed",
+                    "tile": {
+                        "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                        "id": "98"
+                    },
+                    "ruleSet": [
+                        [
+                            null,
+                            null,
+                            null
+                        ],
+                        [
+                            true,
+                            null,
+                            false
+                        ],
+                        [
+                            null,
+                            null,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "id": "dddf58cd-ad87-4f31-9c8a-8c94d2080061",
+                    "tile": {
+                        "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                        "id": "114"
+                    },
+                    "ruleSet": [
+                        [
+                            null,
+                            true,
+                            null
+                        ],
+                        [
+                            null,
+                            null,
+                            null
+                        ],
+                        [
+                            null,
+                            false,
+                            null
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "d1500154-b005-4928-af94-2b326b7ddb8c",
+            "name": "Platforms",
+            "description": "",
+            "tiles": [
+                {
+                    "id": "10",
+                    "x": 48,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 96,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 144,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 192,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "12",
+                    "x": 240,
+                    "y": 432,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "10",
+                    "x": 528,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 576,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "12",
+                    "x": 816,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 624,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 672,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 720,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "11",
+                    "x": 768,
+                    "y": 288,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "25",
+                    "x": -48,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "26",
+                    "x": 192,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 0,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 48,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 96,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 144,
+                    "y": 192,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": 480,
+                    "y": 48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 528,
+                    "y": 48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 576,
+                    "y": 48,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": 768,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 816,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 864,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": 96,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 144,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 192,
+                    "y": -144,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": -96,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": -48,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 0,
+                    "y": -336,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": 288,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 336,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 384,
+                    "y": -480,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": 672,
+                    "y": -576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 720,
+                    "y": -576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 768,
+                    "y": -576,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": 864,
+                    "y": -720,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 912,
+                    "y": -720,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 960,
+                    "y": -720,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": 432,
+                    "y": -816,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 480,
+                    "y": -816,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 528,
+                    "y": -816,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "7",
+                    "x": 0,
+                    "y": -960,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "8",
+                    "x": 48,
+                    "y": -960,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                },
+                {
+                    "id": "9",
+                    "x": 96,
+                    "y": -960,
+                    "spriteSheetId": "4061efae-99d0-40cc-a0ea-a45dcadd20b4",
+                    "scaleX": 1
+                }
+            ],
+            "collider": true
+        }
+    ],
+    "settings": {
+        "showGrid": true,
+        "GBStudioMode": false,
+        "backgroundColor": "#000000"
+    }
+}
