@@ -12,7 +12,7 @@ render(
 	() => (
 		<Router>
 			<Route path="/" component={Home} />
-			<Route path="/game" component={Game} />
+			<Route path="/play" component={Game} />
 		</Router>
 	),
 	root!,
