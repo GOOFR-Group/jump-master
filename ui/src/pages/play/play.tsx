@@ -40,7 +40,7 @@ function Canvas({
 	return <canvas ref={canvas} class="border-2 border-blue-400" />;
 }
 
-function Game() {
+function Play() {
 	const [engine] = createResource(loadEngine);
 	const [animator] = createResource(loadAnimator);
 
@@ -58,4 +58,4 @@ function Game() {
 	);
 }
 
-export default Game;
+export default Play;

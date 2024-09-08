@@ -4,7 +4,7 @@ function GameMenu() {
 	return (
 		<ul>
 			<li>
-				<A href="/game">
+				<A href="/play">
 					<button class="btn mx-auto">Start</button>
 				</A>
 			</li>
