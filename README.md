@@ -191,7 +191,7 @@ It returns the following structure:
                     "y": -48.0
                 },
                 "layer": "default",
-                "image": "/images/player/idle/0.png",
+                "image": "images/player/idle/0.png",
                 "flipHorizontally": true
             },
             "collider": {
@@ -249,7 +249,7 @@ It returns the following structure:
                     "x": -24.0
                 },
                 "layer": "default",
-                "image": "/images/platform/forest/grass/3.png",
+                "image": "images/platform/forest/grass/3.png",
                 "flipHorizontally": null
             }
         }

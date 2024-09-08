@@ -40,58 +40,49 @@
     "idle": {
       "repeat": true,
       "duration": 0.4,
-      "frames": [
-        "/images/player/idle/0.png",
-        "/images/player/idle/1.png"
-      ]
+      "frames": ["images/player/idle/0.png", "images/player/idle/1.png"]
     },
     "walk": {
       "repeat": true,
       "duration": 0.1,
       "frames": [
-        "/images/player/walk/0.png",
-        "/images/player/walk/1.png",
-        "/images/player/walk/2.png",
-        "/images/player/walk/3.png"
+        "images/player/walk/0.png",
+        "images/player/walk/1.png",
+        "images/player/walk/2.png",
+        "images/player/walk/3.png"
       ]
     },
     "jumpHold": {
       "repeat": false,
       "duration": 0,
-      "frames": [
-        "/images/player/jump-hold/0.png"
-      ]
+      "frames": ["images/player/jump-hold/0.png"]
     },
     "jump": {
       "repeat": false,
       "duration": 0,
-      "frames": [
-        "/images/player/jump/0.png"
-      ]
+      "frames": ["images/player/jump/0.png"]
     },
     "jumpFall": {
       "repeat": false,
       "duration": 0.1,
       "frames": [
-        "/images/player/jump-fall/0.png",
-        "/images/player/jump-fall/1.png"
+        "images/player/jump-fall/0.png",
+        "images/player/jump-fall/1.png"
       ]
     },
     "knockBack": {
       "repeat": false,
       "duration": 0,
-      "frames": [
-        "/images/player/knock-back/0.png"
-      ]
+      "frames": ["images/player/knock-back/0.png"]
     },
     "fall": {
       "repeat": false,
       "duration": 0.1,
       "frames": [
-        "/images/player/fall/0.png",
-        "/images/player/fall/1.png",
-        "/images/player/fall/2.png",
-        "/images/player/fall/3.png"
+        "images/player/fall/0.png",
+        "images/player/fall/1.png",
+        "images/player/fall/2.png",
+        "images/player/fall/3.png"
       ]
     }
   }
