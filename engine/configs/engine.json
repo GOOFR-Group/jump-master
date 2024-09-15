@@ -14,7 +14,8 @@
     },
     "width": 1000,
     "height": 844,
-    "ppu": 1
+    "ppu": 1,
+    "transitionSpeed": 1.1
   },
   "tileSprites": {
     "0": "images/platform/forest/grass/0.png",
