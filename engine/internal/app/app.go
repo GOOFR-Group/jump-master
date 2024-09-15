@@ -54,7 +54,7 @@ func (a *App) StartGameWorld() error {
 	physicsEngine.CollisionSolvingIterations = 50
 
 	// Create the camera controller object.
-	err := prefab.NewCameraController(a.gameEngine)
+	err := prefab.NewCameraController(a.gameEngine, a.engineConfig.Camera)
 	if err != nil {
 		return fmt.Errorf("failed to create camera controller prefab: %w", err)
 	}
