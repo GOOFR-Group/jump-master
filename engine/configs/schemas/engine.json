@@ -61,6 +61,12 @@
           "description": "Defines pixels per game world unit.",
           "type": "number",
           "minimum": 0
+        },
+        "transitionSpeed": {
+          "description": "Defines the speed of the animation transition.",
+          "type": "number",
+          "minimum": 0.01,
+          "default": 1
         }
       }
     },

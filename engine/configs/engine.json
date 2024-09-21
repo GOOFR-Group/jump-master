@@ -9,12 +9,13 @@
   },
   "camera": {
     "position": {
-      "x": 500,
+      "x": 528,
       "y": 500
     },
     "width": 1000,
     "height": 844,
-    "ppu": 1
+    "ppu": 1,
+    "transitionSpeed": 1.1
   },
   "tileSprites": {
     "0": "images/platform/forest/grass/0.png",
