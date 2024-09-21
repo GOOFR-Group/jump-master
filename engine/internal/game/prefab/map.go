@@ -11,7 +11,6 @@ import (
 	"github.com/goofr-group/jump-master/engine/internal/config"
 	"github.com/goofr-group/jump-master/engine/internal/game"
 	"github.com/goofr-group/jump-master/engine/internal/game/property"
-	"github.com/goofr-group/jump-master/engine/internal/game/tag"
 )
 
 // NewMap creates all the objects in the map for the given configuration.
@@ -29,7 +28,7 @@ func NewMap(e game.Engine, config config.Map, tileSprites map[string]string) err
 			// Create the grid game object.
 			gameObject := core.Object{
 				Active: true,
-				Tag:    tag.Platform,
+				Tag:    layer.Name,
 				Transform: core.Transform2D{
 					Position: grid.Scale(vector2.Vector2{
 						X: float64(tile.X),
