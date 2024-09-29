@@ -28,7 +28,11 @@ func (b SoundController) Enabled() bool {
 }
 
 func (b *SoundController) Update(_ *engine.Engine) error {
+	// Set the sounds property with the list of sounds for the current frame.
 	b.playerObject.SetProperty(property.Sounds, b.PlayerSounds())
+
+	// Reset the list of sounds for the next frame.
+	b.playerSounds = map[string]struct{}{}
 
 	return nil
 }
@@ -45,11 +49,7 @@ func (b SoundController) PlayerSounds() []string {
 }
 
 // AddPlayerSound adds the given player sound to the list.
+// The list of player sounds is cleared each frame.
 func (b *SoundController) AddPlayerSound(sound string) {
 	b.playerSounds[sound] = struct{}{}
-}
-
-// RemovePlayerSound removes the given player sound from the list.
-func (b *SoundController) RemovePlayerSound(sound string) {
-	delete(b.playerSounds, sound)
 }
