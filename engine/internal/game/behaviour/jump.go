@@ -13,6 +13,7 @@ import (
 	"github.com/goofr-group/jump-master/engine/internal/config"
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
+	"github.com/goofr-group/jump-master/engine/internal/game/sound"
 )
 
 // Jump defines the structure of the jump behaviour.
@@ -21,8 +22,9 @@ type Jump struct {
 	actionManager *action.Manager
 	config        config.Jump
 
-	checkGround *CheckGround
-	animator    *Animator
+	checkGround     *CheckGround
+	animator        *Animator
+	soundController *SoundController
 
 	usedImpulse        float64 // Defines the previously used jump impulse.
 	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
@@ -36,13 +38,15 @@ func NewJump(
 	config config.Jump,
 	checkGround *CheckGround,
 	animator *Animator,
+	soundController *SoundController,
 ) Jump {
 	return Jump{
-		object:        object,
-		actionManager: actionManager,
-		config:        config,
-		checkGround:   checkGround,
-		animator:      animator,
+		object:          object,
+		actionManager:   actionManager,
+		config:          config,
+		checkGround:     checkGround,
+		animator:        animator,
+		soundController: soundController,
 
 		usedImpulse:        0,
 		accumulatedImpulse: 0,
@@ -105,6 +109,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 
 	b.object.RigidBody.AddAcceleration(velocity)
 	b.animator.SetAnimation(animation.Jump)
+	b.soundController.AddPlayerSound(sound.Jump)
 
 	// Reset the accumulated impulse and jump flag.
 	b.accumulatedImpulse = 0
@@ -140,6 +145,7 @@ func (b *Jump) Update(e *engine.Engine) error {
 		// Reset the horizontal velocity of the object when the jump action is being performed.
 		b.object.RigidBody.Velocity.X = 0
 		b.animator.SetAnimation(animation.JumpHold)
+		b.soundController.AddPlayerSound(sound.JumpHold)
 	}
 
 	// Check if the jump action was released.

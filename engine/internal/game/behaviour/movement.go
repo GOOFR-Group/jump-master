@@ -11,6 +11,7 @@ import (
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
 	"github.com/goofr-group/jump-master/engine/internal/game/property"
+	"github.com/goofr-group/jump-master/engine/internal/game/sound"
 )
 
 // Movement defines the structure of the movement behaviour.
@@ -19,8 +20,9 @@ type Movement struct {
 	actionManager *action.Manager
 	config        config.Movement
 
-	checkGround *CheckGround
-	animator    *Animator
+	checkGround     *CheckGround
+	animator        *Animator
+	soundController *SoundController
 
 	leftAction  bool
 	rightAction bool
@@ -34,13 +36,15 @@ func NewMovement(
 	config config.Movement,
 	checkGround *CheckGround,
 	animator *Animator,
+	soundController *SoundController,
 ) Movement {
 	return Movement{
-		object:        object,
-		actionManager: actionManager,
-		config:        config,
-		checkGround:   checkGround,
-		animator:      animator,
+		object:          object,
+		actionManager:   actionManager,
+		config:          config,
+		checkGround:     checkGround,
+		animator:        animator,
+		soundController: soundController,
 	}
 }
 
@@ -107,6 +111,7 @@ func (b *Movement) FixedUpdate(e *engine.Engine) error {
 	// Add the computed velocity when the movement actions are performed.
 	b.object.RigidBody.Velocity.X = direction * b.config.Speed * time.FixedDeltaTime
 	b.animator.SetAnimation(animation.Walk)
+	b.soundController.AddPlayerSound(sound.Walk)
 
 	return nil
 }

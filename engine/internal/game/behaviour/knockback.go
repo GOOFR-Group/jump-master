@@ -12,6 +12,7 @@ import (
 
 	"github.com/goofr-group/jump-master/engine/internal/config"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
+	"github.com/goofr-group/jump-master/engine/internal/game/sound"
 	"github.com/goofr-group/jump-master/engine/internal/game/tag"
 )
 
@@ -20,10 +21,11 @@ type KnockBack struct {
 	object *game.Object
 	config config.KnockBack
 
-	checkGround  *CheckGround
-	checkCeiling *CheckCeiling
-	jump         *Jump
-	animator     *Animator
+	checkGround     *CheckGround
+	checkCeiling    *CheckCeiling
+	jump            *Jump
+	animator        *Animator
+	soundController *SoundController
 
 	// platforms defines the map of platform objects that the current object is in contact with. The map represents the
 	// state of the contact by the platform object id.
@@ -41,14 +43,16 @@ func NewKnockBack(
 	checkCeiling *CheckCeiling,
 	jump *Jump,
 	animator *Animator,
+	soundController *SoundController,
 ) KnockBack {
 	return KnockBack{
-		object:       object,
-		config:       config,
-		checkGround:  checkGround,
-		checkCeiling: checkCeiling,
-		jump:         jump,
-		animator:     animator,
+		object:          object,
+		config:          config,
+		checkGround:     checkGround,
+		checkCeiling:    checkCeiling,
+		jump:            jump,
+		animator:        animator,
+		soundController: soundController,
 
 		platforms: make(map[int64]bool),
 	}
@@ -130,6 +134,7 @@ func (b *KnockBack) OnCollisionEnter(e *engine.Engine, otherID int64, manifold c
 	velocity := direction.Mul(b.config.Impulse)
 	b.object.RigidBody.AddAcceleration(velocity)
 	b.animator.SetAnimation(animation.KnockBack)
+	b.soundController.AddPlayerSound(sound.KnockBack)
 
 	return nil
 }
