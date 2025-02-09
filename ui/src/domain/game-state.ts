@@ -117,14 +117,6 @@ export interface Renderer {
 }
 
 /**
- * Defines the game object tags.
- */
-export enum GameObjectTag {
-	PLAYER = 'Player',
-	PLATFORM = 'Platform',
-}
-
-/**
  * Represents all properties defined in object, as well as any dynamic properties.
  */
 export interface GameObject {
