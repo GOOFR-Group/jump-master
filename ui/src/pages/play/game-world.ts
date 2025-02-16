@@ -57,8 +57,7 @@ class GameWorld {
 
 		gameObjects.sort(
 			(a, b) =>
-				GameObjectTagOrder.indexOf(a.tag as GameObjectTag) -
-				GameObjectTagOrder.indexOf(b.tag as GameObjectTag),
+				GameObjectTagOrder.indexOf(a.tag) - GameObjectTagOrder.indexOf(b.tag),
 		);
 
 		for (const gameObject of gameObjects) {

@@ -1,3 +1,5 @@
+import type { GameObjectTag } from './tag';
+
 /**
  * Represents a 2D vector, point or position.
  */
@@ -137,7 +139,7 @@ export interface GameObject {
 	 * Determines the tag or name of this game object.
 	 * Multiple game objects can share the same tag.
 	 */
-	tag: string;
+	tag: GameObjectTag;
 
 	/**
 	 * Spacial information of a game object.
