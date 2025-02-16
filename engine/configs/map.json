@@ -360,7 +360,28 @@
             "collider": false
         },
         {
-            "name": "Props",
+            "name": "Props-Foreground",
+            "tiles": [
+                {
+                    "id": "27",
+                    "x": 6,
+                    "y": 32
+                },
+                {
+                    "id": "28",
+                    "x": 7,
+                    "y": 32
+                },
+                {
+                    "id": "29",
+                    "x": 8,
+                    "y": 32
+                }
+            ],
+            "collider": false
+        },
+        {
+            "name": "Props-Background",
             "tiles": [
                 {
                     "id": "8",
@@ -388,21 +409,6 @@
                     "y": 29
                 },
                 {
-                    "id": "27",
-                    "x": 6,
-                    "y": 32
-                },
-                {
-                    "id": "28",
-                    "x": 7,
-                    "y": 32
-                },
-                {
-                    "id": "29",
-                    "x": 8,
-                    "y": 32
-                },
-                {
                     "id": "59",
                     "x": 9,
                     "y": 32
@@ -416,7 +422,7 @@
             "collider": false
         },
         {
-            "name": "Platforms Grass",
+            "name": "Platform Grass",
             "tiles": [
                 {
                     "id": "54",

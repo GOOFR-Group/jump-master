@@ -2,12 +2,12 @@ import type { Actions } from '../../domain/actions';
 import type { ImageBySource } from '../../domain/image';
 import type { Engine } from '../../domain/engine';
 import {
-	GameObjectTag,
 	type Camera,
 	type GameObject,
 	type Point,
 } from '../../domain/game-state';
 import DebugTools from './utils/debug-tools';
+import { GameObjectTag, GameObjectTagOrder } from '../../domain/tag';
 
 /**
  * Represents the game world.
@@ -55,6 +55,11 @@ class GameWorld {
 		this.#ctx.canvas.width = camera.width;
 		this.#ctx.canvas.height = camera.height;
 
+		gameObjects.sort(
+			(a, b) =>
+				GameObjectTagOrder.indexOf(a.tag) - GameObjectTagOrder.indexOf(b.tag),
+		);
+
 		for (const gameObject of gameObjects) {
 			const { transform, renderer, tag } = gameObject;
 
@@ -68,15 +73,6 @@ class GameWorld {
 			this.#ctx.translate(transform.position.x, transform.position.y);
 			this.#ctx.scale(transform.scale.x, -transform.scale.y);
 			this.#ctx.rotate(-transform.rotation);
-
-			switch (tag) {
-				case GameObjectTag.PLAYER:
-					this.#ctx.globalCompositeOperation = 'destination-over';
-					break;
-				default:
-					this.#ctx.globalCompositeOperation = 'source-over';
-					break;
-			}
 
 			if (renderer.flipHorizontally) {
 				this.#ctx.scale(-1, 1);

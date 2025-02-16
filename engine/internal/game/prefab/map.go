@@ -2,6 +2,7 @@ package prefab
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/goofr-group/game-engine/pkg/rendering"
 	"github.com/goofr-group/go-math/rotation/matrix"
@@ -26,10 +27,19 @@ func NewMap(e game.Engine, config config.Map, tileSprites map[string]string) err
 
 	for _, layer := range config.Layers {
 		for _, tile := range layer.Tiles {
+			// gameObjectTag represents the game object tag. By default, the layer name is used for identification. If
+			// the layer name contains the substring [tag.Platform], [tag.Platform] is used instead. This is useful to
+			// have a deterministic way of identifying platform objects for collision purposes, and at the same time it
+			// allows the map platforms to be designed by using multiple layers.
+			gameObjectTag := layer.Name
+			if strings.Contains(gameObjectTag, tag.Platform) {
+				gameObjectTag = tag.Platform
+			}
+
 			// Create the grid game object.
 			gameObject := core.Object{
 				Active: true,
-				Tag:    tag.Platform,
+				Tag:    gameObjectTag,
 				Transform: core.Transform2D{
 					Position: grid.Scale(vector2.Vector2{
 						X: float64(tile.X),
