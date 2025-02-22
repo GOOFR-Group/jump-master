@@ -6,13 +6,17 @@ import type { Actions } from '../../domain/actions';
 import useActions from './use-actions';
 import type { ImageBySource } from '../../domain/image';
 import { loadAnimator } from './utils/animator';
+import { loadSounds } from './utils/sound';
+import type { SoundByName } from '../../domain/sound';
 
 function Canvas({
 	engine,
 	animator,
+	sounds,
 }: {
 	engine: Engine;
 	animator: ImageBySource;
+	sounds: SoundByName;
 }) {
 	let canvas!: HTMLCanvasElement;
 	const actions = useActions();
@@ -25,7 +29,7 @@ function Canvas({
 			return;
 		}
 
-		const gameWorld = new GameWorld(ctx, engine, animator);
+		const gameWorld = new GameWorld(ctx, engine, animator, sounds);
 
 		let frame = requestAnimationFrame(step);
 
@@ -52,7 +56,7 @@ function Play() {
 			{engine.state === 'errored' ||
 				(animator.state === 'errored' && <p>An unexpected error ocurred</p>)}
 			{engine.state === 'ready' && animator.state === 'ready' && (
-				<Canvas engine={engine()} animator={animator()} />
+				<Canvas engine={engine()} animator={animator()} sounds={loadSounds()} />
 			)}
 		</div>
 	);

@@ -8,6 +8,8 @@ import {
 } from '../../domain/game-state';
 import DebugTools from './utils/debug-tools';
 import { GameObjectTag, GameObjectTagOrder } from '../../domain/tag';
+import type { SoundByName } from '../../domain/sound';
+import { playSound } from './utils/sound';
 
 /**
  * Represents the game world.
@@ -18,20 +20,25 @@ class GameWorld {
 	#engine: Engine;
 
 	#animator: ImageBySource;
+	#sounds: SoundByName;
 
 	/**
 	 * Initializes a game world.
 	 * @param ctx Canvas 2D context.
 	 * @param engine Game engine.
+	 * @param animator Game animator.
+	 * @param sounds Game sounds.
 	 */
 	constructor(
 		ctx: CanvasRenderingContext2D,
 		engine: Engine,
 		animator: ImageBySource,
+		sounds: SoundByName,
 	) {
 		this.#ctx = ctx;
 		this.#engine = engine;
 		this.#animator = animator;
+		this.#sounds = sounds;
 	}
 
 	/**
@@ -61,7 +68,12 @@ class GameWorld {
 		);
 
 		for (const gameObject of gameObjects) {
-			const { transform, renderer, tag } = gameObject;
+			const { transform, renderer, tag, sounds } = gameObject;
+
+			for (const sound of sounds) {
+				const audio = this.#sounds[sound];
+				playSound(audio);
+			}
 
 			if (!renderer) {
 				continue;
