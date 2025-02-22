@@ -30,8 +30,8 @@ type Jump struct {
 	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
 	canJump            bool    // Defines if the object is able to jump.
 
-	actionBufferBeforeJump []string
-	actionBufferAfterJump  []string
+	actionBufferBeforeJump []string // Defines the action buffer, in frames, to be considered before the jump action is performed.
+	actionBufferAfterJump  []string // Defines the action buffer, in frames, to be considered after the jump action is performed.
 }
 
 // NewJump returns a new jump behaviour with the given configuration.
