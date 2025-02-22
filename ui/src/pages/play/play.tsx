@@ -12,19 +12,15 @@ import type { Actions } from '../../domain/actions';
 import useActions from './use-actions';
 import type { ImageBySource } from '../../domain/image';
 import { loadAnimator } from './utils/animator';
-import { loadSounds } from './utils/sound';
-import type { SoundByName } from '../../domain/sound';
 import SoundButton from './sound';
 
 function Canvas({
 	engine,
 	animator,
-	sounds,
 	muted,
 }: {
 	engine: Engine;
 	animator: ImageBySource;
-	sounds: SoundByName;
 	muted: Accessor<boolean>;
 }) {
 	let canvas!: HTMLCanvasElement;
@@ -38,7 +34,7 @@ function Canvas({
 			return;
 		}
 
-		const gameWorld = new GameWorld(ctx, engine, animator, sounds, muted());
+		const gameWorld = new GameWorld(ctx, engine, animator, muted());
 
 		let frame = requestAnimationFrame(step);
 
@@ -67,12 +63,7 @@ function Play() {
 			{engine.state === 'errored' ||
 				(animator.state === 'errored' && <p>An unexpected error occurred</p>)}
 			{engine.state === 'ready' && animator.state === 'ready' && (
-				<Canvas
-					engine={engine()}
-					animator={animator()}
-					sounds={loadSounds()}
-					muted={muted}
-				/>
+				<Canvas engine={engine()} animator={animator()} muted={muted} />
 			)}
 			<div class="absolute left-2 top-2">
 				<SoundButton muted={muted} onClick={() => setMuted(prev => !prev)} />

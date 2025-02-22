@@ -1,24 +1,15 @@
 import { GameObjectSound } from '../../../domain/game-state';
-import type { SoundByName } from '../../../domain/sound';
 
 /**
  * Sources of the sounds used in the game world.
  */
-const SOUND_SOURCES: SoundByName = {
+export const SOUND_SOURCES = {
 	[GameObjectSound.JUMP]: new Audio('sounds/jump.ogg'),
-	[GameObjectSound.JUMP_HOLD]: new Audio('sounds/jumpHold.ogg'),
-	[GameObjectSound.KNOCK_BACK]: new Audio('sounds/knockBack.ogg'),
-	[GameObjectSound.LANDING]: new Audio('sounds/jump.ogg'),
-	[GameObjectSound.FALL]: new Audio('sounds/fall.wav'),
+	[GameObjectSound.JUMP_HOLD]: new Audio('sounds/.ogg'),
+	[GameObjectSound.KNOCK_BACK]: new Audio('sounds/.ogg'),
+	[GameObjectSound.LANDING]: new Audio('sounds/landing.ogg'),
+	[GameObjectSound.FALL]: new Audio('sounds/.wav'),
 };
-
-/**
- * Loads the game sounds.
- * @returns Sounds by name.
- */
-export function loadSounds() {
-	return SOUND_SOURCES;
-}
 
 /**
  * Plays the given sound.
