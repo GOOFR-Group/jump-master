@@ -16,4 +16,8 @@
 	.btn {
 		@apply relative block border-2 border-amber-950 bg-amber-400 px-16 py-1 text-2xl uppercase text-amber-950 active:top-1;
 	}
+
+	.btn.icon {
+		@apply flex size-12 items-center justify-center p-0;
+	}
 }

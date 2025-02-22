@@ -4,32 +4,31 @@ import type { SoundByName } from '../../../domain/sound';
 /**
  * Sources of the sounds used in the game world.
  */
-const SOUND_SOURCES: Record<GameObjectSound, string> = {
-	[GameObjectSound.JUMP]: 'sounds/jump.ogg',
-	[GameObjectSound.JUMP_HOLD]: 'sounds/jumpHold.ogg',
-	[GameObjectSound.KNOCK_BACK]: 'sounds/knockBack.ogg',
-	[GameObjectSound.LANDING]: 'sounds/jump.ogg',
-	[GameObjectSound.FALL]: 'sounds/fall.wav',
+const SOUND_SOURCES: SoundByName = {
+	[GameObjectSound.JUMP]: new Audio('sounds/jump.ogg'),
+	[GameObjectSound.JUMP_HOLD]: new Audio('sounds/jumpHold.ogg'),
+	[GameObjectSound.KNOCK_BACK]: new Audio('sounds/knockBack.ogg'),
+	[GameObjectSound.LANDING]: new Audio('sounds/jump.ogg'),
+	[GameObjectSound.FALL]: new Audio('sounds/fall.wav'),
 };
 
 /**
- * Plays the given sound.
+ * Loads the game sounds.
  * @returns Sounds by name.
  */
 export function loadSounds() {
-	return Object.fromEntries(
-		Object.entries(SOUND_SOURCES).map(([key, value]) => [
-			key,
-			new Audio(value),
-		]),
-	) as SoundByName;
+	return SOUND_SOURCES;
 }
 
 /**
  * Plays the given sound.
  * @param audio Audio element.
  */
-export function playSound(audio: HTMLAudioElement) {
+export async function playSound(audio: HTMLAudioElement) {
 	audio.currentTime = 0;
-	audio.play();
+	try {
+		await audio.play();
+	} catch {
+		// Ignore errors.
+	}
 }
