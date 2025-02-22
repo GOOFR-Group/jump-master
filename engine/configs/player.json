@@ -28,7 +28,7 @@
     "minImpulse": 35000,
     "maxImpulse": 90000,
     "diagonalAngle": 75,
-    "directionBuffer": 10
+    "directionBuffer": 5
   },
   "fall": {
     "allowedDuration": 1
