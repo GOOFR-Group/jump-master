@@ -139,7 +139,7 @@ func (b *Jump) Update(e *engine.Engine) error {
 	// Check if the jump action is being performed.
 	if b.actionManager.Action(input.Jump) {
 		// Apply the impulse multiplier and ensure that the accumulated impulse is not greater than the maximum defined.
-		b.accumulatedImpulse += b.config.Impulse * time.FixedDeltaTime
+		b.accumulatedImpulse += b.config.Impulse * time.DeltaTime
 		b.accumulatedImpulse = mathf.Min(b.accumulatedImpulse, b.config.MaxImpulse)
 
 		// Reset the horizontal velocity of the object when the jump action is being performed.
