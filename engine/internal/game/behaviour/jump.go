@@ -156,10 +156,6 @@ func (b *Jump) Update(e *engine.Engine) error {
 	}
 
 	// Save actions in the buffer.
-	for i := len(b.actionBufferBeforeJump) - 1; i > 0; i-- {
-		b.actionBufferBeforeJump[i] = b.actionBufferBeforeJump[i-1]
-	}
-
 	var action string
 
 	leftAction := b.actionManager.Action(input.Left)
@@ -170,7 +166,11 @@ func (b *Jump) Update(e *engine.Engine) error {
 		action = input.Right
 	}
 
+	for i := len(b.actionBufferBeforeJump) - 1; i > 0; i-- {
+		b.actionBufferBeforeJump[i] = b.actionBufferBeforeJump[i-1]
+	}
 	b.actionBufferBeforeJump[0] = action
+
 	if len(b.actionBufferAfterJump) <= b.config.DirectionBuffer {
 		b.actionBufferAfterJump = append(b.actionBufferAfterJump, action)
 	}
