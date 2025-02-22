@@ -102,7 +102,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		}
 	}
 
-	// Jump only if in action is taken within the expected action buffer.
+	// Jump only if an action is taken within the expected buffer.
 	if len(action) == 0 && len(b.actionBufferAfterJump) <= b.config.DirectionBuffer {
 		return nil
 	}
