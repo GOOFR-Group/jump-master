@@ -65,6 +65,8 @@ func (b *Fall) Update(e *engine.Engine) error {
 		b.object.RigidBody.Velocity.X = 0
 		b.animator.SetAnimation(animation.Fall)
 		b.soundController.AddPlayerSound(sound.Fall)
+	} else if b.timer > 0 {
+		b.soundController.AddPlayerSound(sound.Landing)
 	}
 
 	// Reset the timer.

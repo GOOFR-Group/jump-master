@@ -11,7 +11,6 @@ import (
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
 	"github.com/goofr-group/jump-master/engine/internal/game/property"
-	"github.com/goofr-group/jump-master/engine/internal/game/sound"
 )
 
 // Movement defines the structure of the movement behaviour.
@@ -111,7 +110,6 @@ func (b *Movement) FixedUpdate(e *engine.Engine) error {
 	// Add the computed velocity when the movement actions are performed.
 	b.object.RigidBody.Velocity.X = direction * b.config.Speed * time.FixedDeltaTime
 	b.animator.SetAnimation(animation.Walk)
-	b.soundController.AddPlayerSound(sound.Walk)
 
 	return nil
 }
