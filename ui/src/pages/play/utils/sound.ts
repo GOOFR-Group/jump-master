@@ -5,10 +5,9 @@ import { GameObjectSound } from '../../../domain/game-state';
  */
 export const SOUND_SOURCES = {
 	[GameObjectSound.JUMP]: new Audio('sounds/jump.ogg'),
-	[GameObjectSound.JUMP_HOLD]: new Audio('sounds/.ogg'),
 	[GameObjectSound.KNOCK_BACK]: new Audio('sounds/knockBack.ogg'),
 	[GameObjectSound.LANDING]: new Audio('sounds/landing.ogg'),
-	[GameObjectSound.FALL]: new Audio('sounds/.wav'),
+	[GameObjectSound.FALL]: new Audio('sounds/fall.ogg'),
 };
 
 /**
