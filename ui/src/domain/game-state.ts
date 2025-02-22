@@ -122,7 +122,6 @@ export interface Renderer {
  * Defines the game object sounds.
  */
 export enum GameObjectSound {
-	JUMP_HOLD = 'jumpHold',
 	JUMP = 'jump',
 	KNOCK_BACK = 'knockBack',
 	LANDING = 'landing',

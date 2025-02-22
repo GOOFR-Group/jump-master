@@ -191,7 +191,6 @@ func (b *Jump) Update(e *engine.Engine) error {
 		// Reset the horizontal velocity of the object when the jump action is being performed.
 		b.object.RigidBody.Velocity.X = 0
 		b.animator.SetAnimation(animation.JumpHold)
-		b.soundController.AddPlayerSound(sound.JumpHold)
 	}
 
 	// Check if the jump action was released.
