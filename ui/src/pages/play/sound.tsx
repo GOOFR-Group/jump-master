@@ -19,12 +19,9 @@ function SoundButton({
 	}
 
 	return (
-		<div class="flex items-center gap-2 text-4xl text-white drop-shadow-xl">
-			Sound:
-			<button onClick={onClick} onKeyDown={handleKeyDown}>
-				<img src={`/images/controls/audio/${muted() ? 'off' : 'on'}.png`} />
-			</button>
-		</div>
+		<button onClick={onClick} onKeyDown={handleKeyDown}>
+			<img src={`/images/controls/audio/${muted() ? 'off' : 'on'}.png`} />
+		</button>
 	);
 }
 
