@@ -15,7 +15,7 @@ function Controls() {
 						Jump
 					</div>
 					<img
-						src={`/images/controls/spacebar/${
+						src={`images/controls/spacebar/${
 							actions().Jump ? 'pressed' : 'default'
 						}.png`}
 					/>
@@ -29,7 +29,7 @@ function Controls() {
 						Left
 					</div>
 					<img
-						src={`/images/controls/arrow-left/${
+						src={`images/controls/arrow-left/${
 							actions().Left ? 'pressed' : 'default'
 						}.png`}
 					/>
@@ -43,7 +43,7 @@ function Controls() {
 						Right
 					</div>
 					<img
-						src={`/images/controls/arrow-right/${
+						src={`images/controls/arrow-right/${
 							actions().Right ? 'pressed' : 'default'
 						}.png`}
 					/>

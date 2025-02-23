@@ -20,7 +20,7 @@ function SoundButton({
 
 	return (
 		<button onClick={onClick} onKeyDown={handleKeyDown}>
-			<img src={`/images/controls/audio/${muted() ? 'off' : 'on'}.png`} />
+			<img src={`images/controls/audio/${muted() ? 'off' : 'on'}.png`} />
 		</button>
 	);
 }
