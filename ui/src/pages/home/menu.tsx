@@ -9,7 +9,7 @@ function GameMenu() {
 			<li class="flex items-center justify-center">
 				<A href="/play">
 					<img
-						src={`/images/controls/start/${
+						src={`images/controls/start/${
 							startPressed() ? 'pressed' : 'default'
 						}.png`}
 						onMouseEnter={() => setStartPressed(true)}
