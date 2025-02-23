@@ -95,13 +95,14 @@ func NewPlayer(e game.Engine, config config.Player) error {
 	checkGroundBehaviour := behaviour.NewCheckGround(&gameObjectCheckGround)
 	checkCeilingBehaviour := behaviour.NewCheckCeiling(&gameObjectCheckCeiling)
 	animatorBehaviour := behaviour.NewAnimator(&gameObjectPlayer, config.Animations)
-	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, config.Movement, &checkGroundBehaviour, &animatorBehaviour)
-	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, config.Jump, &checkGroundBehaviour, &animatorBehaviour)
-	fallBehaviour := behaviour.NewFall(&gameObjectPlayer, config.Fall, &checkGroundBehaviour, &animatorBehaviour)
-	knockBackBehaviour := behaviour.NewKnockBack(&gameObjectPlayer, config.KnockBack, &checkGroundBehaviour, &checkCeilingBehaviour, &jumpBehaviour, &animatorBehaviour)
+	soundControllerBehaviour := behaviour.NewSoundController(&gameObjectPlayer)
+	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, config.Movement, &checkGroundBehaviour, &animatorBehaviour, &soundControllerBehaviour)
+	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, config.Jump, &checkGroundBehaviour, &animatorBehaviour, &soundControllerBehaviour)
+	fallBehaviour := behaviour.NewFall(&gameObjectPlayer, config.Fall, &checkGroundBehaviour, &animatorBehaviour, &soundControllerBehaviour)
+	knockBackBehaviour := behaviour.NewKnockBack(&gameObjectPlayer, config.KnockBack, &checkGroundBehaviour, &checkCeilingBehaviour, &jumpBehaviour, &animatorBehaviour, &soundControllerBehaviour)
 
 	// Add the player game object to the game engine.
-	err := gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&animatorBehaviour, &movementBehaviour, &jumpBehaviour, &fallBehaviour, &knockBackBehaviour})
+	err := gameEngine.CreateGameObject(&gameObjectPlayer, []engine.Behaviour{&movementBehaviour, &jumpBehaviour, &fallBehaviour, &knockBackBehaviour, &animatorBehaviour, &soundControllerBehaviour})
 	if err != nil {
 		return fmt.Errorf("failed to create player game object: %w", err)
 	}

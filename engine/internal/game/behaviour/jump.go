@@ -13,6 +13,7 @@ import (
 	"github.com/goofr-group/jump-master/engine/internal/config"
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
+	"github.com/goofr-group/jump-master/engine/internal/game/sound"
 )
 
 // Jump defines the structure of the jump behaviour.
@@ -21,12 +22,16 @@ type Jump struct {
 	actionManager *action.Manager
 	config        config.Jump
 
-	checkGround *CheckGround
-	animator    *Animator
+	checkGround     *CheckGround
+	animator        *Animator
+	soundController *SoundController
 
 	usedImpulse        float64 // Defines the previously used jump impulse.
 	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
 	canJump            bool    // Defines if the object is able to jump.
+
+	actionBufferBeforeJump []string
+	actionBufferAfterJump  []string
 }
 
 // NewJump returns a new jump behaviour with the given configuration.
@@ -36,17 +41,21 @@ func NewJump(
 	config config.Jump,
 	checkGround *CheckGround,
 	animator *Animator,
+	soundController *SoundController,
 ) Jump {
 	return Jump{
-		object:        object,
-		actionManager: actionManager,
-		config:        config,
-		checkGround:   checkGround,
-		animator:      animator,
+		object:          object,
+		actionManager:   actionManager,
+		config:          config,
+		checkGround:     checkGround,
+		animator:        animator,
+		soundController: soundController,
 
 		usedImpulse:        0,
 		accumulatedImpulse: 0,
 		canJump:            false,
+
+		actionBufferBeforeJump: make([]string, config.DirectionBuffer),
 	}
 }
 
@@ -73,18 +82,39 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		return nil
 	}
 
+	// Get action from the buffer.
+	var action string
+
+	for _, a := range b.actionBufferBeforeJump {
+		if len(a) != 0 {
+			action = a
+			break
+		}
+	}
+
+	if len(action) == 0 {
+		for _, a := range b.actionBufferAfterJump {
+			if len(a) == 0 {
+				continue
+			}
+
+			action = a
+		}
+	}
+
+	// Jump only if in action is taken within the expected action buffer.
+	if len(action) == 0 && len(b.actionBufferAfterJump) <= b.config.DirectionBuffer {
+		return nil
+	}
+
 	// Limit the minimum jump impulse.
 	b.accumulatedImpulse = math.Max(b.accumulatedImpulse, b.config.MinImpulse)
 
 	// Compute the jump rotation based on the left and right actions.
 	direction := vector2.Up()
 
-	leftAction := b.actionManager.Action(input.Left)
-	rightAction := b.actionManager.Action(input.Right)
-
-	// Check that the left or right action is being performed. Also check that both actions are not being performed at
-	// the same time.
-	if (leftAction || rightAction) && !(leftAction && rightAction) {
+	// Check that the left or right action is being performed.
+	if len(action) != 0 {
 		// Compute the diagonal angle based on the fraction of accumulated impulse.
 		diagonalAngle := b.config.DiagonalAngle
 		diagonalAngle *= b.accumulatedImpulse / b.config.MaxImpulse
@@ -94,7 +124,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		direction = rotation.RotateVector(vector2.Right())
 
 		// If the object is performing a left action, invert the direction vector.
-		if leftAction {
+		if action == input.Left {
 			direction.X = -direction.X
 		}
 	}
@@ -105,6 +135,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 
 	b.object.RigidBody.AddAcceleration(velocity)
 	b.animator.SetAnimation(animation.Jump)
+	b.soundController.AddPlayerSound(sound.Jump)
 
 	// Reset the accumulated impulse and jump flag.
 	b.accumulatedImpulse = 0
@@ -124,6 +155,26 @@ func (b *Jump) Update(e *engine.Engine) error {
 		return nil
 	}
 
+	// Save actions in the buffer.
+	for i := len(b.actionBufferBeforeJump) - 1; i > 0; i-- {
+		b.actionBufferBeforeJump[i] = b.actionBufferBeforeJump[i-1]
+	}
+
+	var action string
+
+	leftAction := b.actionManager.Action(input.Left)
+	rightAction := b.actionManager.Action(input.Right)
+	if leftAction && !rightAction {
+		action = input.Left
+	} else if !leftAction && rightAction {
+		action = input.Right
+	}
+
+	b.actionBufferBeforeJump[0] = action
+	if len(b.actionBufferAfterJump) <= b.config.DirectionBuffer {
+		b.actionBufferAfterJump = append(b.actionBufferAfterJump, action)
+	}
+
 	// Check if the object is in contact with the ground and if the fall animation has already ended.
 	if !b.checkGround.TouchingGround() ||
 		(b.animator.Animation() == animation.Fall && !b.animator.AnimationEnded()) {
@@ -134,7 +185,7 @@ func (b *Jump) Update(e *engine.Engine) error {
 	// Check if the jump action is being performed.
 	if b.actionManager.Action(input.Jump) {
 		// Apply the impulse multiplier and ensure that the accumulated impulse is not greater than the maximum defined.
-		b.accumulatedImpulse += b.config.Impulse * time.FixedDeltaTime
+		b.accumulatedImpulse += b.config.Impulse * time.DeltaTime
 		b.accumulatedImpulse = mathf.Min(b.accumulatedImpulse, b.config.MaxImpulse)
 
 		// Reset the horizontal velocity of the object when the jump action is being performed.
@@ -146,6 +197,7 @@ func (b *Jump) Update(e *engine.Engine) error {
 	if b.actionManager.ActionEnded(input.Jump) {
 		// The object is able to jump
 		b.canJump = true
+		b.actionBufferAfterJump = make([]string, 0, b.config.DirectionBuffer)
 	}
 
 	return nil

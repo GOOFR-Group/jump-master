@@ -19,8 +19,9 @@ type Movement struct {
 	actionManager *action.Manager
 	config        config.Movement
 
-	checkGround *CheckGround
-	animator    *Animator
+	checkGround     *CheckGround
+	animator        *Animator
+	soundController *SoundController
 
 	leftAction  bool
 	rightAction bool
@@ -34,13 +35,15 @@ func NewMovement(
 	config config.Movement,
 	checkGround *CheckGround,
 	animator *Animator,
+	soundController *SoundController,
 ) Movement {
 	return Movement{
-		object:        object,
-		actionManager: actionManager,
-		config:        config,
-		checkGround:   checkGround,
-		animator:      animator,
+		object:          object,
+		actionManager:   actionManager,
+		config:          config,
+		checkGround:     checkGround,
+		animator:        animator,
+		soundController: soundController,
 	}
 }
 
