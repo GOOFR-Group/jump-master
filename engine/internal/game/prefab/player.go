@@ -96,7 +96,7 @@ func NewPlayer(e game.Engine, config config.Player) error {
 	checkCeilingBehaviour := behaviour.NewCheckCeiling(&gameObjectCheckCeiling)
 	animatorBehaviour := behaviour.NewAnimator(&gameObjectPlayer, config.Animations)
 	soundControllerBehaviour := behaviour.NewSoundController(&gameObjectPlayer)
-	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, config.Movement, &checkGroundBehaviour, &animatorBehaviour, &soundControllerBehaviour)
+	movementBehaviour := behaviour.NewMovement(&gameObjectPlayer, actionManager, config.Movement, &checkGroundBehaviour, &animatorBehaviour)
 	jumpBehaviour := behaviour.NewJump(&gameObjectPlayer, actionManager, config.Jump, &checkGroundBehaviour, &animatorBehaviour, &soundControllerBehaviour)
 	fallBehaviour := behaviour.NewFall(&gameObjectPlayer, config.Fall, &checkGroundBehaviour, &animatorBehaviour, &soundControllerBehaviour)
 	knockBackBehaviour := behaviour.NewKnockBack(&gameObjectPlayer, config.KnockBack, &checkGroundBehaviour, &checkCeilingBehaviour, &jumpBehaviour, &animatorBehaviour, &soundControllerBehaviour)

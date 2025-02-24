@@ -19,10 +19,11 @@ type Movement struct {
 
 // Jump defines the structure of the jump configuration.
 type Jump struct {
-	Impulse       float64 `json:"impulse"`       // Defines the base impulse of the jump to accumulate each second the jump action is performed.
-	MinImpulse    float64 `json:"minImpulse"`    // Defines the minimum impulse of the jump.
-	MaxImpulse    float64 `json:"maxImpulse"`    // Defines the maximum impulse of the jump.
-	DiagonalAngle float64 `json:"diagonalAngle"` // Defines the angle in degrees to apply when jumping left or right.
+	Impulse         float64 `json:"impulse"`         // Defines the base impulse of the jump to accumulate each second the jump action is performed.
+	MinImpulse      float64 `json:"minImpulse"`      // Defines the minimum impulse of the jump.
+	MaxImpulse      float64 `json:"maxImpulse"`      // Defines the maximum impulse of the jump.
+	DiagonalAngle   float64 `json:"diagonalAngle"`   // Defines the angle in degrees to apply when jumping left or right.
+	DirectionBuffer int     `json:"directionBuffer"` // Defines the length of the buffer of directions to be considered before and after the jump.
 }
 
 // Fall defines the structure of the fall configuration.

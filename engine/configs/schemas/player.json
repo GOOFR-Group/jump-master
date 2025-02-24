@@ -103,6 +103,10 @@
         "diagonalAngle": {
           "description": "Defines the angle in degrees to apply when jumping left or right.",
           "type": "number"
+        },
+        "directionBuffer": {
+          "description": "Defines the length of the buffer of directions to be considered before and after the jump.",
+          "type": "integer"
         }
       }
     },
