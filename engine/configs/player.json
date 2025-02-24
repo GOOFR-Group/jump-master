@@ -27,7 +27,8 @@
     "impulse": 300000,
     "minImpulse": 35000,
     "maxImpulse": 90000,
-    "diagonalAngle": 75
+    "diagonalAngle": 75,
+    "directionBuffer": 5
   },
   "fall": {
     "allowedDuration": 1
@@ -40,7 +41,10 @@
     "idle": {
       "repeat": true,
       "duration": 0.4,
-      "frames": ["images/player/idle/0.png", "images/player/idle/1.png"]
+      "frames": [
+        "images/player/idle/0.png",
+        "images/player/idle/1.png"
+      ]
     },
     "walk": {
       "repeat": true,
@@ -55,12 +59,16 @@
     "jumpHold": {
       "repeat": false,
       "duration": 0,
-      "frames": ["images/player/jump-hold/0.png"]
+      "frames": [
+        "images/player/jump-hold/0.png"
+      ]
     },
     "jump": {
       "repeat": false,
       "duration": 0,
-      "frames": ["images/player/jump/0.png"]
+      "frames": [
+        "images/player/jump/0.png"
+      ]
     },
     "jumpFall": {
       "repeat": false,
@@ -73,7 +81,9 @@
     "knockBack": {
       "repeat": false,
       "duration": 0,
-      "frames": ["images/player/knock-back/0.png"]
+      "frames": [
+        "images/player/knock-back/0.png"
+      ]
     },
     "fall": {
       "repeat": false,
