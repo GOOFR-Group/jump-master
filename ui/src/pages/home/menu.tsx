@@ -1,13 +1,14 @@
-import { A } from '@solidjs/router';
+import { useNavigate } from '@solidjs/router';
 import { createSignal } from 'solid-js';
 
 function GameMenu() {
 	const [startPressed, setStartPressed] = createSignal(false);
+	const navigate = useNavigate();
 
 	return (
 		<ul>
 			<li class="flex items-center justify-center">
-				<A href="/play">
+				<button onClick={() => navigate('/play')}>
 					<img
 						src={`images/controls/start/${
 							startPressed() ? 'pressed' : 'default'
@@ -15,7 +16,7 @@ function GameMenu() {
 						onMouseEnter={() => setStartPressed(true)}
 						onMouseLeave={() => setStartPressed(false)}
 					/>
-				</A>
+				</button>
 			</li>
 		</ul>
 	);

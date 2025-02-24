@@ -12,7 +12,7 @@ function Home() {
 			<div class="absolute -z-10 h-full w-full bg-[url('/images/forest.jpg')] brightness-50" />
 			<div class="relative flex h-full flex-col justify-center gap-8 py-16">
 				<div class="flex flex-1 flex-col justify-center gap-8">
-					<h1 class="drop-shadow-text text-8xl font-semibold text-white">
+					<h1 class="text-8xl font-semibold text-white drop-shadow-text">
 						Jump Master
 					</h1>
 
@@ -25,7 +25,7 @@ function Home() {
 
 				<Controls />
 
-				{!import.meta.env.DEV && engine.state === 'ready' && (
+				{import.meta.env.DEV && engine.state === 'ready' && (
 					<EngineVersion engineVersion={engine().version()} />
 				)}
 			</div>
