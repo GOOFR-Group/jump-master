@@ -6,6 +6,7 @@ import (
 
 	"github.com/goofr-group/jump-master/engine/internal/config"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
+	"github.com/goofr-group/jump-master/engine/internal/game/sound"
 )
 
 // Fall defines the structure of the fall behaviour.
@@ -13,8 +14,9 @@ type Fall struct {
 	object *game.Object
 	config config.Fall
 
-	checkGround *CheckGround
-	animator    *Animator
+	checkGround     *CheckGround
+	animator        *Animator
+	soundController *SoundController
 
 	timer float64 // Defines the timer that captures the amount of time the object is falling.
 }
@@ -25,12 +27,14 @@ func NewFall(
 	config config.Fall,
 	checkGround *CheckGround,
 	animator *Animator,
+	soundController *SoundController,
 ) Fall {
 	return Fall{
-		object:      object,
-		config:      config,
-		checkGround: checkGround,
-		animator:    animator,
+		object:          object,
+		config:          config,
+		checkGround:     checkGround,
+		animator:        animator,
+		soundController: soundController,
 	}
 }
 
@@ -60,6 +64,9 @@ func (b *Fall) Update(e *engine.Engine) error {
 	if b.timer > b.config.AllowedDuration {
 		b.object.RigidBody.Velocity.X = 0
 		b.animator.SetAnimation(animation.Fall)
+		b.soundController.AddPlayerSound(sound.Fall)
+	} else if b.timer > 0 && b.checkGround.TouchingGround() {
+		b.soundController.AddPlayerSound(sound.Landing)
 	}
 
 	// Reset the timer.

@@ -14,11 +14,11 @@ function Home() {
 					<h1 class="text-8xl font-semibold text-white">Jump Master</h1>
 
 					{engine.state === 'pending' && <p>Loading...</p>}
-					{engine.state === 'errored' && <p>An unexpected error ocurred</p>}
+					{engine.state === 'errored' && <p>An unexpected error occurred</p>}
 					{engine.state === 'ready' && <GameMenu />}
 				</div>
 
-				{engine.state === 'ready' && (
+				{import.meta.env.DEV && engine.state === 'ready' && (
 					<EngineVersion engineVersion={engine().version()} />
 				)}
 			</div>

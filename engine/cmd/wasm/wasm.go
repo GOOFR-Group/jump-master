@@ -107,6 +107,19 @@ func marshalCollider(collider *game.Collider2D) map[string]interface{} {
 	return response
 }
 
+func marshalSounds(sounds interface{}) []interface{} {
+	soundsString, ok := sounds.([]string)
+	response := make([]interface{}, 0, len(soundsString))
+
+	if ok {
+		for _, sound := range soundsString {
+			response = append(response, sound)
+		}
+	}
+
+	return response
+}
+
 func marshalGameObject(gameObject game.Object) map[string]interface{} {
 	return map[string]interface{}{
 		"id": gameObject.ID(),
@@ -118,6 +131,7 @@ func marshalGameObject(gameObject game.Object) map[string]interface{} {
 		"rigidBody": marshalRigidBody(gameObject.RigidBody),
 		"renderer":  marshalRenderer(gameObject.Renderer, gameObject.Property(property.Image), gameObject.Property(property.FlipHorizontally)),
 		"collider":  marshalCollider(gameObject.Collider),
+		"sounds":    marshalSounds(gameObject.Property(property.Sounds)),
 	}
 }
 

@@ -8,6 +8,7 @@ import {
 } from '../../domain/game-state';
 import DebugTools from './utils/debug-tools';
 import { GameObjectTag, GameObjectTagOrder } from '../../domain/tag';
+import { playSound, SOUND_SOURCES } from './utils/sound';
 
 /**
  * Represents the game world.
@@ -19,19 +20,25 @@ class GameWorld {
 
 	#animator: ImageBySource;
 
+	#muted: boolean;
+
 	/**
 	 * Initializes a game world.
 	 * @param ctx Canvas 2D context.
 	 * @param engine Game engine.
+	 * @param animator Game animator.
+	 * @param muted Indicates if game sounds are muted.
 	 */
 	constructor(
 		ctx: CanvasRenderingContext2D,
 		engine: Engine,
 		animator: ImageBySource,
+		muted: boolean,
 	) {
 		this.#ctx = ctx;
 		this.#engine = engine;
 		this.#animator = animator;
+		this.#muted = muted;
 	}
 
 	/**
@@ -55,13 +62,21 @@ class GameWorld {
 		this.#ctx.canvas.width = camera.width;
 		this.#ctx.canvas.height = camera.height;
 
+		// Sort game objects based on the configured tag order.
 		gameObjects.sort(
 			(a, b) =>
 				GameObjectTagOrder.indexOf(a.tag) - GameObjectTagOrder.indexOf(b.tag),
 		);
 
 		for (const gameObject of gameObjects) {
-			const { transform, renderer, tag } = gameObject;
+			const { transform, renderer, tag, sounds } = gameObject;
+
+			if (!this.#muted) {
+				for (const sound of sounds) {
+					const audio = SOUND_SOURCES[sound];
+					playSound(audio);
+				}
+			}
 
 			if (!renderer) {
 				continue;
@@ -122,6 +137,23 @@ class GameWorld {
 		}
 
 		this.#draw(gameObjects, camera);
+	}
+
+	/**
+	 * Controls whether game sounds are played or not.
+	 * @returns True if game sounds are muted, false otherwise.
+	 */
+	get muted() {
+		return this.#muted;
+	}
+
+	/**
+	 * Updates the game sound muted state.
+	 * When muted is true, no sounds will be played.
+	 * @param value True to mute all game sounds, false to enable them.
+	 */
+	set muted(value: boolean) {
+		this.#muted = value;
 	}
 }
 

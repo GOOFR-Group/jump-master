@@ -119,6 +119,16 @@ export interface Renderer {
 }
 
 /**
+ * Defines the game object sounds.
+ */
+export enum GameObjectSound {
+	JUMP = 'jump',
+	KNOCK_BACK = 'knockBack',
+	LANDING = 'landing',
+	FALL = 'fall',
+}
+
+/**
  * Represents all properties defined in object, as well as any dynamic properties.
  */
 export interface GameObject {
@@ -155,6 +165,11 @@ export interface GameObject {
 	 * Simple rendering information of a game object.
 	 */
 	renderer: Renderer | null;
+
+	/**
+	 * Sounds associated with the current state of the game object.
+	 */
+	sounds: GameObjectSound[];
 }
 
 /**

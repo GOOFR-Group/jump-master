@@ -13,6 +13,7 @@ import (
 	"github.com/goofr-group/jump-master/engine/internal/config"
 	input "github.com/goofr-group/jump-master/engine/internal/game/action"
 	"github.com/goofr-group/jump-master/engine/internal/game/animation"
+	"github.com/goofr-group/jump-master/engine/internal/game/sound"
 )
 
 // Jump defines the structure of the jump behaviour.
@@ -21,8 +22,9 @@ type Jump struct {
 	actionManager *action.Manager
 	config        config.Jump
 
-	checkGround *CheckGround
-	animator    *Animator
+	checkGround     *CheckGround
+	animator        *Animator
+	soundController *SoundController
 
 	usedImpulse        float64 // Defines the previously used jump impulse.
 	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
@@ -36,13 +38,15 @@ func NewJump(
 	config config.Jump,
 	checkGround *CheckGround,
 	animator *Animator,
+	soundController *SoundController,
 ) Jump {
 	return Jump{
-		object:        object,
-		actionManager: actionManager,
-		config:        config,
-		checkGround:   checkGround,
-		animator:      animator,
+		object:          object,
+		actionManager:   actionManager,
+		config:          config,
+		checkGround:     checkGround,
+		animator:        animator,
+		soundController: soundController,
 
 		usedImpulse:        0,
 		accumulatedImpulse: 0,
@@ -105,6 +109,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 
 	b.object.RigidBody.AddAcceleration(velocity)
 	b.animator.SetAnimation(animation.Jump)
+	b.soundController.AddPlayerSound(sound.Jump)
 
 	// Reset the accumulated impulse and jump flag.
 	b.accumulatedImpulse = 0
@@ -134,7 +139,7 @@ func (b *Jump) Update(e *engine.Engine) error {
 	// Check if the jump action is being performed.
 	if b.actionManager.Action(input.Jump) {
 		// Apply the impulse multiplier and ensure that the accumulated impulse is not greater than the maximum defined.
-		b.accumulatedImpulse += b.config.Impulse * time.FixedDeltaTime
+		b.accumulatedImpulse += b.config.Impulse * time.DeltaTime
 		b.accumulatedImpulse = mathf.Min(b.accumulatedImpulse, b.config.MaxImpulse)
 
 		// Reset the horizontal velocity of the object when the jump action is being performed.

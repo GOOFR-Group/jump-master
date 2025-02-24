@@ -1,4 +1,10 @@
-import { createResource, onCleanup, onMount } from 'solid-js';
+import {
+	createResource,
+	createSignal,
+	onCleanup,
+	onMount,
+	type Accessor,
+} from 'solid-js';
 import { loadEngine } from '../../utils/engine';
 import type { Engine } from '../../domain/engine';
 import GameWorld from './game-world';
@@ -6,13 +12,16 @@ import type { Actions } from '../../domain/actions';
 import useActions from './use-actions';
 import type { ImageBySource } from '../../domain/image';
 import { loadAnimator } from './utils/animator';
+import SoundButton from './sound';
 
 function Canvas({
 	engine,
 	animator,
+	muted,
 }: {
 	engine: Engine;
 	animator: ImageBySource;
+	muted: Accessor<boolean>;
 }) {
 	let canvas!: HTMLCanvasElement;
 	const actions = useActions();
@@ -25,12 +34,13 @@ function Canvas({
 			return;
 		}
 
-		const gameWorld = new GameWorld(ctx, engine, animator);
+		const gameWorld = new GameWorld(ctx, engine, animator, muted());
 
 		let frame = requestAnimationFrame(step);
 
 		function step() {
 			frame = requestAnimationFrame(step);
+			gameWorld.muted = muted();
 			gameWorld.step(Object.entries(actions()) as Actions);
 		}
 
@@ -43,6 +53,7 @@ function Canvas({
 function Play() {
 	const [engine] = createResource(loadEngine);
 	const [animator] = createResource(loadAnimator);
+	const [muted, setMuted] = createSignal(false);
 
 	return (
 		<div class="flex h-full w-full flex-col items-center justify-center">
@@ -50,10 +61,13 @@ function Play() {
 			{engine.state === 'pending' ||
 				(animator.state === 'pending' && <p>Loading...</p>)}
 			{engine.state === 'errored' ||
-				(animator.state === 'errored' && <p>An unexpected error ocurred</p>)}
+				(animator.state === 'errored' && <p>An unexpected error occurred</p>)}
 			{engine.state === 'ready' && animator.state === 'ready' && (
-				<Canvas engine={engine()} animator={animator()} />
+				<Canvas engine={engine()} animator={animator()} muted={muted} />
 			)}
+			<div class="absolute left-2 top-2">
+				<SoundButton muted={muted} onClick={() => setMuted(prev => !prev)} />
+			</div>
 		</div>
 	);
 }
