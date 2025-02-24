@@ -19,7 +19,6 @@ class GameWorld {
 	#engine: Engine;
 
 	#animator: ImageBySource;
-	#sounds: SoundByName;
 
 	#muted: boolean;
 
