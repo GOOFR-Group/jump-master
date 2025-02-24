@@ -5,11 +5,11 @@ function Controls() {
 
 	return (
 		<div class="flex flex-col items-center gap-8">
-			<h2 class="drop-shadow-text text-4xl text-white">Controls</h2>
+			<h2 class="text-4xl text-white drop-shadow-text">Controls</h2>
 			<div class="flex items-center justify-center gap-2">
 				<div class="relative">
 					<div
-						class="drop-shadow-text absolute bottom-full left-1/2 -translate-x-1/2 text-white opacity-0 transition-all"
+						class="absolute bottom-full left-1/2 -translate-x-1/2 text-white opacity-0 drop-shadow-text transition-all"
 						classList={{ 'opacity-100 -translate-y-1': actions().Jump }}
 					>
 						Jump
@@ -23,7 +23,7 @@ function Controls() {
 
 				<div class="relative">
 					<div
-						class="drop-shadow-text absolute bottom-full left-1/2 -translate-x-1/2 text-white opacity-0 transition-all"
+						class="absolute bottom-full left-1/2 -translate-x-1/2 text-white opacity-0 drop-shadow-text transition-all"
 						classList={{ 'opacity-100 -translate-y-1': actions().Left }}
 					>
 						Left
@@ -37,7 +37,7 @@ function Controls() {
 
 				<div class="relative">
 					<div
-						class="drop-shadow-text absolute bottom-full left-1/2 -translate-x-1/2 text-white opacity-0 transition-all"
+						class="absolute bottom-full left-1/2 -translate-x-1/2 text-white opacity-0 drop-shadow-text transition-all"
 						classList={{ 'opacity-100 -translate-y-1': actions().Right }}
 					>
 						Right
