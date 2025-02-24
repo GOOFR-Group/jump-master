@@ -30,8 +30,8 @@ type Jump struct {
 	accumulatedImpulse float64 // Defines the current accumulated jump impulse.
 	canJump            bool    // Defines if the object is able to jump.
 
-	actionBufferBeforeJump []string
-	actionBufferAfterJump  []string
+	actionBufferBeforeJump []string // Defines the action buffer, in frames, to be considered before the jump action is performed.
+	actionBufferAfterJump  []string // Defines the action buffer, in frames, to be considered after the jump action is performed.
 }
 
 // NewJump returns a new jump behaviour with the given configuration.
@@ -102,7 +102,7 @@ func (b *Jump) FixedUpdate(_ *engine.Engine) error {
 		}
 	}
 
-	// Jump only if in action is taken within the expected action buffer.
+	// Jump only if an action is taken within the expected buffer.
 	if len(action) == 0 && len(b.actionBufferAfterJump) <= b.config.DirectionBuffer {
 		return nil
 	}
@@ -156,10 +156,6 @@ func (b *Jump) Update(e *engine.Engine) error {
 	}
 
 	// Save actions in the buffer.
-	for i := len(b.actionBufferBeforeJump) - 1; i > 0; i-- {
-		b.actionBufferBeforeJump[i] = b.actionBufferBeforeJump[i-1]
-	}
-
 	var action string
 
 	leftAction := b.actionManager.Action(input.Left)
@@ -170,7 +166,11 @@ func (b *Jump) Update(e *engine.Engine) error {
 		action = input.Right
 	}
 
+	for i := len(b.actionBufferBeforeJump) - 1; i > 0; i-- {
+		b.actionBufferBeforeJump[i] = b.actionBufferBeforeJump[i-1]
+	}
 	b.actionBufferBeforeJump[0] = action
+
 	if len(b.actionBufferAfterJump) <= b.config.DirectionBuffer {
 		b.actionBufferAfterJump = append(b.actionBufferAfterJump, action)
 	}

@@ -18,7 +18,7 @@ function Home() {
 
 					{engine.state === 'pending' && <p class="text-white">Loading...</p>}
 					{engine.state === 'errored' && (
-						<p class="text-white">An unexpected error ocurred</p>
+						<p class="text-white">An unexpected error occurred</p>
 					)}
 					{engine.state === 'ready' && <GameMenu />}
 				</div>
