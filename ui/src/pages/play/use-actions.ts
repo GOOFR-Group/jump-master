@@ -20,23 +20,23 @@ function useActions() {
 		switch (e.code) {
 			case 'ArrowLeft':
 			case 'KeyA':
-				setActions(prev => {
-					prev.Left = true;
-					return prev;
-				});
+				setActions(prev => ({
+					...prev,
+					Left: true,
+				}));
 				break;
 			case 'ArrowRight':
 			case 'KeyD':
-				setActions(prev => {
-					prev.Right = true;
-					return prev;
-				});
+				setActions(prev => ({
+					...prev,
+					Right: true,
+				}));
 				break;
 			case 'Space':
-				setActions(prev => {
-					prev.Jump = true;
-					return prev;
-				});
+				setActions(prev => ({
+					...prev,
+					Jump: true,
+				}));
 				break;
 		}
 	}
@@ -49,23 +49,23 @@ function useActions() {
 		switch (e.code) {
 			case 'ArrowLeft':
 			case 'KeyA':
-				setActions(prev => {
-					prev.Left = false;
-					return prev;
-				});
+				setActions(prev => ({
+					...prev,
+					Left: false,
+				}));
 				break;
 			case 'ArrowRight':
 			case 'KeyD':
-				setActions(prev => {
-					prev.Right = false;
-					return prev;
-				});
+				setActions(prev => ({
+					...prev,
+					Right: false,
+				}));
 				break;
 			case 'Space':
-				setActions(prev => {
-					prev.Jump = false;
-					return prev;
-				});
+				setActions(prev => ({
+					...prev,
+					Jump: false,
+				}));
 				break;
 		}
 	}

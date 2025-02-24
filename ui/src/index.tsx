@@ -1,6 +1,6 @@
 /* @refresh reload */
 import { render } from 'solid-js/web';
-import { Router, Route } from '@solidjs/router';
+import { MemoryRouter, Route } from '@solidjs/router';
 
 import './index.css';
 import Home from './pages/home/home';
@@ -10,10 +10,10 @@ const root = document.getElementById('root');
 
 render(
 	() => (
-		<Router>
+		<MemoryRouter>
 			<Route path="*" component={Home} />
 			<Route path="/play" component={Play} />
-		</Router>
+		</MemoryRouter>
 	),
 	root!,
 );
