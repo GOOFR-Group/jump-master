@@ -56,5 +56,11 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "jump-master.sln"
+    "dotnet.defaultSolution": "jump-master.sln",
+    "editor.rulers": [
+        {
+            "column": 120,
+            "color": "#8888881e"
+        }
+    ]
 }
