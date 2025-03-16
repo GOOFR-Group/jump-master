@@ -1,0 +1,94 @@
+.title {
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/PixelifySans-Regular.ttf?fileID=12800000&guid=65ce40e7c455c7b41bb1881080833ed6&type=3#PixelifySans-Regular");
+    font-size: 96px;
+    color: rgb(255, 255, 255);
+}
+
+.start-button {
+    width: 278px;
+    height: 86px;
+    background-image: url("project://database/Assets/UI/Images/Controls/Start/Default.png?fileID=-2369867600477939372&guid=d6187a116af8cdf4fa5f2ae12ce9471c&type=3#default_0");
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 32px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.start-button:hover {
+    background-image: url("project://database/Assets/UI/Images/Controls/Start/Pressed.png?fileID=4624140423664396058&guid=129c835ba71f39845b1c94f99fdbfe4e&type=3#pressed_0");
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.control-label {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&guid=3bab60800bfdc90458ca4518e2c7992f&type=3#PixelifySans-SemiBold");
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    font-size: 16px;
+    opacity: 0;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out-cubic;
+}
+
+.control-label-pressed {
+    position: absolute;
+    top: -24px;
+    opacity: 1;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out-cubic;
+}
+
+.space {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/UI/Images/Controls/Space/Default.png?fileID=-2369867600477939372&guid=fef4cd31cb760b4459704e90ab9fbb81&type=3#default_0");
+    width: 186px;
+    height: 58px;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.space-pressed {
+    background-image: url("project://database/Assets/UI/Images/Controls/Space/Pressed.png?fileID=4624140423664396058&guid=e6db906a228ddb645a640cc3fd74de57&type=3#pressed_0");
+}
+
+.left {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/UI/Images/Controls/Arrow%20Left/Default.png?fileID=-2369867600477939372&guid=8f567024ad0646245bfdc6f274a11f32&type=3#default_0");
+    width: 54px;
+    height: 58px;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.left-pressed {
+    background-image: url("project://database/Assets/UI/Images/Controls/Arrow%20Left/Pressed.png?fileID=4624140423664396058&guid=80f70adfe777b2a4abaa4eb87b421276&type=3#pressed_0");
+}
+
+.right {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/UI/Images/Controls/Arrow%20Right/Default.png?fileID=-2369867600477939372&guid=27daeafde1083d845ba3d5ecb97c9e1b&type=3#default_0");
+    width: 54px;
+    height: 58px;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.right-pressed {
+    background-image: url("project://database/Assets/UI/Images/Controls/Arrow%20Right/Pressed.png?fileID=4624140423664396058&guid=d1e20aed8d75ca9409c69fb8d989dd82&type=3#pressed_0");
+}
