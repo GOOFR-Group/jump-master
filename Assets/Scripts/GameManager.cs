@@ -18,4 +18,19 @@ public class GameManager : MonoBehaviour
     public const string INPUT_ACTION_MENU_LEFT = "Left";
     public const string INPUT_ACTION_MENU_RIGHT = "Right";
     public const string INPUT_ACTION_MENU_JUMP = "Jump";
+
+    /// <summary>
+    /// Toggles the time scale to pause or resume the game.
+    /// </summary>
+    public static void ToggleTimeScale()
+    {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
+    }
 }

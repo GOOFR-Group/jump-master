@@ -1,7 +1,3 @@
-.text-shadow {
-    text-shadow: 1.2px 1.2px 2px rgba(0, 0, 0, 0.8);
-}
-
 .title {
     -unity-font-definition: url("project://database/Assets/UI/Fonts/PixelifySans-Regular.ttf?fileID=12800000&guid=65ce40e7c455c7b41bb1881080833ed6&type=3#PixelifySans-Regular");
     font-size: 96px;
@@ -11,7 +7,7 @@
 .start-button {
     width: 278px;
     height: 86px;
-    background-image: url("project://database/Assets/UI/Controls/Start/Default.png?fileID=-2369867600477939372&guid=d6187a116af8cdf4fa5f2ae12ce9471c&type=3#default_0");
+    background-image: url("project://database/Assets/UI/Images/Controls/Start/Default.png?fileID=-2369867600477939372&guid=d6187a116af8cdf4fa5f2ae12ce9471c&type=3#default_0");
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
@@ -28,7 +24,7 @@
 }
 
 .start-button:hover {
-    background-image: url("project://database/Assets/UI/Controls/Start/Pressed.png?fileID=4624140423664396058&guid=129c835ba71f39845b1c94f99fdbfe4e&type=3#pressed_0");
+    background-image: url("project://database/Assets/UI/Images/Controls/Start/Pressed.png?fileID=4624140423664396058&guid=129c835ba71f39845b1c94f99fdbfe4e&type=3#pressed_0");
     background-color: rgba(0, 0, 0, 0);
 }
 
@@ -63,36 +59,36 @@
 
 .space {
     flex-grow: 1;
-    background-image: url("project://database/Assets/UI/Controls/Space/Default.png?fileID=-2369867600477939372&guid=fef4cd31cb760b4459704e90ab9fbb81&type=3#default_0");
+    background-image: url("project://database/Assets/UI/Images/Controls/Space/Default.png?fileID=-2369867600477939372&guid=fef4cd31cb760b4459704e90ab9fbb81&type=3#default_0");
     width: 186px;
     height: 58px;
     -unity-background-scale-mode: stretch-to-fill;
 }
 
 .space-pressed {
-    background-image: url("project://database/Assets/UI/Controls/Space/Pressed.png?fileID=4624140423664396058&guid=e6db906a228ddb645a640cc3fd74de57&type=3#pressed_0");
+    background-image: url("project://database/Assets/UI/Images/Controls/Space/Pressed.png?fileID=4624140423664396058&guid=e6db906a228ddb645a640cc3fd74de57&type=3#pressed_0");
 }
 
 .left {
     flex-grow: 1;
-    background-image: url("project://database/Assets/UI/Controls/Arrow%20Left/Default.png?fileID=-2369867600477939372&guid=8f567024ad0646245bfdc6f274a11f32&type=3#default_0");
+    background-image: url("project://database/Assets/UI/Images/Controls/Arrow%20Left/Default.png?fileID=-2369867600477939372&guid=8f567024ad0646245bfdc6f274a11f32&type=3#default_0");
     width: 54px;
     height: 58px;
     -unity-background-scale-mode: stretch-to-fill;
 }
 
 .left-pressed {
-    background-image: url("project://database/Assets/UI/Controls/Arrow%20Left/Pressed.png?fileID=4624140423664396058&guid=80f70adfe777b2a4abaa4eb87b421276&type=3#pressed_0");
+    background-image: url("project://database/Assets/UI/Images/Controls/Arrow%20Left/Pressed.png?fileID=4624140423664396058&guid=80f70adfe777b2a4abaa4eb87b421276&type=3#pressed_0");
 }
 
 .right {
     flex-grow: 1;
-    background-image: url("project://database/Assets/UI/Controls/Arrow%20Right/Default.png?fileID=-2369867600477939372&guid=27daeafde1083d845ba3d5ecb97c9e1b&type=3#default_0");
+    background-image: url("project://database/Assets/UI/Images/Controls/Arrow%20Right/Default.png?fileID=-2369867600477939372&guid=27daeafde1083d845ba3d5ecb97c9e1b&type=3#default_0");
     width: 54px;
     height: 58px;
     -unity-background-scale-mode: stretch-to-fill;
 }
 
 .right-pressed {
-    background-image: url("project://database/Assets/UI/Controls/Arrow%20Right/Pressed.png?fileID=4624140423664396058&guid=d1e20aed8d75ca9409c69fb8d989dd82&type=3#pressed_0");
+    background-image: url("project://database/Assets/UI/Images/Controls/Arrow%20Right/Pressed.png?fileID=4624140423664396058&guid=d1e20aed8d75ca9409c69fb8d989dd82&type=3#pressed_0");
 }
