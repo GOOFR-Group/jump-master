@@ -3,20 +3,23 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    [Header("Settings")]
+
     /// <summary>
     /// Defines the movement speed multiplier.
     /// </summary>
     [SerializeField] private float speed;
 
-    // Action status.
-    private bool leftActionStatus;
-    private bool jumpActionStatus;
-    private bool rightActionStatus;
+    [Header("Required Components")]
 
-    // Required components.
+    [SerializeField] private CheckPlatformContact checkGround;
     private SpriteRenderer spriteRenderer;
     private new Rigidbody2D rigidbody2D;
-    private CheckGround checkGround;
+
+    // Action status.
+    private bool leftActionStatus;
+    private bool rightActionStatus;
+    private bool jumpActionStatus;
 
     // Input actions.
     private InputAction moveAction;
@@ -26,26 +29,15 @@ public class Movement : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
-        checkGround = GetComponentInChildren<CheckGround>();
 
         moveAction = InputSystem.actions.FindAction(GameManager.INPUT_ACTION_MOVE);
         jumpAction = InputSystem.actions.FindAction(GameManager.INPUT_ACTION_JUMP);
     }
 
-    private void Update()
-    {
-        // Update the actions.
-        float moveValue = moveAction.ReadValue<float>();
-
-        leftActionStatus = moveValue < 0;
-        rightActionStatus = moveValue > 0;
-        jumpActionStatus = jumpAction.IsPressed();
-    }
-
     private void FixedUpdate()
     {
         // Check if the object is in contact with the ground.
-        if (!checkGround.IsTouchingGround() || rigidbody2D.linearVelocityY > Mathf.Epsilon)
+        if (!checkGround.IsTouchingPlatform() || rigidbody2D.linearVelocityY > Mathf.Epsilon)
         {
             return;
         }
@@ -75,5 +67,15 @@ public class Movement : MonoBehaviour
 
         // Add the computed velocity when the movement actions are performed.
         rigidbody2D.linearVelocityX = direction * speed * Time.fixedDeltaTime;
+    }
+
+    private void Update()
+    {
+        // Update the input actions.
+        float moveValue = moveAction.ReadValue<float>();
+
+        leftActionStatus = moveValue < 0;
+        rightActionStatus = moveValue > 0;
+        jumpActionStatus = jumpAction.IsPressed();
     }
 }
