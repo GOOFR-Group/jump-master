@@ -28,8 +28,8 @@ public class Movement : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         checkGround = GetComponentInChildren<CheckGround>();
 
-        moveAction = InputSystem.actions.FindAction(GameManager.INPUT_ACTION_MOVE);
-        jumpAction = InputSystem.actions.FindAction(GameManager.INPUT_ACTION_JUMP);
+        moveAction = InputSystem.actions.FindAction(GameManager.INPUT_ACTION_PLAYER_MOVE);
+        jumpAction = InputSystem.actions.FindAction(GameManager.INPUT_ACTION_PLAYER_JUMP);
     }
 
     private void Update()

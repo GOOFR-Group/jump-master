@@ -1,0 +1,29 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MenuStyle.uss?fileID=7433441132597879392&amp;guid=25439515ffc3d5d4c932a78ce81e97ea&amp;type=3#MenuStyle" />
+    <engine:VisualElement style="align-items: center; flex-grow: 1; justify-content: center; padding-top: 64px; padding-bottom: 64px;">
+        <engine:VisualElement name="VisualElement" enabled="true" style="position: absolute; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/UI/Images/Backgrounds/Background%200.png?fileID=950357109876096941&amp;guid=128a6876aa2e29d40a2a829f98a1aac7&amp;type=3#background-0_0&quot;); -unity-background-scale-mode: scale-to-fit; background-position-y: bottom 0; opacity: 1; display: flex; background-size: contain; background-position-x: center 0;" />
+        <engine:VisualElement name="VisualElement" enabled="true" style="flex-grow: 1; position: absolute; top: auto; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/UI/Images/Backgrounds/Background%201.png?fileID=3122554069134578626&amp;guid=23fc492844f23d548b99219b0f925821&amp;type=3#background-1_0&quot;); -unity-background-scale-mode: scale-to-fit; background-position-y: bottom 0; opacity: 1; display: flex;" />
+        <engine:VisualElement name="VisualElement" enabled="true" style="flex-grow: 1; position: absolute; top: auto; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/UI/Images/Backgrounds/Background%202.png?fileID=6852161910764687709&amp;guid=f28b014c31967c54097e6656fd2e4106&amp;type=3#background-2_0&quot;); -unity-background-scale-mode: scale-to-fit; background-position-y: bottom 0; opacity: 1; display: flex;" />
+        <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+            <engine:Label text="Jump Master" class="title text-shadow" />
+            <engine:Button name="StartButton" class="start-button" />
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 0; justify-content: flex-start; align-items: center;">
+            <engine:Label text="Controls" class="controls text-shadow" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&amp;guid=3bab60800bfdc90458ca4518e2c7992f&amp;type=3#PixelifySans-SemiBold&quot;); color: rgb(255, 255, 255); font-size: 40px; margin-top: 0; margin-right: 0; margin-bottom: 32px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; align-self: stretch;">
+                <engine:VisualElement style="flex-grow: 1;">
+                    <engine:Label text="Jump" name="SpaceLabel" class="text-shadow control-label" />
+                    <engine:VisualElement name="Space" class="space" />
+                </engine:VisualElement>
+                <engine:VisualElement style="flex-grow: 1; margin-left: 8px;">
+                    <engine:Label text="Left" name="LeftLabel" class="text-shadow control-label" />
+                    <engine:VisualElement name="Left" class="left" />
+                </engine:VisualElement>
+                <engine:VisualElement style="flex-grow: 1; margin-left: 8px;">
+                    <engine:Label text="Right" name="RightLabel" class="text-shadow control-label" />
+                    <engine:VisualElement name="Right" class="right" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
