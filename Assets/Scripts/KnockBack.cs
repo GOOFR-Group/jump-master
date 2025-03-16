@@ -19,6 +19,7 @@ public class KnockBack : MonoBehaviour
 
     [SerializeField] private CheckPlatformContact checkCeiling;
     [SerializeField] private CheckPlatformContact checkGround;
+    private Animator animator;
     private new Rigidbody2D rigidbody2D;
     private Jump jump;
 
@@ -36,6 +37,7 @@ public class KnockBack : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         jump = GetComponent<Jump>();
     }
@@ -90,6 +92,7 @@ public class KnockBack : MonoBehaviour
         // Apply the knock-back velocity based on the computed rotation and impulse.
         Vector2 velocity = direction * impulse;
         rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
+        animator.Play(GameManager.ANIMATION_PLAYER_KNOCK_BACK);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -99,7 +102,6 @@ public class KnockBack : MonoBehaviour
         {
             return;
         }
-
 
         // Set the current platform as false since it is not touching the object anymore.
         int instanceID = collision.gameObject.GetInstanceID();

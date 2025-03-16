@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private CheckPlatformContact checkGround;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
     private new Rigidbody2D rigidbody2D;
 
     // Action status.
@@ -28,6 +29,7 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
 
         moveAction = InputSystem.actions.FindAction(GameManager.INPUT_ACTION_MOVE);
@@ -38,6 +40,14 @@ public class Movement : MonoBehaviour
     {
         // Check if the object is in contact with the ground.
         if (!checkGround.IsTouchingPlatform() || rigidbody2D.linearVelocityY > Mathf.Epsilon)
+        {
+            return;
+        }
+
+        // Check if the fall animation has already ended.
+        AnimatorStateInfo currentAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (currentAnimatorStateInfo.IsName(GameManager.ANIMATION_PLAYER_FALL) && currentAnimatorStateInfo.normalizedTime < 1)
         {
             return;
         }
@@ -57,16 +67,29 @@ public class Movement : MonoBehaviour
             spriteRenderer.flipX = false;
         }
 
-        // Reset the horizontal velocity of the object 
-        // when no movement action is performed or the jump action is being performed.
-        if (direction == 0 || jumpActionStatus)
+        // Check if the jump action is being performed.
+        if (jumpActionStatus)
+        {
+            return;
+        }
+
+        // Reset the horizontal velocity of the object when no movement action is performed.
+        if (direction == 0)
         {
             rigidbody2D.linearVelocityX = 0;
+
+            // Do not perform the idle animation when the fall animation is being played.
+            if (!currentAnimatorStateInfo.IsName(GameManager.ANIMATION_PLAYER_FALL))
+            {
+                animator.Play(GameManager.ANIMATION_PLAYER_IDLE);
+            }
+
             return;
         }
 
         // Add the computed velocity when the movement actions are performed.
         rigidbody2D.linearVelocityX = direction * speed * Time.fixedDeltaTime;
+        animator.Play(GameManager.ANIMATION_PLAYER_WALK);
     }
 
     private void Update()

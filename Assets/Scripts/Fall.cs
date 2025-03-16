@@ -12,6 +12,7 @@ public class Fall : MonoBehaviour
     [Header("Required Components")]
 
     [SerializeField] private CheckPlatformContact checkGround;
+    private Animator animator;
     private new Rigidbody2D rigidbody2D;
 
     /// <summary>
@@ -21,6 +22,7 @@ public class Fall : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -38,6 +40,7 @@ public class Fall : MonoBehaviour
         if (timer > allowedDuration)
         {
             rigidbody2D.linearVelocityX = 0;
+            animator.Play(GameManager.ANIMATION_PLAYER_FALL);
         }
 
         // Reset the timer.

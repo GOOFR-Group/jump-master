@@ -797,9 +797,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118ec6a3033c09f40beb09e2e6214ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulse: 300
+  impulse: 100
   minImpulse: 100
-  maxImpulse: 1000
+  maxImpulse: 130
   minDiagonalAngle: 45
   maxDiagonalAngle: 75
   directionBuffer: 100
