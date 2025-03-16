@@ -21,7 +21,6 @@ public class MenuEvents : MonoBehaviour
     private InputAction rightAction;
     private InputAction jumpAction;
 
-
     // UI element names.
     private const string START_BUTTON_NAME = "StartButton";
     private const string SPACE_NAME = "Space";
