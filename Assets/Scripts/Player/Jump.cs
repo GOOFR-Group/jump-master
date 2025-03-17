@@ -39,6 +39,7 @@ public class Jump : MonoBehaviour
     [Header("Required Components")]
 
     [SerializeField] private CheckPlatformContact checkGround;
+    private Animator animator;
     private new Rigidbody2D rigidbody2D;
 
     /// <summary>
@@ -77,6 +78,7 @@ public class Jump : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
 
         moveAction = InputSystem.actions.FindActionMap(GameManager.INPUT_ACTION_MAP_PLAYER).FindAction(GameManager.INPUT_ACTION_PLAYER_MOVE);
@@ -97,6 +99,12 @@ public class Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Check if the object is falling.
+        if (rigidbody2D.linearVelocity.y < -Mathf.Epsilon && !checkGround.IsTouchingPlatform())
+        {
+            animator.Play(GameManager.ANIMATION_PLAYER_JUMP_FALL);
+        }
+
         // Check if the object can jump.
         if (!canJump)
         {
@@ -163,6 +171,7 @@ public class Jump : MonoBehaviour
         Vector2 velocity = direction * accumulatedImpulse;
 
         rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
+        animator.Play(GameManager.ANIMATION_PLAYER_JUMP);
 
         // Reset the accumulated impulse and jump flag.
         accumulatedImpulse = 0;
@@ -186,7 +195,10 @@ public class Jump : MonoBehaviour
         }
 
         // Check if the object is in contact with the ground and if the fall animation has already ended.
-        if (!checkGround.IsTouchingPlatform())
+        AnimatorStateInfo currentAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (!checkGround.IsTouchingPlatform() ||
+        (currentAnimatorStateInfo.IsName(GameManager.ANIMATION_PLAYER_FALL) && currentAnimatorStateInfo.normalizedTime < 1))
         {
             accumulatedImpulse = 0;
             return;
@@ -201,6 +213,7 @@ public class Jump : MonoBehaviour
 
             // Reset the horizontal velocity of the object when the jump action is being performed.
             rigidbody2D.linearVelocityX = 0;
+            animator.Play(GameManager.ANIMATION_PLAYER_JUMP_HOLD);
         }
 
         // Check if the jump action was released.
