@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/GameStyle.uss?fileID=7433441132597879392&amp;guid=c9fc1a3a83134a645b3c4e8e1c311ff6&amp;type=3#GameStyle" />
     <Style src="project://database/Assets/UI%20Toolkit/CommonStyle.uss?fileID=7433441132597879392&amp;guid=018d986474e46fd4ca42504ff9d9892e&amp;type=3#CommonStyle" />
     <engine:VisualElement name="PausedPanel" class="paused-panel" style="background-color: rgba(255, 255, 255, 0.1); -unity-background-image-tint-color: rgba(255, 255, 255, 0.1);">
-        <engine:Label text="Paused" class="text-shadow" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&amp;guid=3bab60800bfdc90458ca4518e2c7992f&amp;type=3#PixelifySans-SemiBold&quot;); font-size: 32px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+        <engine:Label text="Paused" class="text-shadow" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&amp;guid=3bab60800bfdc90458ca4518e2c7992f&amp;type=3#PixelifySans-SemiBold&quot;); font-size: 48px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
     </engine:VisualElement>
     <engine:VisualElement style="flex-grow: 1; flex-direction: row; margin-top: 8px; margin-left: 8px; margin-bottom: 8px; margin-right: 8px;">
         <engine:Button name="PauseResumeButton" class="pause-resume-button" />
