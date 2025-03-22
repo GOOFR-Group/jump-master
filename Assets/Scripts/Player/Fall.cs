@@ -32,6 +32,12 @@ public class Fall : MonoBehaviour
 
     private void Update()
     {
+        // Check if the game is paused.
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         // Check if the object is falling.
         if (rigidbody2D.linearVelocity.y < -Mathf.Epsilon && !checkGround.IsTouchingPlatform())
         {
