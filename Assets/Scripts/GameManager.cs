@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public const string INPUT_ACTION_MENU_LEFT = "Left";
     public const string INPUT_ACTION_MENU_RIGHT = "Right";
     public const string INPUT_ACTION_MENU_JUMP = "Jump";
+    public const string INPUT_ACTION_MENU_PAUSE = "Pause";
 
     // Audio constants.
     public const string AUDIO_MIXER_MASTER_VOLUME = "Volume";
