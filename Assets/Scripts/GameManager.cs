@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public const string ANIMATION_PLAYER_FALL = "Fall";
 
     // Tag constants.
+    public const string TAG_PLAYER = "Player";
     public const string TAG_PLATFORM = "Platform";
 
     // Action constants.
