@@ -94,6 +94,12 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        // Check if the game is paused.
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         // Update the input actions.
         float moveValue = moveAction.ReadValue<float>();
 

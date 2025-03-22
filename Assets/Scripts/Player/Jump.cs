@@ -39,8 +39,10 @@ public class Jump : MonoBehaviour
     [Header("Required Components")]
 
     [SerializeField] private CheckPlatformContact checkGround;
+    [SerializeField] private AudioClip audioClip;
     private Animator animator;
     private new Rigidbody2D rigidbody2D;
+    private AudioSource audioSource;
 
     /// <summary>
     ///  Defines the previously used jump impulse.
@@ -60,17 +62,12 @@ public class Jump : MonoBehaviour
     /// <summary>
     /// Defines the action buffer, in frames, to be considered before the jump action is performed.
     /// </summary>
-    private List<float> actionBufferBeforeJump = new();
+    private readonly List<float> actionBufferBeforeJump = new();
 
     /// <summary>
     /// Defines the action buffer, in frames, to be considered after the jump action is performed.
     /// </summary>
     private List<float> actionBufferAfterJump = new();
-
-    // Action status.
-    private bool leftActionStatus;
-    private bool rightActionStatus;
-    private bool jumpActionStatus;
 
     // Input actions.
     private InputAction moveAction;
@@ -80,6 +77,7 @@ public class Jump : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
         moveAction = InputSystem.actions.FindActionMap(GameManager.INPUT_ACTION_MAP_PLAYER).FindAction(GameManager.INPUT_ACTION_PLAYER_MOVE);
         jumpAction = InputSystem.actions.FindActionMap(GameManager.INPUT_ACTION_MAP_PLAYER).FindAction(GameManager.INPUT_ACTION_PLAYER_JUMP);
@@ -172,6 +170,8 @@ public class Jump : MonoBehaviour
 
         rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
         animator.Play(GameManager.ANIMATION_PLAYER_JUMP);
+        audioSource.clip = audioClip;
+        audioSource.Play();
 
         // Reset the accumulated impulse and jump flag.
         accumulatedImpulse = 0;
@@ -180,6 +180,12 @@ public class Jump : MonoBehaviour
 
     private void Update()
     {
+        // Check if the game is paused.
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         // Save actions in the buffer.
         float moveValue = moveAction.ReadValue<float>();
 
