@@ -19,9 +19,11 @@ public class KnockBack : MonoBehaviour
 
     [SerializeField] private CheckPlatformContact checkCeiling;
     [SerializeField] private CheckPlatformContact checkGround;
+    [SerializeField] private AudioClip audioClip;
     private Animator animator;
     private new Rigidbody2D rigidbody2D;
     private Jump jump;
+    private AudioSource audioSource;
 
     /// <summary>
     /// Defines the map of platform objects that the current object is in contact with. 
@@ -40,6 +42,7 @@ public class KnockBack : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         jump = GetComponent<Jump>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -93,6 +96,8 @@ public class KnockBack : MonoBehaviour
         Vector2 velocity = direction * impulse;
         rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
         animator.Play(GameManager.ANIMATION_PLAYER_KNOCK_BACK);
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 
     private void OnCollisionExit2D(Collision2D collision)

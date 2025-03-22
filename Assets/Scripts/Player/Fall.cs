@@ -12,8 +12,11 @@ public class Fall : MonoBehaviour
     [Header("Required Components")]
 
     [SerializeField] private CheckPlatformContact checkGround;
+    [SerializeField] private AudioClip audioClipFall;
+    [SerializeField] private AudioClip audioClipLanding;
     private Animator animator;
     private new Rigidbody2D rigidbody2D;
+    private AudioSource audioSource;
 
     /// <summary>
     /// Defines the timer that captures the amount of time the object is falling.
@@ -24,6 +27,7 @@ public class Fall : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -41,6 +45,13 @@ public class Fall : MonoBehaviour
         {
             rigidbody2D.linearVelocityX = 0;
             animator.Play(GameManager.ANIMATION_PLAYER_FALL);
+            audioSource.clip = audioClipFall;
+            audioSource.Play();
+        }
+        else if (timer > 0 && checkGround.IsTouchingPlatform())
+        {
+            audioSource.clip = audioClipLanding;
+            audioSource.Play();
         }
 
         // Reset the timer.

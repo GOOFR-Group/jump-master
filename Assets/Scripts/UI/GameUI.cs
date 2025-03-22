@@ -1,8 +1,13 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UIElements;
 
 public class GameUI : MonoBehaviour
 {
+    [Header("Required Components")]
+
+    [SerializeField] private AudioMixer audioMixerSfx;
+
     // UI elements.
     private VisualElement pausedPanel;
     private Button pauseResumeButton;
@@ -58,6 +63,14 @@ public class GameUI : MonoBehaviour
     private void OnSoundButtonClick(ClickEvent clickEvent)
     {
         soundButton.ToggleInClassList(SOUND_MUTED_CLASS_NAME);
-        // TODO: Implement sound logic.
+
+        if (audioMixerSfx.GetFloat(GameManager.AUDIO_MIXER_MASTER_VOLUME, out float volume) && volume == 0)
+        {
+            audioMixerSfx.SetFloat(GameManager.AUDIO_MIXER_MASTER_VOLUME, -80);
+        }
+        else
+        {
+            audioMixerSfx.ClearFloat(GameManager.AUDIO_MIXER_MASTER_VOLUME);
+        }
     }
 }

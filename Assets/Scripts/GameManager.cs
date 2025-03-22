@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     public const string INPUT_ACTION_MENU_RIGHT = "Right";
     public const string INPUT_ACTION_MENU_JUMP = "Jump";
 
+    // Audio constants.
+    public const string AUDIO_MIXER_MASTER_VOLUME = "Volume";
+
     /// <summary>
     /// Toggles the time scale to pause or resume the game.
     /// </summary>
