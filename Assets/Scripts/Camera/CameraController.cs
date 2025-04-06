@@ -18,23 +18,23 @@ public class CameraController : MonoBehaviour
     /// Defines the current amount, in the range [0; 1], that has been transitioned from the previousPosition to the 
     /// currentPosition.
     /// </summary>
-    float currentTransition;
+    private float currentTransition;
 
     /// <summary>
     /// Defines the camera initial position.
     /// </summary>
-    Vector3 initialPosition;
+    private Vector3 initialPosition;
 
     /// <summary>
     /// Defines the previous position of the camera.
     /// </summary>
-    Vector3 previousPosition;
+    private Vector3 previousPosition;
 
     /// <summary>
     /// Defines the current position of the camera. 
     /// It represents the target position of the current level.
     /// </summary>
-    Vector3 currentPosition;
+    private Vector3 currentPosition;
 
     private void Awake()
     {
