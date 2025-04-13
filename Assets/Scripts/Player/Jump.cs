@@ -84,7 +84,7 @@ public class Jump : MonoBehaviour
     /// <summary>
     /// Defines the action buffer, in frames, to be considered after the jump action is performed.
     /// </summary>
-    private Queue<float> actionBufferAfterJump = new();
+    private readonly Queue<float> actionBufferAfterJump = new();
 
     // Input actions.
     private InputAction moveAction;
@@ -196,7 +196,9 @@ public class Jump : MonoBehaviour
         usedImpulse = accumulatedImpulse;
         Vector2 velocity = direction * accumulatedImpulse;
 
+        rigidbody2D.linearVelocityX = 0;
         rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
+
         animator.Play(GameManager.ANIMATION_PLAYER_JUMP);
         audioSource.clip = audioClip;
         audioSource.Play();
@@ -259,8 +261,6 @@ public class Jump : MonoBehaviour
             accumulatedImpulse += impulse * Time.deltaTime;
             accumulatedImpulse = Mathf.Min(accumulatedImpulse, maxImpulse);
 
-            // Reset the horizontal velocity of the object when the jump action is being performed.
-            rigidbody2D.linearVelocityX = 0;
             animator.Play(GameManager.ANIMATION_PLAYER_JUMP_HOLD);
         }
 

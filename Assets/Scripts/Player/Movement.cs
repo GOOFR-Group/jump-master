@@ -70,6 +70,7 @@ public class Movement : MonoBehaviour
         // Check if the jump action is being performed.
         if (jumpActionStatus)
         {
+            rigidbody2D.linearVelocityX = 0;
             return;
         }
 
