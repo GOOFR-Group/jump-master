@@ -46,6 +46,7 @@ public class Jump : MonoBehaviour
 
     [SerializeField] private CheckPlatformContact checkGround;
     [SerializeField] private AudioClip audioClip;
+    private SpriteRenderer spriteRenderer;
     private Animator animator;
     private new Rigidbody2D rigidbody2D;
     private AudioSource audioSource;
@@ -91,6 +92,7 @@ public class Jump : MonoBehaviour
 
     private void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
@@ -133,6 +135,17 @@ public class Jump : MonoBehaviour
             if (a != 0)
             {
                 action = a;
+
+                // Override sprite flip when an action after the jump is considered.
+                if (action < 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+                else if (action > 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
+
                 break;
             }
         }

@@ -320,7 +320,7 @@ MonoBehaviour:
   maxImpulse: 265
   minDiagonalAngle: 5
   maxDiagonalAngle: 65
-  actionBufferTimeBeforeJump: 1
+  actionBufferTimeBeforeJump: 0.5
   actionBufferTimeAfterJump: 0.2
   checkGround: {fileID: 7754035497715746646}
   audioClip: {fileID: 8300000, guid: bc87480b15d621e4f8002a362ea8345a, type: 3}
