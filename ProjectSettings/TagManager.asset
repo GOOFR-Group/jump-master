@@ -42,5 +42,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 852558969
+    locked: 0
+  - name: Prop Background
+    uniqueID: 988848899
+    locked: 0
+  - name: Player
+    uniqueID: 4211612461
+    locked: 0
+  - name: Props Foreground
+    uniqueID: 129921719
+    locked: 0
+  - name: Platform
+    uniqueID: 493927493
+    locked: 0
+  - name: Water
+    uniqueID: 1993678723
+    locked: 0
   m_RenderingLayers:
   - Default

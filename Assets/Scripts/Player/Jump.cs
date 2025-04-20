@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,14 +33,20 @@ public class Jump : MonoBehaviour
     [SerializeField] private float maxDiagonalAngle;
 
     /// <summary>
-    /// Defines the length of the buffer of directions to be considered before and after the jump.
+    /// Defines the buffer, in seconds, of actions to be considered before the jump.
     /// </summary>
-    [SerializeField] private int directionBuffer;
+    [SerializeField] private float actionBufferTimeBeforeJump;
+
+    /// <summary>
+    /// Defines the buffer, in seconds, of actions to be considered after the jump.
+    /// </summary>
+    [SerializeField] private float actionBufferTimeAfterJump;
 
     [Header("Required Components")]
 
     [SerializeField] private CheckPlatformContact checkGround;
     [SerializeField] private AudioClip audioClip;
+    private SpriteRenderer spriteRenderer;
     private Animator animator;
     private new Rigidbody2D rigidbody2D;
     private AudioSource audioSource;
@@ -60,14 +67,24 @@ public class Jump : MonoBehaviour
     private bool canJump;
 
     /// <summary>
+    /// Defines the current buffer, in seconds, of actions to be considered before the jump.
+    /// </summary>
+    private float currentActionBufferTimeBeforeJump;
+
+    /// <summary>
+    /// Defines the current buffer, in seconds, of actions to be considered after the jump.
+    /// </summary>
+    private float currentActionBufferTimeAfterJump;
+
+    /// <summary>
     /// Defines the action buffer, in frames, to be considered before the jump action is performed.
     /// </summary>
-    private readonly List<float> actionBufferBeforeJump = new();
+    private readonly Queue<float> actionBufferBeforeJump = new();
 
     /// <summary>
     /// Defines the action buffer, in frames, to be considered after the jump action is performed.
     /// </summary>
-    private List<float> actionBufferAfterJump = new();
+    private readonly Queue<float> actionBufferAfterJump = new();
 
     // Input actions.
     private InputAction moveAction;
@@ -75,6 +92,7 @@ public class Jump : MonoBehaviour
 
     private void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
@@ -89,10 +107,8 @@ public class Jump : MonoBehaviour
         accumulatedImpulse = 0;
         canJump = false;
 
-        for (int i = 0; i < directionBuffer; i++)
-        {
-            actionBufferBeforeJump.Add(0);
-        }
+        currentActionBufferTimeBeforeJump = actionBufferTimeBeforeJump;
+        currentActionBufferTimeAfterJump = 0;
     }
 
     private void FixedUpdate()
@@ -110,32 +126,44 @@ public class Jump : MonoBehaviour
         }
 
         // Get action from the buffer.
+        // Start by searching for the action in the buffer after the jump because it is the most recent.
+        // If no action is found, search in the buffer before the jump.
         float action = 0;
 
-        foreach (var a in actionBufferBeforeJump)
+        foreach (var a in actionBufferAfterJump.Reverse())
         {
             if (a != 0)
             {
                 action = a;
+
+                // Override sprite flip when an action after the jump is considered.
+                if (action < 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+                else if (action > 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
+
                 break;
             }
         }
 
         if (action == 0)
         {
-            foreach (var a in actionBufferAfterJump)
+            foreach (var a in actionBufferBeforeJump.Reverse())
             {
-                if (a == 0)
+                if (a != 0)
                 {
-                    continue;
+                    action = a;
+                    break;
                 }
-
-                action = a;
             }
         }
 
         // Jump only if an action is taken within the expected buffer.
-        if (action == 0 && actionBufferAfterJump.Count <= directionBuffer)
+        if (action == 0 && currentActionBufferTimeAfterJump > 0)
         {
             return;
         }
@@ -168,7 +196,9 @@ public class Jump : MonoBehaviour
         usedImpulse = accumulatedImpulse;
         Vector2 velocity = direction * accumulatedImpulse;
 
+        rigidbody2D.linearVelocityX = 0;
         rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
+
         animator.Play(GameManager.ANIMATION_PLAYER_JUMP);
         audioSource.clip = audioClip;
         audioSource.Play();
@@ -176,6 +206,10 @@ public class Jump : MonoBehaviour
         // Reset the accumulated impulse and jump flag.
         accumulatedImpulse = 0;
         canJump = false;
+
+        // Reset the buffer.
+        currentActionBufferTimeAfterJump = 0;
+        actionBufferAfterJump.Clear();
     }
 
     private void Update()
@@ -186,18 +220,28 @@ public class Jump : MonoBehaviour
             return;
         }
 
+        // Update current timers.
+        if (currentActionBufferTimeBeforeJump > 0)
+        {
+            currentActionBufferTimeBeforeJump -= Time.deltaTime;
+        }
+        if (currentActionBufferTimeAfterJump > 0)
+        {
+            currentActionBufferTimeAfterJump -= Time.deltaTime;
+        }
+
         // Save actions in the buffer.
         float moveValue = moveAction.ReadValue<float>();
 
-        for (int i = actionBufferBeforeJump.Count - 1; i > 0; i--)
+        actionBufferBeforeJump.Enqueue(moveValue);
+        if (currentActionBufferTimeBeforeJump <= 0)
         {
-            actionBufferBeforeJump[i] = actionBufferBeforeJump[i - 1];
+            actionBufferBeforeJump.Dequeue();
         }
-        actionBufferBeforeJump[0] = moveValue;
 
-        if (actionBufferAfterJump.Count <= directionBuffer)
+        if (currentActionBufferTimeAfterJump > 0)
         {
-            actionBufferAfterJump.Add(moveValue);
+            actionBufferAfterJump.Enqueue(moveValue);
         }
 
         // Check if the object is in contact with the ground and if the fall animation has already ended.
@@ -217,8 +261,6 @@ public class Jump : MonoBehaviour
             accumulatedImpulse += impulse * Time.deltaTime;
             accumulatedImpulse = Mathf.Min(accumulatedImpulse, maxImpulse);
 
-            // Reset the horizontal velocity of the object when the jump action is being performed.
-            rigidbody2D.linearVelocityX = 0;
             animator.Play(GameManager.ANIMATION_PLAYER_JUMP_HOLD);
         }
 
@@ -227,7 +269,9 @@ public class Jump : MonoBehaviour
         {
             // The object is able to jump
             canJump = true;
-            actionBufferAfterJump = new(directionBuffer);
+
+            // Reset the action buffer after the jump.
+            currentActionBufferTimeAfterJump = actionBufferTimeAfterJump;
         }
     }
 
