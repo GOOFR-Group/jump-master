@@ -8,5 +8,8 @@
     <engine:VisualElement name="VisualElement" style="margin-top: 16px; margin-left: 16px; margin-bottom: 16px; margin-right: 16px; flex-direction: row;">
         <engine:Button name="PauseResumeButton" class="pause-resume-button button-animation" />
         <engine:Button name="SoundButton" class="sound-button button-animation" style="margin-left: 16px;" />
+        <engine:VisualElement name="VisualElement" style="flex-grow: 1; align-items: flex-end; justify-content: center;">
+            <engine:Label text="00:00" name="TimerLabel" class="timer text-shadow" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

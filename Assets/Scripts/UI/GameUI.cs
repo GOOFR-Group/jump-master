@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour
     [Header("Required Components")]
 
     [SerializeField] private AudioManager audioManager;
+    [SerializeField] private TimeManager timeManager;
 
     // Input actions.
     private InputAction pauseAction;
@@ -17,12 +18,14 @@ public class GameUI : MonoBehaviour
     private Button pauseResumeButton;
     private Button soundButton;
     private Button restartButton;
+    private Label timerLabel;
 
     // UI element names.
     private const string PAUSED_PANEL_NAME = "PausedPanel";
     private const string PAUSE_RESUME_BUTTON_NAME = "PauseResumeButton";
     private const string SOUND_BUTTON_NAME = "SoundButton";
     private const string RESTART_BUTTON_NAME = "RestartButton";
+    private const string TIMER_LABEL_NAME = "TimerLabel";
 
     // UI class names.
     private const string PAUSED_PANEL_REVEAL_CLASS_NAME = "paused-panel-reveal";
@@ -40,6 +43,7 @@ public class GameUI : MonoBehaviour
         pauseResumeButton = uiDocument.rootVisualElement.Q<Button>(PAUSE_RESUME_BUTTON_NAME);
         soundButton = uiDocument.rootVisualElement.Q<Button>(SOUND_BUTTON_NAME);
         restartButton = uiDocument.rootVisualElement.Q<Button>(RESTART_BUTTON_NAME);
+        timerLabel = uiDocument.rootVisualElement.Q<Label>(TIMER_LABEL_NAME);
     }
 
     private void OnEnable()
@@ -68,6 +72,12 @@ public class GameUI : MonoBehaviour
         UpdateSoundButton();
     }
 
+    private void LateUpdate()
+    {
+        // Update the timer label with the current timer value.
+        UpdateTimer();
+    }
+
     /// <summary>
     /// Toggles the pause menu visibility.
     /// </summary>
@@ -90,6 +100,14 @@ public class GameUI : MonoBehaviour
         {
             soundButton.RemoveFromClassList(SOUND_MUTED_CLASS_NAME);
         }
+    }
+
+    /// <summary>
+    /// Updates the timer label with the current timer value.
+    /// </summary>
+    private void UpdateTimer()
+    {
+        timerLabel.text = TimeManager.FormatTime(timeManager.Timer);
     }
 
     /// <summary>

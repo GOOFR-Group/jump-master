@@ -57,4 +57,20 @@
 
 .paused-panel-reveal {
     display: flex;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.timer {
+    -unity-text-align: middle-left;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&guid=3bab60800bfdc90458ca4518e2c7992f&type=3#PixelifySans-SemiBold");
+    font-size: 42px;
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
 }
