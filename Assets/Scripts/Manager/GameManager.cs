@@ -33,9 +33,11 @@ public class GameManager : MonoBehaviour
 
     // Events.
     public static event System.Action OnTimeScaleToggled;
+    public static event System.Action OnGameEnded;
 
     /// <summary>
     /// Toggles the time scale to pause or resume the game.
+    /// Also invokes the OnTimeScaleToggled event.
     /// </summary>
     public static void ToggleTimeScale()
     {
@@ -58,5 +60,13 @@ public class GameManager : MonoBehaviour
     public static bool IsGamePaused()
     {
         return Time.timeScale == 0;
+    }
+
+    /// <summary>
+    /// Ends the game by invoking the OnGameEnded event.
+    /// </summary>
+    public static void EndGame()
+    {
+        OnGameEnded?.Invoke();
     }
 }

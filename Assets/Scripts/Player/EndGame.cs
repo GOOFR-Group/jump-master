@@ -6,7 +6,7 @@ public class EndGame : MonoBehaviour
     [Header("Settings")]
 
     /// <summary>
-    /// Defines the amount of time to wait before ending the game and showing the pause menu.
+    /// Defines the amount of time to wait before calling the end game function.
     /// </summary>
     [SerializeField] private float delay;
 
@@ -23,18 +23,14 @@ public class EndGame : MonoBehaviour
     }
 
     /// <summary>
-    /// Waits for a specified amount of time before ending the game and showing the pause menu.
+    /// Waits for a specified amount of time before ending the game.
     /// </summary>
+    /// <param name="delay">The amount of time to wait before ending the game.</param>
     /// <returns>IEnumerator</returns>
     private IEnumerator DelayedEndGame(float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // Check if the game is not paused.
-        if (!GameManager.IsGamePaused())
-        {
-            // Pause the game and show the pause menu.
-            GameManager.ToggleTimeScale();
-        }
+        GameManager.EndGame();
     }
 }
