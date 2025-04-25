@@ -215,7 +215,7 @@ public class Jump : MonoBehaviour
     private void Update()
     {
         // Check if the game is paused.
-        if (Time.timeScale == 0)
+        if (GameManager.IsGamePaused())
         {
             return;
         }

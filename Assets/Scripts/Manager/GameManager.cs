@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Scene constants.
+    public const string SCENE_MENU = "MenuScene";
     public const string SCENE_MAIN = "MainScene";
 
     // Player animation constants.
@@ -30,11 +31,13 @@ public class GameManager : MonoBehaviour
     public const string INPUT_ACTION_MENU_JUMP = "Jump";
     public const string INPUT_ACTION_MENU_PAUSE = "Pause";
 
-    // Audio constants.
-    public const string AUDIO_MIXER_MASTER_VOLUME = "Volume";
+    // Events.
+    public static event System.Action OnTimeScaleToggled;
+    public static event System.Action OnGameEnded;
 
     /// <summary>
     /// Toggles the time scale to pause or resume the game.
+    /// Also invokes the OnTimeScaleToggled event.
     /// </summary>
     public static void ToggleTimeScale()
     {
@@ -46,5 +49,24 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
         }
+
+        OnTimeScaleToggled?.Invoke();
+    }
+
+    /// <summary>
+    /// Checks if the game is currently paused.
+    /// </summary>
+    /// <returns>Returns true if the time scale is 0, otherwise false.</returns>
+    public static bool IsGamePaused()
+    {
+        return Time.timeScale == 0;
+    }
+
+    /// <summary>
+    /// Ends the game by invoking the OnGameEnded event.
+    /// </summary>
+    public static void EndGame()
+    {
+        OnGameEnded?.Invoke();
     }
 }

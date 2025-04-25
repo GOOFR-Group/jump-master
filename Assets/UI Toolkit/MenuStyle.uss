@@ -1,31 +1,40 @@
 .title {
-    -unity-font-definition: url("project://database/Assets/UI/Fonts/PixelifySans-Regular.ttf?fileID=12800000&guid=65ce40e7c455c7b41bb1881080833ed6&type=3#PixelifySans-Regular");
     font-size: 96px;
     color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&guid=3bab60800bfdc90458ca4518e2c7992f&type=3#PixelifySans-SemiBold");
 }
 
-.start-button {
-    width: 278px;
-    height: 86px;
-    background-image: url("project://database/Assets/UI/Images/Controls/Start/Default.png?fileID=-2369867600477939372&guid=d6187a116af8cdf4fa5f2ae12ce9471c&type=3#default_0");
+.button {
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    margin-top: 32px;
+    margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;
     background-color: rgba(0, 0, 0, 0);
+    color: rgb(220, 226, 231);
+    font-size: 40px;
+    -unity-font-style: normal;
+    -unity-font-definition: url("project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&guid=3bab60800bfdc90458ca4518e2c7992f&type=3#PixelifySans-SemiBold");
+    background-image: url("project://database/Assets/UI/Images/Button.png?fileID=649223268058989734&guid=948e8eb02b303bd45b7993d8c26485f2&type=3#Button_0");
+    height: auto;
+    width: auto;
+    min-width: 320px;
+    min-height: 64px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 16px;
+    padding-bottom: 32px;
 }
 
-.start-button:hover {
-    background-image: url("project://database/Assets/UI/Images/Controls/Start/Pressed.png?fileID=4624140423664396058&guid=129c835ba71f39845b1c94f99fdbfe4e&type=3#pressed_0");
-    background-color: rgba(0, 0, 0, 0);
+.button:hover {
+    scale: 1.1 1.1;
+    transition-duration: 300ms;
+    transition-timing-function: ease-out-back;
+    -unity-background-image-tint-color: rgb(230, 230, 230);
+    color: rgb(195, 200, 205);
 }
 
 .control-label {
