@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Scene constants.
+    public const string SCENE_MENU = "MenuScene";
     public const string SCENE_MAIN = "MainScene";
 
     // Player animation constants.

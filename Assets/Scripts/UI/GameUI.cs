@@ -18,6 +18,7 @@ public class GameUI : MonoBehaviour
     private Button pauseResumeButton;
     private Button soundButton;
     private Button restartButton;
+    private Button exitToMenuButton;
     private Label timerLabel;
 
     // UI element names.
@@ -25,6 +26,7 @@ public class GameUI : MonoBehaviour
     private const string PAUSE_RESUME_BUTTON_NAME = "PauseResumeButton";
     private const string SOUND_BUTTON_NAME = "SoundButton";
     private const string RESTART_BUTTON_NAME = "RestartButton";
+    private const string EXIT_TO_MENU_BUTTON_NAME = "ExitToMenuButton";
     private const string TIMER_LABEL_NAME = "TimerLabel";
 
     // UI class names.
@@ -43,6 +45,7 @@ public class GameUI : MonoBehaviour
         pauseResumeButton = uiDocument.rootVisualElement.Q<Button>(PAUSE_RESUME_BUTTON_NAME);
         soundButton = uiDocument.rootVisualElement.Q<Button>(SOUND_BUTTON_NAME);
         restartButton = uiDocument.rootVisualElement.Q<Button>(RESTART_BUTTON_NAME);
+        exitToMenuButton = uiDocument.rootVisualElement.Q<Button>(EXIT_TO_MENU_BUTTON_NAME);
         timerLabel = uiDocument.rootVisualElement.Q<Label>(TIMER_LABEL_NAME);
     }
 
@@ -54,6 +57,7 @@ public class GameUI : MonoBehaviour
         pauseResumeButton.RegisterCallback<ClickEvent>(OnPauseResumeButtonClick);
         soundButton.RegisterCallback<ClickEvent>(OnSoundButtonClick);
         restartButton.RegisterCallback<ClickEvent>(OnRestartButtonClick);
+        exitToMenuButton.RegisterCallback<ClickEvent>(OnExitToMenuButtonClick);
     }
 
     private void OnDisable()
@@ -64,6 +68,7 @@ public class GameUI : MonoBehaviour
         pauseResumeButton.UnregisterCallback<ClickEvent>(OnPauseResumeButtonClick);
         soundButton.UnregisterCallback<ClickEvent>(OnSoundButtonClick);
         restartButton.UnregisterCallback<ClickEvent>(OnRestartButtonClick);
+        exitToMenuButton.UnregisterCallback<ClickEvent>(OnExitToMenuButtonClick);
     }
 
     private void Start()
@@ -149,5 +154,15 @@ public class GameUI : MonoBehaviour
 
         // Ensure the game is unpaused when restarting.
         Time.timeScale = 1;
+    }
+
+    /// <summary>
+    /// Exits to the menu when the exit to menu button is clicked.
+    /// </summary>
+    /// <param name="clickEvent">Click event.</param>
+    private void OnExitToMenuButtonClick(ClickEvent clickEvent)
+    {
+        // Load the menu scene.
+        SceneManager.LoadScene(GameManager.SCENE_MENU);
     }
 }
