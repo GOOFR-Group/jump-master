@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/CommonStyle.uss?fileID=7433441132597879392&amp;guid=018d986474e46fd4ca42504ff9d9892e&amp;type=3#CommonStyle" />
     <engine:VisualElement name="GamePanel" style="flex-grow: 1;">
         <engine:VisualElement name="PausedPanel" class="paused-panel">
-            <engine:Label text="Pause Menu" name="Label" class="text-shadow" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&amp;guid=3bab60800bfdc90458ca4518e2c7992f&amp;type=3#PixelifySans-SemiBold&quot;); font-size: 96px; color: rgb(255, 255, 255); -unity-text-align: upper-center; margin-bottom: 32px; margin-left: 0; padding-left: 0; padding-top: 0; margin-top: 0; padding-right: 0; margin-right: 0; padding-bottom: 0;" />
+            <engine:Label text="Pause Menu" name="Label" class="text-shadow" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&amp;guid=3bab60800bfdc90458ca4518e2c7992f&amp;type=3#PixelifySans-SemiBold&quot;); font-size: 80px; color: rgb(255, 255, 255); -unity-text-align: upper-center; margin-bottom: 32px; margin-left: 0; padding-left: 0; padding-top: 0; margin-top: 0; padding-right: 0; margin-right: 0; padding-bottom: 0;" />
             <engine:Button text="Restart" name="RestartButton" class="button button-animation" style="margin-bottom: 16px;" />
             <engine:Button text="Exit to Menu" name="ExitToMenuButton" class="button button-animation" />
         </engine:VisualElement>
@@ -16,8 +16,8 @@
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:VisualElement name="EndGamePanel" class="end-game-panel" style="flex-grow: 1;">
-        <engine:Label text="The End" name="Label" class="text-shadow" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&amp;guid=3bab60800bfdc90458ca4518e2c7992f&amp;type=3#PixelifySans-SemiBold&quot;); font-size: 96px; color: rgb(255, 255, 255); -unity-text-align: upper-center; margin-bottom: 0; margin-left: 0; padding-left: 0; padding-top: 0; margin-top: 0; padding-right: 0; margin-right: 0; padding-bottom: 0;" />
-        <engine:Label text="00:00" name="TimerLabel" class="text-shadow timer" style="margin-top: 0; margin-right: 0; margin-bottom: 32px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-grow: 0; font-size: 72px;" />
+        <engine:Label text="The End" name="Label" class="text-shadow" style="-unity-font-definition: url(&quot;project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&amp;guid=3bab60800bfdc90458ca4518e2c7992f&amp;type=3#PixelifySans-SemiBold&quot;); font-size: 80px; color: rgb(255, 255, 255); -unity-text-align: upper-center; margin-bottom: 0; margin-left: 0; padding-left: 0; padding-top: 0; margin-top: 0; padding-right: 0; margin-right: 0; padding-bottom: 0;" />
+        <engine:Label text="00:00" name="TimerLabel" class="text-shadow timer" style="margin-top: 0; margin-right: 0; margin-bottom: 32px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-grow: 0; font-size: 68px;" />
         <engine:Button text="Restart" name="RestartButton" class="button button-animation" style="margin-bottom: 16px;" />
         <engine:Button text="Exit to Menu" name="ExitToMenuButton" class="button button-animation" />
     </engine:VisualElement>

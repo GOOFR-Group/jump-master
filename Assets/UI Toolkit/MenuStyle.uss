@@ -1,5 +1,5 @@
 .title {
-    font-size: 96px;
+    font-size: 80px;
     color: rgb(255, 255, 255);
     -unity-font-definition: url("project://database/Assets/UI/Fonts/PixelifySans-SemiBold.ttf?fileID=12800000&guid=3bab60800bfdc90458ca4518e2c7992f&type=3#PixelifySans-SemiBold");
 }
